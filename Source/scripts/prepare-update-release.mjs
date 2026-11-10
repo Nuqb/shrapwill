@@ -40,14 +40,21 @@ const files = [
   },
 ];
 const installerDirectory = path.join(sourceRoot, 'target/release/bundle/nsis');
-const matches = fs
-  .readdirSync(installerDirectory)
-  .filter((name) => name.endsWith(`_${version}_x64-setup.exe`));
+const suppliedInstaller = process.env.SHRAPWILL_RELEASE_INSTALLER;
+const matches = suppliedInstaller
+  ? [path.basename(suppliedInstaller)]
+  : fs.readdirSync(installerDirectory).filter((name) => name.endsWith(`_${version}_x64-setup.exe`));
 if (matches.length !== 1)
   throw Error('Build the Windows NSIS installer for this release before preparing updates.');
 const installerName = matches[0];
+if (!installerName.endsWith(`_${version}_x64-setup.exe`))
+  throw Error('The installer version must match the release tag.');
 const installerFile = path.join(directory, installerName);
-fs.copyFileSync(path.join(installerDirectory, installerName), installerFile);
+const installerSource = suppliedInstaller
+  ? path.resolve(suppliedInstaller)
+  : path.join(installerDirectory, installerName);
+if (path.resolve(installerSource) !== path.resolve(installerFile))
+  fs.copyFileSync(installerSource, installerFile);
 const portableName = `Shrapwill_${version}_windows-x86_64.shrapwill.gz`;
 const portableFile = path.join(directory, portableName);
 const portable = await createUpdatePackage({ version, files, destination: portableFile });

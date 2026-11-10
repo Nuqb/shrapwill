@@ -67,6 +67,9 @@ npm run release:prepare -- v0.10.0
 These commands create assets under `Outputs/releases/v0.10.0`. Upload the named
 artifacts listed in `upload-files.json`, preserving the manifest-last order.
 The signing tool verifies that the private key matches the compiled public key.
+For a separately staged installer, set `SHRAPWILL_RELEASE_INSTALLER` to its
+absolute path. Its filename must match the release version. An installer already
+in the release output directory is verified and reused without a duplicate copy.
 Never replace assets under an existing published version after users can install
 it; publish a higher version for fixes.
 
@@ -117,12 +120,15 @@ tests, eight updater packaging/Windows fixture tests, four launcher/publication
 tests, and the isolated update-screen checks at 1366×768 and 1920×1080. Formatting
 and workspace Clippy checks passed. The actual signed 0.9.0 portable release was
 also verified and fully extracted by Rust into an isolated QA directory; its
-installer matched the signed SHA-256 digest. The generated installer and portable
-ZIP are under `Outputs/releases/v0.9.0`, and the stable local launcher opens the
-updater-enabled build. Those initial checks preceded the versioned 0.10.0 release.
-Live editor automation could not connect to
-its isolated WebView debugging endpoint (`ECONNRESET`), so a real installed-app
-upgrade from GitHub remains unverified.
+installer matched the signed SHA-256 digest. Those initial checks preceded the
+versioned 0.10.0 release. Current release files are generated under
+`Outputs/releases/v0.10.0`; the earlier local candidate archives were regenerated
+for that version. The original published 0.9.0 installer and running editor
+sessions are preserved.
+Initial restricted desktop automation could not connect to its isolated WebView
+debugging endpoint (`ECONNRESET`). The completed 0.10.0 executable subsequently
+passed Settings and save/discard/keep-editing checks using the permission-reviewed
+desktop route. A full installed-app upgrade from an older release remains unverified.
 
 Version 0.10.0 includes the updater and measured editing improvements. Its release
 is published at [GitHub Releases](https://github.com/Nuqb/shrapwill/releases/tag/v0.10.0).
