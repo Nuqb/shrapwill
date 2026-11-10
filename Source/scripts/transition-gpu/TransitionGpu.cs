@@ -230,8 +230,11 @@ internal static partial class TransitionGpu
         glBindTexture(0x0DE1, texture);
         glTexParameteri(0x0DE1, 0x2801, 0x2601);
         glTexParameteri(0x0DE1, 0x2800, 0x2601);
-        glTexParameteri(0x0DE1, 0x2802, 0x812F);
-        glTexParameteri(0x0DE1, 0x2803, 0x812F);
+        // Mirror transition scene inputs only. Source effects, masks, LUTs and
+        // graph intermediates retain their own clamped sampling contracts.
+        int wrap = unit < 2 && (currentTextures == null || currentTextures.IsTransition) ? 0x8370 : 0x812F;
+        glTexParameteri(0x0DE1, 0x2802, wrap);
+        glTexParameteri(0x0DE1, 0x2803, wrap);
         fixed (byte* p = bytes)
             glTexImage2D(0x0DE1, 0, 0x8058, width, height, 0, 0x1908, 0x1401, (IntPtr)p);
     }

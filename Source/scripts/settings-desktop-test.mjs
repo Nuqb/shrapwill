@@ -14,7 +14,7 @@ const openSettings = async () => {
 await page.waitForSelector('.launcher');
 await expect.poll(() => page.evaluate(() => document.documentElement.dataset.theme)).toBe('orange');
 await openSettings();
-await expect(page.locator('.settings-category')).toHaveCount(2);
+await expect(page.locator('.settings-category')).toHaveCount(3);
 await page.screenshot({ path: outputPath('Shrapwill-settings-categories.png') });
 await page.getByRole('button', { name: 'Appearance', exact: true }).click();
 await expect(page.locator('.theme-card')).toHaveCount(10);

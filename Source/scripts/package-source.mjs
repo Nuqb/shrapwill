@@ -25,7 +25,7 @@ const rootFiles = [
   'vite.config.ts',
   'index.html',
 ];
-const directories = ['src', 'crates', 'src-tauri', 'scripts', 'docs', '.cursor'];
+const directories = ['src', 'crates', 'src-tauri', 'scripts', 'docs', 'config', '.cursor'];
 
 function entries(relative) {
   if (path.basename(relative) === 'AGENTS.md') return [];
@@ -67,6 +67,13 @@ function packageSource() {
       fs.writeSync(output, data);
     });
     for (const item of [...rootFiles, ...directories].flatMap(entries)) addFile(zip, item);
+    const workflow = path.resolve(root, '../.github/workflows/release.yml');
+    if (fs.existsSync(workflow))
+      addFile(zip, {
+        full: workflow,
+        relative: '.github/workflows/release.yml',
+        stats: fs.statSync(workflow),
+      });
     zip.end();
     fs.fsyncSync(output);
   } catch (error) {

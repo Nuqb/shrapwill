@@ -12,9 +12,9 @@ pub(crate) fn snapshot(s: &Session) -> Snapshot {
         can_undo: u,
         can_redo: r,
         can_paste: s.editor.can_paste(),
-        render: render::plan(&s.editor.project, true)
-            .ok()
-            .and_then(|p| serde_json::to_value(p).ok()),
+        render: render::plan(&s.editor.project, true).ok(),
+        session_id: s.updates.session_id.clone(),
+        sequence: s.updates.sequence,
     }
 }
 pub(crate) fn prepare(app: &tauri::AppHandle, s: &mut Session) -> Result<(), String> {
@@ -43,10 +43,19 @@ pub(crate) fn prepare(app: &tauri::AppHandle, s: &mut Session) -> Result<(), Str
     }
     Ok(())
 }
-pub(crate) fn changed(app: &tauri::AppHandle, s: &mut Session) -> Result<Snapshot, String> {
+pub(crate) fn changed(app: &tauri::AppHandle, s: &mut Session) -> Result<(), String> {
     prepare(app, s)?;
     let snap = snapshot(s);
-    app.emit("editor-changed", &snap)
+    let update = s.updates.publish(snap);
+    app.emit("editor-changed", &update)
         .map_err(|e| e.to_string())?;
-    Ok(snap)
+    Ok(())
+}
+pub(crate) fn response(session: &Session, compact: Option<bool>) -> serde_json::Value {
+    let snap = session.updates.current().expect("published snapshot");
+    if compact == Some(true) {
+        serde_json::json!({"updateSequence":snap.sequence,"sessionId":snap.session_id})
+    } else {
+        serde_json::to_value(snap).expect("serializable editor snapshot")
+    }
 }

@@ -26,7 +26,7 @@ impl FrameRate {
         (seconds * self.fps()).round() as i64
     }
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct MediaAsset {
     pub id: String,
@@ -40,11 +40,11 @@ pub struct MediaAsset {
     pub preview_path: Option<String>,
     pub thumbnail_path: Option<String>,
     #[serde(default)]
-    pub waveform: Vec<f32>,
+    pub waveform: std::sync::Arc<[f32]>,
     #[serde(default)]
     pub missing: bool,
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase", default)]
 pub struct Properties {
     pub x: f64,
@@ -120,7 +120,7 @@ impl Default for Properties {
         }
     }
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Title {
     pub text: String,
@@ -129,13 +129,13 @@ pub struct Title {
     pub color: String,
     pub image_path: Option<String>,
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Transition {
     pub kind: String,
     pub frames: i64,
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Clip {
     pub id: String,
@@ -150,7 +150,7 @@ pub struct Clip {
     pub title: Option<Title>,
     pub transition: Option<Transition>,
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Track {
     pub id: String,
@@ -161,7 +161,7 @@ pub struct Track {
     pub visible: bool,
     pub clips: Vec<Clip>,
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Project {
     pub version: u32,

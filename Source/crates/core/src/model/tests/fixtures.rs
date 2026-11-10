@@ -12,7 +12,7 @@ pub(super) fn fixture() -> Editor {
         has_audio: true,
         preview_path: None,
         thumbnail_path: None,
-        waveform: vec![],
+        waveform: Default::default(),
         missing: false,
     };
     let mid = a.id.clone();

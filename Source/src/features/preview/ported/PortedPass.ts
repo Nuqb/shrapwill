@@ -96,8 +96,10 @@ export class PortedPass {
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB8, width, height, 0, gl.RGB, gl.UNSIGNED_BYTE, null);
       for (const key of [gl.TEXTURE_MIN_FILTER, gl.TEXTURE_MAG_FILTER])
         gl.texParameteri(gl.TEXTURE_2D, key, gl.LINEAR);
+      // Transition motion crosses the scene boundary. Clamping here stretches
+      // one edge across the frame and can hold it there for many frames.
       for (const key of [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T])
-        gl.texParameteri(gl.TEXTURE_2D, key, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, key, gl.MIRRORED_REPEAT);
       this.sizes[slot] = size;
     }
     gl.copyTexSubImage2D(gl.TEXTURE_2D, 0, 0, 0, 0, 0, width, height);

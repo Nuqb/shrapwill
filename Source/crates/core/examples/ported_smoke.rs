@@ -65,7 +65,7 @@ fn main() -> Result<(), String> {
             has_audio: false,
             preview_path: Some(rc.source),
             thumbnail_path: None,
-            waveform: vec![],
+            waveform: Default::default(),
             missing: false,
         });
         project.tracks[0].clips.push(rc.clip);

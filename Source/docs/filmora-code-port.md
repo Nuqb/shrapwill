@@ -27,6 +27,14 @@ The two ANGLE libraries are copied from the installed Filmora runtime. `src-taur
 
 Both hosts use bottom-left shader UV and an opaque RGB scene target. CPU frame rows are flipped only at the native upload/readback boundary. Original parameter names are bound to clip-local seconds; legacy length/position aliases preserve their normalized ratios. Export slices are capped at half a second and an estimated 256 MiB lossless-intermediate budget. Intermediate source/result files are removed as each slice finishes. Original media and running user sessions are never replaced.
 
+Transition scene inputs use mirrored-repeat edge sampling in both hosts. The
+original motion programs can sample several image widths outside the unit square;
+clamping their captured scenes produced long stationary streaks in Simple Roll,
+Blurry Roll, Flip Roll, push, train, rotation and other transitions. Mirroring is
+restricted to the two transition scenes: source effects/filters, imported maps,
+packed media and intermediate graph targets keep their existing clamp behavior.
+The original shader files, motion equations and time curves remain unchanged.
+
 ## Resources that are not converted
 
 Only **Flip Up** (`local_flip_up`, original GUID `1B033EDA-6869-4957-AF60-323B09FB49FC`, internal name `Turn`) remains unfinished. Its installed resource references `Turn.conf`, but neither that configuration nor the executable transition source is present. Its rendered preview is available, but is not treated as executable source. The unrelated static FlipUp image filter is deliberately not substituted for this perspective transition. Existing projects remain readable; new selection stays disabled with an explicit missing-source explanation.
@@ -49,6 +57,14 @@ Desktop frame analysis is behind the existing service/IPC boundary, validates fr
 The application shows preset artwork and names without implementation badges, and visibly disables unfinished originals. New edits reject an unfinished original rather than silently running a name-only approximation. The internal Mask Blend utility is not exposed as a transition. Source provenance remains internal to the manifests and documentation rather than appearing as a library category or badge.
 
 ## Verification
+
+- `npm run test:transitions` checks all 283 selectable ported programs at 61 phases
+  (17,263 rendered frames), independently detecting horizontal and vertical edge
+  collapse. Vertical Stretch and Beam Wipe explicitly collapse a sampling axis
+  at the midpoint; those two equations are allowed only at that exact phase.
+- `node scripts/original-ports-desktop-test.mjs --standalone --production-only`
+  compares all 285 shader records (including the internal utility and legacy ID)
+  between WebGL and production ANGLE without accessing an open editor session.
 
 - `node --test scripts/transition-gpu/ports.test.mjs` verifies every saved original against its recorded source hash.
 - `npm run test:desktop -- original-ports` renders all 102 transition records at seven phases, comparing WebGL against independent desktop OpenGL and production ANGLE: 714 phase cases. GPU-specific random sampling uses a documented mean RGB tolerance of 12; other programs use 5.

@@ -36,7 +36,13 @@ function scanFile(full) {
   return result;
 }
 
-const roots = ['src', 'crates/core/src', 'src-tauri/src'];
+const roots = [
+  'src',
+  'crates/core/src',
+  'crates/kernels/src',
+  'crates/updater/src',
+  'src-tauri/src',
+];
 const findings = roots.flatMap((directory) => files(path.join(root, directory)).flatMap(scanFile));
 const key = (finding) => `${finding.file}:${finding.name}:${finding.rule}`;
 const debt = JSON.parse(fs.readFileSync(inventoryPath, 'utf8'));

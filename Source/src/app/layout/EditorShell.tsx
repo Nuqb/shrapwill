@@ -8,6 +8,7 @@ import { NewProjectDialog } from '../../features/projects/NewProjectDialog';
 import { ExportDialog } from '../../features/export/ExportDialog';
 import { UnsavedPrompt, EditorPreferences } from './Overlays';
 import { ProjectInfoDialog } from '../../features/projects/ProjectInfoDialog';
+import { UpdateNotice } from '../../features/updates/UpdateNotice';
 export function EditorShell() {
   const {
     menu,
@@ -30,6 +31,7 @@ export function EditorShell() {
       }}
     >
       <AppHeader />
+      <UpdateNotice />
       {!desktop && <BrowserBanner />}
       <EditorWorkspace />
       {missing.length > 0 && <MissingMediaNotice />}

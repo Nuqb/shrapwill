@@ -1,7 +1,8 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { type Snapshot } from '../../types';
 import type { EditorState } from '../state/useEditorState';
 export function useSnapshotUpdate(ctx: EditorState) {
+  const lastSequence = useRef(-1);
   const {
     setSnap,
     setSelected,
@@ -13,6 +14,10 @@ export function useSnapshotUpdate(ctx: EditorState) {
     revision,
   } = ctx;
   const update = useCallback((s: Snapshot) => {
+    if (s.sequence !== undefined) {
+      if (s.sequence <= lastSequence.current) return;
+      lastSequence.current = s.sequence;
+    }
     if (s.revision < revision.current) return;
     if (projectId.current !== s.project.id) {
       projectId.current = s.project.id;

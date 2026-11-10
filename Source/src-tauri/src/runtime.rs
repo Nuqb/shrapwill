@@ -1,8 +1,5 @@
 use crate::state::*;
-use cutline_core::{
-    media::{self},
-    Editor,
-};
+use cutline_core::media::{self};
 use std::{
     collections::HashMap,
     fs,
@@ -39,10 +36,8 @@ pub(crate) fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Erro
     let ffmpeg = tool_path("ffmpeg");
     let ffprobe = tool_path("ffprobe");
     app.manage(AppState {
-        session: Mutex::new(Session {
-            editor: Editor::default(),
-            path: None,
-        }),
+        updates: Default::default(),
+        session: Mutex::new(Session::default()),
         jobs: Mutex::new(HashMap::new()),
         slots: (Mutex::new(0), Condvar::new()),
         import_slots: (Mutex::new(0), Condvar::new()),

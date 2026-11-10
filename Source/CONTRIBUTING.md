@@ -16,11 +16,14 @@ npm run quality:audit
 npm run quality:check
 npm run test:quality
 npm run test:release
-npm run test:release
+npm run test:updates
+npm run test:updates-ui
 npm test
+npm run test:transitions
 npm run build
 cargo fmt --all -- --check
 cargo test -p cutline-core
+cargo test -p shrapwill-updater
 cargo clippy --workspace --all-targets -- -D warnings
 ```
 
@@ -55,13 +58,41 @@ npm run test:desktop -- librarydrag phone
 npm run test:desktop -- close close-discard
 ```
 
+After transition rendering changes, also run
+`node scripts/original-ports-desktop-test.mjs --standalone --production-only`
+after building the core helper. This uses its own headless browser and isolated
+Vite cache; it never reuses a running editor. The sampling test above checks all
+selectable programs at 61 phases, beyond cross-renderer agreement alone.
+
 The desktop runner defaults to `../App/shrapwill.exe`. Set `SHRAPWILL_TEST_EXE` to your freshly built `target/release/shrapwill.exe` before testing a new build. `CARGO_TARGET_DIR` may change that path. Each suite launches its own editor and isolated recovery/WebView profile under QA. The runner terminates only the process it launched; it never finds or stops the user's editor. Generated profiles are retained for diagnosis. Debugging is enabled only for these test processes.
 
 Override fixture and artifact paths with `SHRAPWILL_QA_DIR` and `SHRAPWILL_OUTPUT_DIR`. `SHRAPWILL_DEBUG_PORT` defaults to 9240 in the runner. Run suites sequentially; the runner rejects an occupied port. Direct scripts retain their historical default ports. Run from an interactive Windows user session with desktop access; restricted child-process tokens can prevent WebView2 from initializing. The runner's `close` suite sends the application's close event and tests its custom dialog; `close-discard` follows it using the generated project. Testing the actual native title-bar X separately requires the legacy save mode with its documented preopened dialog.
 
 After timeline/preview changes, run track selection, shortcut customization, magnetic timeline, gesture, editing, render comparison, and media-job checks. Verify the custom close dialog in an isolated profile after lifecycle changes. Review the workspace at 1366×768 and 1920×1080. Performance budgets in the README remain measurement targets, not promises inferred from a successful build.
 
+## Rust computation measurements
+
+Run `npm run test:rust-performance` for the generated playback benchmark and exact
+Rust/browser state-update replay. It builds the release `engine_benchmark`
+example and uses an isolated headless Edge browser. Results go under
+`../QA/rust-conversion`; it never connects to a running editor.
+
+For matched history measurements, preserve the pre-change release example, then
+run `node scripts/measure-rust-engine.mjs "absolute/path/to/engine-before.exe"`.
+The runner alternates five baseline/current runs for each project size, then
+compares full-snapshot and delta transport. See `docs/rust-performance.md` for
+what each metric includes and the limits of these measurements. The optional
+`npm run test:desktop -- rust-performance` suite measures an isolated live editor;
+it requires the same interactive Windows access as the other desktop suites.
+The existing `src`, `crates`, `scripts`, and `docs` source-packaging rules include
+the new sources; `target` and QA profiles remain excluded.
+
 ## Packaging
+
+See [GitHub release updates](docs/updates.md) for signing-key setup, publishing
+stable releases, portable/installed update behavior and recovery. Public update
+configuration and the GitHub workflow are included in source packaging; private
+signing keys are deliberately excluded.
 
 `npm run tauri -- build` automatically publishes a successful Windows release to `../App`, including same-version rebuilds. `--no-bundle` also publishes the portable executable; debug builds, failed builds, and help commands do not change the current release. `scripts/tauri.mjs` forwards the CLI arguments, then calls the publisher only after success. For a release built outside that command, run `npm run publish:app -- "absolute/path/to/shrapwill.exe"` explicitly.
 

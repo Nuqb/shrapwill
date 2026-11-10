@@ -13,7 +13,7 @@ fn main() -> Result<(), String> {
         .map(PathBuf::from)
         .unwrap_or_else(|| PathBuf::from("../qa"));
     fs::create_dir_all(&out).map_err(|e| e.to_string())?;
-    let out = fs::canonicalize(out).map_err(|e| e.to_string())?;
+    let out = media::clean_path(&fs::canonicalize(out).map_err(|e| e.to_string())?);
     let bin = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../src-tauri/binaries");
     let ff = bin.join("ffmpeg-x86_64-pc-windows-msvc.exe");
     let fp = bin.join("ffprobe-x86_64-pc-windows-msvc.exe");

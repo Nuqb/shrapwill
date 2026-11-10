@@ -17,12 +17,17 @@ export function UnsavedPrompt() {
   );
 }
 export function EditorPreferences() {
-  const { bindings, commitShortcuts, setSettingsOpen } = useEditor();
+  const { bindings, commitShortcuts, setSettingsOpen, settingsSection, setSettingsSection } =
+    useEditor();
   return (
     <SettingsDialog
       bindings={bindings}
+      initialCategory={settingsSection}
       onSave={commitShortcuts}
-      onClose={() => setSettingsOpen(false)}
+      onClose={() => {
+        setSettingsOpen(false);
+        setSettingsSection('home');
+      }}
     />
   );
 }

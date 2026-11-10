@@ -28,19 +28,12 @@ impl Editor {
     }
     pub fn commit(&mut self, p: Project) -> Result<(), String> {
         p.validate()?;
-        self.past.push(self.project.clone());
-        let weight = |p: &Project| {
-            p.assets
-                .iter()
-                .map(|a| a.waveform.len() * 4 + a.path.len() + a.name.len() + 256)
-                .sum::<usize>()
-                + p.tracks.iter().map(|t| t.clips.len() * 1024).sum::<usize>()
-        };
-        let mut bytes = self.past.iter().map(weight).sum::<usize>();
+        self.past.push(std::mem::replace(&mut self.project, p));
+        let mut bytes = history_weight(&self.past);
         while self.past.len() > 1 && (self.past.len() > 100 || bytes > 64 * 1024 * 1024) {
-            bytes = bytes.saturating_sub(weight(&self.past.remove(0)));
+            self.past.remove(0);
+            bytes = history_weight(&self.past);
         }
-        self.project = p;
         self.future.clear();
         self.dirty = true;
         self.revision += 1;
@@ -48,16 +41,14 @@ impl Editor {
     }
     pub fn undo(&mut self) {
         if let Some(p) = self.past.pop() {
-            self.future.push(self.project.clone());
-            self.project = p;
+            self.future.push(std::mem::replace(&mut self.project, p));
             self.dirty = true;
             self.revision += 1;
         }
     }
     pub fn redo(&mut self) {
         if let Some(p) = self.future.pop() {
-            self.past.push(self.project.clone());
-            self.project = p;
+            self.past.push(std::mem::replace(&mut self.project, p));
             self.dirty = true;
             self.revision += 1;
         }
@@ -69,5 +60,28 @@ impl Editor {
         context.finish(&self.project, &mut p)?;
         self.commit(p)
     }
+}
+// Waveforms are immutable and shared across history states. Other sizes remain
+// conservative estimates, preserving the existing bounded-history policy.
+fn history_weight(projects: &[Project]) -> usize {
+    let mut waveforms = std::collections::HashSet::new();
+    projects
+        .iter()
+        .map(|p| {
+            let assets = p
+                .assets
+                .iter()
+                .map(|a| {
+                    let wave = if waveforms.insert(a.waveform.as_ptr()) {
+                        a.waveform.len() * 4
+                    } else {
+                        0
+                    };
+                    wave + a.path.len() + a.name.len() + 256
+                })
+                .sum::<usize>();
+            assets + p.tracks.iter().map(|t| t.clips.len() * 1024).sum::<usize>()
+        })
+        .sum()
 }
 // New video/title tracks are inserted above the original main video track.

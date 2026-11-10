@@ -8,12 +8,19 @@ mod project_store;
 mod runtime;
 mod session;
 mod state;
+mod updates;
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .setup(runtime::setup)
         .invoke_handler(tauri::generate_handler![
+            updates::check_for_updates,
+            updates::download_app_update,
+            updates::cancel_app_update,
+            updates::install_app_update,
+            updates::restart_for_update,
             commands::editing::startup,
+            commands::editing::editor_snapshot,
             commands::editing::edit,
             commands::editing::history,
             commands::editing::clipboard,

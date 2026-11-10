@@ -45,6 +45,7 @@ internal static partial class TransitionGpu
         public double[] eye=new double[]{.5,.5};
         public float[] values=new float[0];
         public float Strength {get{return (float)recipe.strength;}}
+        public bool IsTransition {get{return recipe.sceneInputs == 2;}}
         public void Analyze(byte[] a,byte[] b,int width,int height,float progress) {
             values=AnimationCurves.Values(recipe.curves,progress);
             if(string.IsNullOrEmpty(recipe.analysis))return;

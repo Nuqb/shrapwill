@@ -17,5 +17,7 @@ AGENTS.md
 .DS_Store
 Thumbs.db
 .env
+.release-keys/
+**/.release-keys/
 .env.*
 !.env.example

@@ -8,17 +8,20 @@ import { useDialogFocus } from './useDialogFocus';
 import { SettingsCategoryCards } from './SettingsCategoryCards';
 import { useSettingsNavigation } from './useSettingsNavigation';
 import { SettingsHeader } from './SettingsHeader';
+import { UpdateSettings } from '../updates/UpdateSettings';
 
 export default function SettingsDialog({
   bindings,
   onSave,
   onClose,
+  initialCategory = 'home',
 }: {
   bindings: Bindings;
   onSave: (bindings: Bindings) => void;
   onClose: () => void;
+  initialCategory?: 'home' | 'updates';
 }) {
-  const { category, setCategory } = useSettingsNavigation(onClose);
+  const { category, setCategory } = useSettingsNavigation(onClose, initialCategory);
   if (category === 'shortcuts') {
     return (
       <ShortcutSettings
@@ -44,8 +47,8 @@ function SettingsCategories({
   onCategory,
   onClose,
 }: {
-  category: 'home' | 'appearance';
-  onCategory: (category: 'home' | 'shortcuts' | 'appearance') => void;
+  category: 'home' | 'appearance' | 'updates';
+  onCategory: (category: 'home' | 'shortcuts' | 'appearance' | 'updates') => void;
   onClose: () => void;
 }) {
   const dialog = useDialogFocus();
@@ -60,12 +63,16 @@ function SettingsCategories({
         aria-labelledby="settings-heading"
       >
         <SettingsHeader
-          title={category === 'home' ? 'Settings' : 'Appearance'}
+          title={
+            category === 'home' ? 'Settings' : category === 'updates' ? 'Updates' : 'Appearance'
+          }
           onBack={category === 'home' ? undefined : () => onCategory('home')}
           onClose={onClose}
         />
         {category === 'home' ? (
           <SettingsCategoryCards onCategory={onCategory} />
+        ) : category === 'updates' ? (
+          <UpdateSettings />
         ) : (
           <AppearanceSettings />
         )}

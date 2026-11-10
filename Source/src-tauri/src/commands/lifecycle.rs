@@ -10,6 +10,7 @@ pub(crate) fn close_editor(app: tauri::AppHandle, state: State<AppState>) {
     }
     let _ = fs::remove_file(state.data.join("recovery.cutline"));
     cancel_all(&state);
+    state.updates.cancel.store(true, Ordering::Release);
     std::thread::spawn(move || {
         for _ in 0..100 {
             if app.state::<AppState>().jobs.lock().unwrap().is_empty() {

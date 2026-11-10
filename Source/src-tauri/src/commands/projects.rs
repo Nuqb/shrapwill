@@ -12,7 +12,8 @@ pub(crate) fn new_project(
     width: u32,
     height: u32,
     fps: core::FrameRate,
-) -> Result<Snapshot, String> {
+    compact: Option<bool>,
+) -> Result<serde_json::Value, String> {
     let p = Project {
         name: if name.trim().is_empty() {
             "Untitled project".into()
@@ -29,48 +30,54 @@ pub(crate) fn new_project(
     let mut s = state.session.lock().unwrap();
     let next_revision = s.editor.revision + 1;
     s.editor = Editor::new(p);
+    s.updates.reset_session();
     s.editor.revision = next_revision;
     s.path = None;
     let _ = fs::remove_file(state.data.join("recovery.cutline"));
-    changed(&app, &mut s)
+    changed(&app, &mut s).map(|_| response(&s, compact))
 }
 #[tauri::command]
 pub(crate) fn open_project(
     app: tauri::AppHandle,
     state: State<AppState>,
     path: String,
-) -> Result<Snapshot, String> {
+    compact: Option<bool>,
+) -> Result<serde_json::Value, String> {
     let p = read_project(Path::new(&path))?;
     cancel_all(&state);
     let mut s = state.session.lock().unwrap();
     remember(&state, &p.name, &path);
     let next_revision = s.editor.revision + 1;
     s.editor = Editor::new(p);
+    s.updates.reset_session();
     s.editor.revision = next_revision;
     s.path = Some(path);
     let _ = fs::remove_file(state.data.join("recovery.cutline"));
-    changed(&app, &mut s)
+    changed(&app, &mut s).map(|_| response(&s, compact))
 }
 #[tauri::command]
 pub(crate) fn recover_project(
     app: tauri::AppHandle,
     state: State<AppState>,
-) -> Result<Snapshot, String> {
+    compact: Option<bool>,
+) -> Result<serde_json::Value, String> {
     let p = read_project(&state.data.join("recovery.cutline"))?;
     let mut s = state.session.lock().unwrap();
     let next_revision = s.editor.revision + 1;
     s.editor = Editor::new(p);
+    s.updates.reset_session();
     s.editor.revision = next_revision;
     s.editor.dirty = true;
     s.path = None;
-    changed(&app, &mut s)
+    changed(&app, &mut s).map(|_| response(&s, compact))
 }
 #[tauri::command]
 pub(crate) fn save(
     app: tauri::AppHandle,
     state: State<AppState>,
     path: Option<String>,
-) -> Result<Snapshot, String> {
+    compact: Option<bool>,
+) -> Result<serde_json::Value, String> {
     let mut s = state.session.lock().unwrap();
     let path = path
         .or_else(|| s.path.clone())
@@ -80,7 +87,7 @@ pub(crate) fn save(
     s.editor.dirty = false;
     remember(&state, &s.editor.project.name, &path);
     let _ = fs::remove_file(state.data.join("recovery.cutline"));
-    changed(&app, &mut s)
+    changed(&app, &mut s).map(|_| response(&s, compact))
 }
 #[tauri::command]
 pub(crate) fn autosave(state: State<AppState>) -> Result<(), String> {

@@ -32,7 +32,7 @@ fn demo_image(cache: &Path, index: usize) -> Result<MediaAsset, String> {
         has_audio: false,
         preview_path: Some(path),
         thumbnail_path: None,
-        waveform: vec![],
+        waveform: Default::default(),
         missing: false,
     })
 }

@@ -1,5 +1,6 @@
 import { getCurrentWebviewWindow } from '@tauri-apps/api/webviewWindow';
-import { call, events } from './client';
+import { call, events, editorState } from './client';
+import type { StateUpdate } from './stateUpdates';
 import type { Snapshot, Job } from '../../types';
 
 export interface StartupData {
@@ -52,8 +53,17 @@ async function initialize(callbacks: DesktopCallbacks, life: Lifetime) {
 }
 
 async function register(callbacks: DesktopCallbacks, life: Lifetime) {
+  life.add(
+    editorState.subscribe((snapshot) => {
+      if (life.active()) callbacks.project(snapshot);
+    }),
+  );
   await Promise.all([
-    listenActive(life, 'editor-changed', callbacks.project),
+    listenActive<StateUpdate>(life, 'editor-changed', (update) => {
+      void editorState.receive(update).catch((error) => {
+        if (life.active()) callbacks.failed(error);
+      });
+    }),
     listenActive(life, 'job', callbacks.job),
     listenActive(life, 'encoders', callbacks.encoders),
     listenActive(life, 'close-requested', () => void callbacks.close().catch(callbacks.failed)),
@@ -66,9 +76,12 @@ async function register(callbacks: DesktopCallbacks, life: Lifetime) {
 
 export function subscribeDesktop(callbacks: DesktopCallbacks) {
   const life = subscriptionLifetime();
-  void initialize(callbacks, life);
-  void register(callbacks, life).catch((error) => {
-    if (life.active()) callbacks.failed(error);
-  });
+  void register(callbacks, life)
+    .then(() => {
+      if (life.active()) return initialize(callbacks, life);
+    })
+    .catch((error) => {
+      if (life.active()) callbacks.failed(error);
+    });
   return life.dispose;
 }

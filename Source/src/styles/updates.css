@@ -1,0 +1,50 @@
+.update-settings {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+}
+.update-settings p {
+  color: var(--muted);
+}
+.update-preference {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.update-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.update-actions button,
+.update-notice button {
+  padding: 8px 12px;
+}
+.update-settings progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.update-notes {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.update-settings [role='alert'] {
+  color: #ffb4a4;
+}
+.update-notice {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: min(600px, calc(100vw - 40px));
+  padding: 12px 16px;
+  background: #252a34;
+  border: 1px solid #454c5b;
+  border-radius: 8px;
+}

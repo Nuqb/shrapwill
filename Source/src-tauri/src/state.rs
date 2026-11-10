@@ -1,4 +1,4 @@
-use cutline_core::{media::Cancel, Editor, Project};
+use cutline_core::{media::Cancel, Editor};
 use serde::{Deserialize, Serialize};
 use std::{
     collections::HashMap,
@@ -6,11 +6,14 @@ use std::{
     sync::{atomic::AtomicBool, Condvar, Mutex},
 };
 
+#[derive(Default)]
 pub(crate) struct Session {
     pub(crate) editor: Editor,
     pub(crate) path: Option<String>,
+    pub(crate) updates: cutline_core::sync::PublishedState,
 }
 pub(crate) struct AppState {
+    pub(crate) updates: std::sync::Arc<crate::updates::UpdateState>,
     pub(crate) session: Mutex<Session>,
     pub(crate) jobs: Mutex<HashMap<String, Cancel>>,
     pub(crate) slots: (Mutex<usize>, Condvar),
@@ -22,18 +25,7 @@ pub(crate) struct AppState {
     pub(crate) encoders: Mutex<Vec<String>>,
     pub(crate) closing: AtomicBool,
 }
-#[derive(Clone, Serialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Snapshot {
-    pub(crate) project: Project,
-    pub(crate) path: Option<String>,
-    pub(crate) dirty: bool,
-    pub(crate) revision: u64,
-    pub(crate) can_undo: bool,
-    pub(crate) can_redo: bool,
-    pub(crate) can_paste: bool,
-    pub(crate) render: Option<serde_json::Value>,
-}
+pub(crate) use cutline_core::sync::Snapshot;
 #[derive(Clone, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct JobEvent {

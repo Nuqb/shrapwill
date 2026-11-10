@@ -24,11 +24,14 @@ pub(crate) fn job(
 ) -> String {
     let id = cutline_core::model::id();
     let cancel = Arc::new(AtomicBool::new(false));
-    app.state::<AppState>()
-        .jobs
-        .lock()
-        .unwrap()
-        .insert(id.clone(), cancel.clone());
+    {
+        let state = app.state::<AppState>();
+        let mut jobs = state.jobs.lock().unwrap();
+        if state.closing.load(Ordering::Acquire) {
+            cancel.store(true, Ordering::Release);
+        }
+        jobs.insert(id.clone(), cancel.clone());
+    }
     let runner = JobRunner {
         app,
         id: id.clone(),

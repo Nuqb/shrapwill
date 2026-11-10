@@ -39,6 +39,7 @@
     "windows": {
       "nsis": {
         "displayLanguageSelector": false,
+        "installerHooks": "../scripts/update-helper/installer-hooks.nsh",
         "installMode": "currentUser",
         "compression": "zlib"
       },

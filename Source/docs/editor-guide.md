@@ -10,7 +10,7 @@ Version 0.4.4 uses an orange rounded-square face-and-mask icon with edge-to-edge
 
 ## Using the editor
 
-1. Open `App/shrapwill.exe` in the supplied folder, or install Shrapwill with the Windows installer. The folder, desktop, and Start menu shortcuts use this stable launcher, which opens the latest successfully published local build. New portable builds become current automatically; an editor already open keeps running safely. Installed copies are updated by their installer separately.
+1. Open `App/shrapwill.exe` in the supplied folder, or install Shrapwill with the Windows installer. Portable shortcuts use the stable launcher, which opens the current verified local build. An editor already open keeps running safely.
 2. Choose **New project**, a project name, aspect ratio, and frame rate.
 3. Click **Import**, or drop video, audio, and images onto the window. The background job prepares preview copies, thumbnails, and audio waveforms. You can cancel it from the progress card.
 4. Drag imported media onto a compatible track, or use the small **+** on a media card. A placement outline shows where releasing will put the clip; Escape cancels. Click its thumbnail to preview the source. Clips can be placed while background artwork or compatible playback is still being prepared.
@@ -19,6 +19,17 @@ Version 0.4.4 uses an orange rounded-square face-and-mask icon with edge-to-edge
 7. Save your `.cutline` project. Choose **Export** for an MP4 from your original media, independent of preview resolution.
 
 The eye button controls picture visibility. The speaker button controls track audio. A locked track and its linked clips cannot be edited. Detaching audio creates linked audio and video clips: moving, trimming, splitting, and deleting either selects the linked edit. Gain and fade adjustments affect the selected clip.
+
+## Application updates
+
+Updater-enabled builds check the latest stable GitHub release when Shrapwill
+starts. Open **Settings → Updates** to check manually or disable startup checks.
+Choose **Download update** when a newer version is available. Portable copies
+can install it for the next launch while you keep editing. Installed copies
+offer **Install and restart**. Restarting uses the save/discard/keep-editing
+prompt, and active media operations must finish first. No editor session is
+force-closed by an update. Earlier builds need one manual installation of an
+updater-enabled release before they can receive future in-app updates.
 
 ## Closing and unsaved changes
 

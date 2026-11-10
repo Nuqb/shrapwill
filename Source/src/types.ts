@@ -102,11 +102,16 @@ export interface RenderClip {
   previewReady: boolean;
 }
 export interface RenderPlan {
+  playbackIndex?: PlaybackIndex | null;
   width: number;
   height: number;
   fps: FrameRate;
   duration: number;
   clips: RenderClip[];
+}
+export interface PlaybackIndex {
+  order: number[];
+  maxEnds: number[];
 }
 export type PreviewSource =
   | {
@@ -144,6 +149,8 @@ export type RenderedPreviewSource = Extract<PreviewSource, { plan: RenderPlan | 
 export const isRenderedSource = (source: PreviewSource | null): source is RenderedPreviewSource =>
   !!source && 'plan' in source;
 export interface Snapshot {
+  sessionId?: string;
+  sequence?: number;
   project: Project;
   path: string | null;
   dirty: boolean;

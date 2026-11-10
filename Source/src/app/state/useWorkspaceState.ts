@@ -3,8 +3,20 @@ import { type Properties } from '../../types';
 import { readLayout } from '../config';
 export function useWorkspaceState() {
   const [menu, setMenu] = useState('');
+  const [settingsSection, setSettingsSection] = useState<'home' | 'updates'>('home');
   const [projectInfoOpen, setProjectInfoOpen] = useState(false);
   const [layout, setLayout] = useState(readLayout);
   const [draft, setDraft] = useState<Properties | null>(null);
-  return { menu, setMenu, layout, setLayout, draft, setDraft, projectInfoOpen, setProjectInfoOpen };
+  return {
+    menu,
+    setMenu,
+    layout,
+    setLayout,
+    draft,
+    setDraft,
+    projectInfoOpen,
+    setProjectInfoOpen,
+    settingsSection,
+    setSettingsSection,
+  };
 }

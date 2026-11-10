@@ -66,7 +66,7 @@ pub fn probe(ffprobe: &Path, path: &Path, cancel: &Cancel) -> Result<MediaAsset,
         preview_path: direct::can_preview(&value, &ext)
             .then(|| path.to_string_lossy().into_owned()),
         thumbnail_path: None,
-        waveform: vec![],
+        waveform: Default::default(),
         missing: false,
     })
 }

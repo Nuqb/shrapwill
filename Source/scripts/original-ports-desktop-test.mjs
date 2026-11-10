@@ -7,6 +7,8 @@ import { sourceRoot, qaDir, debugUrl } from './test-support/paths.mjs';
 
 const effectsOnly = process.argv.includes('--effects');
 const productionOnly = process.argv.includes('--production-only');
+const standalone =
+  Boolean(process.env.SHRAPWILL_REFERENCE_BROWSER) || process.argv.includes('--standalone');
 const allPrograms = JSON.parse(
   fs.readFileSync(
     path.join(
@@ -71,6 +73,7 @@ for (const name of ['libEGL.dll', 'libGLESv2.dll'])
   );
 const server = await createServer({
   root: sourceRoot,
+  cacheDir: path.join(work, 'vite-cache'),
   server: {
     host: '127.0.0.1',
     port: Number(process.env.SHRAPWILL_REFERENCE_PORT || 5173),
@@ -78,17 +81,17 @@ const server = await createServer({
     watch: { ignored: ['**/*'] },
   },
 });
-const browser = process.env.SHRAPWILL_REFERENCE_BROWSER
+const browser = standalone
   ? await chromium.launch({
-      executablePath: process.env.SHRAPWILL_REFERENCE_BROWSER,
+      ...(process.env.SHRAPWILL_REFERENCE_BROWSER
+        ? { executablePath: process.env.SHRAPWILL_REFERENCE_BROWSER }
+        : { channel: 'msedge' }),
       headless: true,
     })
   : await chromium.connectOverCDP(debugUrl());
 try {
   await server.listen();
-  const page = process.env.SHRAPWILL_REFERENCE_BROWSER
-    ? await browser.newPage()
-    : browser.contexts()[0].pages()[0];
+  const page = standalone ? await browser.newPage() : browser.contexts()[0].pages()[0];
   let scenePixels = null;
   if (process.env.SHRAPWILL_VISION_FIXTURES) {
     scenePixels = ['face.jpg', 'person.jpg'].map((name) =>

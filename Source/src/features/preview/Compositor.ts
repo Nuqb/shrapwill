@@ -7,6 +7,7 @@ import { createPreviewElement } from './mediaElements';
 import { hasPortedShader } from './ported/registry';
 import { PortedPass } from './ported/PortedPass';
 import { SourcePass } from './ported/SourcePass';
+import { playbackCandidates } from './playbackIndex';
 type Player = {
   el: HTMLVideoElement | HTMLAudioElement | HTMLImageElement;
   tex: WebGLTexture | null;
@@ -113,9 +114,7 @@ export class Compositor {
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(this.program);
     const fps = fpsOf(plan.fps);
-    const active = plan.clips.filter(
-      (rc) => frame >= rc.clip.start && frame < rc.clip.start + rc.clip.duration,
-    );
+    const { active, upcoming } = playbackCandidates(plan, frame);
     if (active.length > 8) {
       this.error =
         'Too many layers are playing at once. Hide or mute a track to continue previewing. Your export still includes all enabled layers.';
@@ -123,9 +122,6 @@ export class Compositor {
       return;
     }
     this.error = undefined;
-    const upcoming = plan.clips
-      .filter((rc) => rc.clip.start > frame && rc.clip.start < frame + fps * 0.8)
-      .slice(0, Math.min(2, 8 - active.length));
     const wanted = new Set([...active, ...upcoming].map((rc) => rc.clip.id));
     for (const [id] of this.players) {
       if (!wanted.has(id)) this.release(id);

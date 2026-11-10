@@ -1,11 +1,37 @@
 import { invoke, convertFileSrc, isTauri } from '@tauri-apps/api/core';
 import { open, save } from '@tauri-apps/plugin-dialog';
 import { listen } from '@tauri-apps/api/event';
+import type { Snapshot } from '../../types';
+import { EditorStateStore, type UpdateAck } from './stateUpdates';
 export const desktop = isTauri();
-export const call = <T>(command: string, args: Record<string, unknown> = {}): Promise<T> =>
-  desktop
-    ? invoke<T>(command, args)
-    : Promise.reject(new Error('Open the Shrapwill desktop app to edit local media.'));
+export const editorState = new EditorStateStore(() => invoke<Snapshot>('editor_snapshot'));
+const compactCommands = new Set([
+  'edit',
+  'history',
+  'clipboard',
+  'new_project',
+  'open_project',
+  'recover_project',
+  'save',
+]);
+export async function call<T>(command: string, args: Record<string, unknown> = {}): Promise<T> {
+  if (!desktop) throw Error('Open the Shrapwill desktop app to edit local media.');
+  if (compactCommands.has(command)) {
+    const result = await invoke<UpdateAck | { snapshot: UpdateAck; selected: string[] }>(command, {
+      ...args,
+      compact: true,
+    });
+    if ('snapshot' in result)
+      return { ...result, snapshot: await editorState.waitFor(result.snapshot) } as T;
+    return (await editorState.waitFor(result)) as T;
+  }
+  const result = await invoke<T>(command, args);
+  if (command === 'startup') {
+    const startup = result as T & { snapshot: Snapshot };
+    startup.snapshot = editorState.full(startup.snapshot);
+  }
+  return result;
+}
 export const assetUrl = (path: string | null | undefined) =>
   path ? (desktop ? convertFileSrc(path) : path) : '';
 export const events = listen;

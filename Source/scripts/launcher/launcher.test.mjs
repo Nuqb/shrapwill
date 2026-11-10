@@ -87,6 +87,15 @@ test(
       version: '1.0.1',
     });
     assert.notEqual(first, second);
+    // The online updater uses a version directory, while older local builds
+    // used flat executable names. Both must work with the stable launcher.
+    const versionDirectory = path.join(appDirectory, 'releases', 'shrapwill-1.0.1-test');
+    fs.mkdirSync(versionDirectory, { recursive: true });
+    fs.copyFileSync(second, path.join(versionDirectory, 'shrapwill.exe'));
+    fs.writeFileSync(
+      path.join(appDirectory, 'current-release.txt'),
+      'releases/shrapwill-1.0.1-test/shrapwill.exe\n',
+    );
     assert.equal(process.kill(firstPid, 0), true);
     assert.equal(fs.existsSync(`${firstOutput}.done`), false);
     launch(secondOutput);

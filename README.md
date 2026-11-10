@@ -38,7 +38,7 @@ levels, fades, track locks, customizable shortcuts, and undo are there when you 
 ## Install and make your first edit
 
 1. Open the [latest release](https://github.com/Nuqb/shrapwill/releases/latest)
-   and download **Shrapwill-0.9.0-Windows-x64-Setup.exe**.
+   and download the **Windows 64-bit installer**.
 2. Run the installer and open **Shrapwill**.
 3. Create a project, import your media, and drag it onto the timeline.
 4. Save your project, then **Export** when you're ready.
@@ -46,6 +46,10 @@ levels, fades, track locks, customizable shortcuts, and undo are there when you 
 **Windows, 64-bit.** The installer includes the local media tools. Microsoft
 WebView2 is required; setup can install it if it is missing. No Shrapwill account
 or online subscription is needed to edit.
+
+Updater-enabled builds check GitHub for new stable releases on startup. Use
+**Settings → Updates** to check manually or change that preference. Downloads
+and restarts happen when you choose, with a save prompt before closing edited work.
 
 This is a **preview release**. Keep your original media and save your projects.
 For longer instructions, see the [editor guide](Source/docs/editor-guide.md).

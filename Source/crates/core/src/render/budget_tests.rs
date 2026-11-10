@@ -31,7 +31,7 @@ fn original_processing_bounds_use_source_dimensions_and_layer_count() {
         has_audio: false,
         preview_path: None,
         thumbnail_path: None,
-        waveform: vec![],
+        waveform: Default::default(),
         missing: false,
     });
     project.tracks[0].clips.push(clip.clone());

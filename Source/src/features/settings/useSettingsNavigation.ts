@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function useSettingsNavigation(onClose: () => void) {
+export function useSettingsNavigation(onClose: () => void, initial: 'home' | 'updates' = 'home') {
   const trigger = useRef(document.activeElement);
-  const [category, setCategory] = useState<'home' | 'shortcuts' | 'appearance'>('home');
+  const [category, setCategory] = useState<'home' | 'shortcuts' | 'appearance' | 'updates'>(
+    initial,
+  );
   useEffect(
     () => () => {
       if (trigger.current instanceof HTMLElement && trigger.current.isConnected)
@@ -16,7 +18,7 @@ export function useSettingsNavigation(onClose: () => void) {
       if (event.key !== 'Escape') return;
       event.preventDefault();
       event.stopImmediatePropagation();
-      if (category === 'appearance') setCategory('home');
+      if (category === 'appearance' || category === 'updates') setCategory('home');
       else onClose();
     };
     window.addEventListener('keydown', close, true);

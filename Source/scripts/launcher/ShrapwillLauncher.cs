@@ -13,11 +13,7 @@ internal static class ShrapwillLauncher
         {
             string directory = AppDomain.CurrentDomain.BaseDirectory;
             string filename = File.ReadAllText(Path.Combine(directory, "current-release.txt")).Trim();
-            if (filename != Path.GetFileName(filename) ||
-                !filename.StartsWith("shrapwill-", StringComparison.OrdinalIgnoreCase) ||
-                !filename.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
-                throw new InvalidDataException("The current release reference is invalid.");
-            string executable = Path.Combine(directory, filename);
+            string executable = ResolveRelease(directory, filename);
             if (!File.Exists(executable))
                 throw new FileNotFoundException("The current Shrapwill build is missing.", executable);
             Process.Start(new ProcessStartInfo(executable, Arguments(args))
@@ -33,6 +29,29 @@ internal static class ShrapwillLauncher
                 "Shrapwill", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return 1;
         }
+    }
+
+    private static string ResolveRelease(string directory, string reference)
+    {
+        string[] parts = reference.Replace('\\', '/').Split('/');
+        bool flat = parts.Length == 1 && parts[0].StartsWith("shrapwill-", StringComparison.OrdinalIgnoreCase)
+            && parts[0].EndsWith(".exe", StringComparison.OrdinalIgnoreCase);
+        bool versioned = parts.Length == 3 && parts[0] == "releases" &&
+            parts[1].StartsWith("shrapwill-", StringComparison.OrdinalIgnoreCase) && parts[2] == "shrapwill.exe";
+        foreach (string part in parts)
+        {
+            if (part.Length == 0 || part == "." || part == ".." || part.EndsWith(".") || part.EndsWith(" "))
+                throw new InvalidDataException("The current release reference is invalid.");
+            foreach (char c in part)
+                if (!Char.IsLetterOrDigit(c) && c != '-' && c != '_' && c != '.')
+                    throw new InvalidDataException("The current release reference is invalid.");
+        }
+        if (!flat && !versioned) throw new InvalidDataException("The current release reference is invalid.");
+        string root = Path.GetFullPath(directory).TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+        string executable = Path.GetFullPath(Path.Combine(directory, reference.Replace('/', Path.DirectorySeparatorChar)));
+        if (!executable.StartsWith(root, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidDataException("The current release is outside the application folder.");
+        return executable;
     }
 
     private static string Arguments(string[] args)

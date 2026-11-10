@@ -1,0 +1,63 @@
+name: Publish Windows release updates
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing stable release tag (for example v1.2.3)
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: shrapwill-release-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+jobs:
+  windows:
+    if: github.event_name == 'workflow_dispatch' || (!github.event.release.prerelease && !github.event.release.draft)
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: Source
+        shell: pwsh
+    env:
+      SHRAPWILL_RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      SHRAPWILL_RELEASE_NOTES: ${{ github.event.release.body }}
+      SHRAPWILL_UPDATE_PRIVATE_KEY: ${{ secrets.SHRAPWILL_UPDATE_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+          lfs: true
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: Source/package-lock.json
+      - name: Install build dependencies
+        run: |
+          rustup update stable --no-self-update
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          rustup default stable
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          npm ci
+      - name: Verify release signing configuration
+        run: node --input-type=module -e "import {signingKey} from './scripts/release/update-key.mjs'; signingKey(); console.log('Signing key verified.');"
+      - name: Set version from stable tag
+        run: node scripts/release/set-version.mjs
+      - name: Test application
+        run: npm test
+      - name: Test Rust workspace
+        run: cargo test --workspace --locked
+      - name: Build installer
+        run: npm run tauri -- build
+      - name: Test update packaging and Windows handoff
+        run: npm run test:updates
+      - name: Test update screens and save prompts
+        run: npm run test:updates-ui
+      - name: Prepare signed update packages
+        run: node scripts/prepare-update-release.mjs
+      - name: Publish assets and then signed update feed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/release/upload-github.mjs

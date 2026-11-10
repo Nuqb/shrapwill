@@ -1,6 +1,30 @@
 # Architecture
 
-Shrapwill is a Windows desktop application. Everything runs locally: React presents the editor, Rust owns projects and undoable editing, and bundled FFmpeg processes media. There is no network backend, account system, database, cloud service, or telemetry. The Rust desktop engine is a local application layer, not a server.
+Shrapwill is a Windows desktop application. Editing runs locally: React presents the editor, Rust owns projects and undoable editing, and bundled FFmpeg processes media. Optional update checks contact public GitHub Releases; projects and media are never uploaded. There is no hosted application backend, account system, database, or telemetry. The Rust desktop engine is a local application layer, not a server.
+
+## Application updates
+
+`features/updates/useAppUpdates` coordinates startup checks and the existing
+save/discard prompt. `services/desktop/appUpdates` owns the update UI state and
+uses the existing desktop command boundary. Components only present that state.
+The webview's network policy stays restricted; native `updates` commands alone
+contact the configured GitHub repository.
+
+The independent `crates/updater` library validates Ed25519-signed manifests,
+strict version and repository constraints, bounded HTTPS downloads, SHA-256
+digests, and allowlisted portable package paths. Its streaming readers and writers
+use fixed buffers rather than loading application/media binaries into memory.
+The public key is compiled from `config/updates.json`; private keys are excluded
+from Git and source archives. Release automation signs exact manifest bytes and
+publishes the feed after its artifacts.
+
+Portable updates extract into a fresh immutable version directory and atomically
+switch the stable launcher's reference. Earlier versions and running sessions
+remain intact. Installed updates and explicit portable restarts use an embedded
+Windows helper that waits for the owning editor to exit itself. Native handoff
+rejects unsaved work without confirmation and active media jobs. No installer or
+helper terminates the owning editor to force an update. See [updates.md](updates.md)
+for publishing, key handling, recovery and validation limits.
 
 ## Interface
 
@@ -20,6 +44,13 @@ adds sanitized resource records; the transition porter retains prior programs an
 imports new self-contained shaders. New media-only recipes remain pending.
 The generated native asset lookup embeds only renderable program dependencies,
 including retained saved presets; disabled payloads stay out of the executable.
+Transition scene captures use mirrored-repeat sampling in both WebGL and the
+native GPU helper, so motion outside the picture retains image detail instead
+of stretching a single edge into stationary lines. Source filters/effects,
+auxiliary masks/LUTs and intermediate render targets keep clamped sampling.
+`npm run test:transitions` checks every selectable ported transition at 61 phases
+for unintended horizontal/vertical line collapse; the two explicit midpoint
+stretch equations remain allowed only at that phase.
 `validate-filmora-compilation.mjs` checks all imported stages in WebGL; the original
 port reference test can use an isolated browser and compare production ANGLE frames
 with `--production-only`. Unadapted or failed programs stay unavailable.
@@ -56,6 +87,30 @@ The portable entry point `App/shrapwill.exe` is a small Windows launcher built f
 `commands/` groups IPC entry points into editing, projects, lifecycle, media, and rendering. Keep command names and serialized argument names compatible with TypeScript callers. They are local Tauri entry points, not HTTP routes. `jobs.rs` owns two bounded media-processing workers, a separate one-at-a-time metadata import lane, cancellation, and shared progress/completion event construction. Heavy conversion/export work cannot occupy the metadata lane.
 
 ## Rust core
+
+Immutable waveform buffers use `Arc<[f32]>` internally while retaining ordinary
+JSON arrays in project files. History moves previous states rather than cloning
+them again and counts each shared waveform allocation once in its approximate
+memory budget. Editing transactions and project version 1 are unchanged.
+
+`crates/core/src/sync` owns typed snapshots and entity deltas. Every published
+change has an interface sequence independent of the editing revision; opening,
+creating, or recovering a project changes the session token. The desktop service
+subscribes before startup, applies updates with structural sharing, rejects stale
+messages, and requests full state after gaps or missing acknowledgements. New
+UI calls opt into compact acknowledgements; existing command arguments and full
+snapshot responses remain available to older local callers. Waveforms and
+unchanged render entries are omitted from deltas.
+
+`shrapwill-kernels` builds a compact playback interval index in native Rust for
+preview plans with at least 32 clips. Only composition indices and subtree end
+bounds cross the interface boundary; the player reads existing clip times and
+performs a bounded tree lookup locally. Small browser-created source previews
+retain the direct scan. The index preserves composition/preload ordering and
+the existing player limit. There are no per-frame desktop calls. Color and
+opacity calculations remain unchanged: the WebAssembly toolchain was unavailable
+for this implementation, so no unbuilt browser module is required. Measurements
+and validation limits are recorded in `rust-performance.md`.
 
 `crates/core/src/model` contains the versioned project types, validation, editor history, clipboard, linked selection, magnetic rules, persistence primitives, and mutation groups. A command clones the current project, applies edits and magnetic normalization, validates, and commits once. Invalid or locked edits cannot partly update the project. Grouped tests cover these invariants.
 

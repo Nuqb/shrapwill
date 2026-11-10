@@ -95,7 +95,7 @@
         gl.texParameteri(gl.TEXTURE_2D, key, gl.LINEAR);
       for (const key of [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T])
         gl.texParameteri(gl.TEXTURE_2D, key, gl.CLAMP_TO_EDGE);
-      async function render(kind, phase) {
+      async function render(kind, phase, duration = 1) {
         window.portErrors = [];
         if (effectsOnly) {
           const props = { ...defaults, originalEffect: kind };
@@ -117,7 +117,7 @@
           gl.drawArrays(gl.TRIANGLES, 0, 6);
         } else {
           const started = performance.now();
-          while (!pass.ready(kind, phase / 6)) {
+          while (!pass.ready(kind, phase / 6, true, duration)) {
             if (performance.now() - started > 10000) throw Error('Texture timeout');
             await new Promise((resolve) => requestAnimationFrame(resolve));
           }
@@ -136,7 +136,7 @@
             if (performance.now() - started > 20000) throw Error('Analysis timeout');
             await new Promise((resolve) => requestAnimationFrame(resolve));
           }
-          pass.apply(kind, phase / 6, 1);
+          pass.apply(kind, phase / 6, duration);
         }
         window.portErrors.push({ apply: gl.getError() });
         const bytes = new Uint8Array(128 * 72 * 4);

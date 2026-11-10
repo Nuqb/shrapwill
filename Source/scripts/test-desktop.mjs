@@ -5,6 +5,7 @@ import { setTimeout } from 'node:timers/promises';
 import { sourceRoot, qaDir, debugUrl } from './test-support/paths.mjs';
 
 const suites = {
+  'rust-performance': 'rust-desktop-performance.mjs',
   readme: 'capture-readme.mjs',
   layout: 'layout-desktop-test.mjs',
   playback: 'playback-desktop-test.mjs',
@@ -46,8 +47,10 @@ function currentEditor() {
   const appDirectory = path.join(sourceRoot, '../App');
   const reference = path.join(appDirectory, 'current-release.txt');
   if (!fs.existsSync(reference)) return path.join(appDirectory, 'shrapwill.exe');
-  const filename = fs.readFileSync(reference, 'utf8').trim();
-  if (filename !== path.basename(filename) || !/^shrapwill-.+\.exe$/i.test(filename))
+  const filename = fs.readFileSync(reference, 'utf8').trim().replaceAll('\\', '/');
+  const flat = /^shrapwill-[a-zA-Z0-9._-]+\.exe$/.test(filename);
+  const versioned = /^releases\/shrapwill-[a-zA-Z0-9._-]+\/shrapwill\.exe$/.test(filename);
+  if ((!flat && !versioned) || filename.split('/').some((part) => part.endsWith('.')))
     throw Error('Invalid current release reference.');
   return path.join(appDirectory, filename);
 }
