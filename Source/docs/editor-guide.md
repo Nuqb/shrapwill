@@ -61,7 +61,7 @@ The setting is saved in each project and recovery file. It starts **off** in new
 
 ## First-release boundaries
 
-The creative library includes titles, filters, video effects, and transitions. Unfinished presets remain unavailable for new use. Covers use the actual render paths. Single-click previews without editing; double-click or the player’s Apply button applies a preset. See the creative collection and source-coverage documentation for technical details.
+The creative library includes titles, filters, video effects, and transitions. Covers show the actual rendered result. Single-click previews without editing; double-click or the player’s Apply button applies a preset.
 
 - Windows 10/11 x64; 1080p SDR workflows with 720p preview by default. MP4 H.264/AAC export at 720p or 1080p, including portrait and square layouts.
 - This is a preview release. Advanced keyframes, masks, tracking, nested sequences, multicamera editing, recording, HDR finishing, plugin hosting, and compatibility with other editors' project files are not implemented.

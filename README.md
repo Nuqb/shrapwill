@@ -114,26 +114,23 @@ without terminating an editor that is already open. See
 
 ### Current limits
 
-- Imported resource compatibility is partial. Unsupported resources stay unavailable.
-- Titles are static; many downloaded title timelines and animations are not ported.
+- Titles support static text. Text animation is not available.
 - The broader export comparison still flags an unresolved mismatch for the existing
   Ascii Art preset. Focused desktop preview checks and the app/core tests pass.
 - Structural-quality debt is recorded separately; a passing build is not a claim
   that every historical scanner warning is resolved.
 - Project files from other editors are not supported.
 
-### Architecture, provenance, and contributions
+### Development and contributions
 
 [Architecture](Source/docs/architecture.md) ·
 [Contributing](Source/CONTRIBUTING.md) ·
 [Quality standards](Source/docs/quality/software-quality.md) ·
-[Preset compatibility](Source/docs/creative-presets.md) ·
 [Sample photographs and prompts](Source/docs/preview-photos.md)
 
-Original Shrapwill code uses the [MIT license](LICENSE). Bundled tools, models,
-and imported resources retain their own terms and are not relicensed by Shrapwill's
-MIT license. Review the [third-party notices](Source/src-tauri/notices/THIRD-PARTY.txt)
-and resource-provenance documentation when working with or redistributing those resources.
+Shrapwill code uses the [MIT license](LICENSE). Third-party components and assets
+retain their own license terms. See the
+[third-party notices](Source/src-tauri/notices/THIRD-PARTY.txt).
 
 Shrapwill is an independent project.
 
