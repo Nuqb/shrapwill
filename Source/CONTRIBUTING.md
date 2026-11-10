@@ -87,7 +87,29 @@ it requires the same interactive Windows access as the other desktop suites.
 The existing `src`, `crates`, `scripts`, and `docs` source-packaging rules include
 the new sources; `target` and QA profiles remain excluded.
 
-## Packaging
+## Pushing an update means publishing its release
+
+By default, a request to push a Shrapwill update includes a new application
+version, a pushed matching tag, and a published GitHub release with working
+downloads and its signed update feed. A source push alone is incomplete. The
+exception is an explicit source-only request from the user.
+
+Check the latest release first. Use `npm run release:version -- v<version>` to
+update `package.json`, `package-lock.json`, `src-tauri/Cargo.toml`, `Cargo.lock`,
+and `src-tauri/tauri.conf.json` together. Commit those changes, build and validate
+the new version, push the commit and matching tag, then complete the procedure in
+[GitHub release updates](docs/updates.md). Prefer uploading all assets to a draft
+before publishing it. Upload the signed manifest last. Never replace published
+binaries under the same version to deliver new changes.
+
+Before reporting success, verify the release points at the intended commit,
+contains the installer, portable ZIP and signed update package, and serves a
+valid `releases/latest/download/shrapwill-update.json` for the new version. Keep
+the current editor running, preserve original media, and exclude private keys,
+credentials and QA data from Git and release assets. If publishing is blocked,
+report the remaining release step explicitly.
+
+## Building and packaging
 
 See [GitHub release updates](docs/updates.md) for signing-key setup, publishing
 stable releases, portable/installed update behavior and recovery. Public update

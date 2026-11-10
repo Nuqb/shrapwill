@@ -1,0 +1,26 @@
+---
+description: Complete Shrapwill update pushes with a matching versioned GitHub release
+alwaysApply: true
+---
+
+# Update pushes include a release
+
+- A request to push a Shrapwill update includes publishing its matching GitHub
+  release unless the user explicitly requests a source-only push. A code push
+  alone does not complete the task.
+- Check the latest published version and choose a new stable version. Never
+  overwrite an existing published version's binaries to deliver new changes.
+- Run `npm run release:version -- v<version>` from `Source` to update all five
+  version files together. Include those changes in the pushed commit and tag.
+- Build and validate the versioned installer and signed update packages. Keep
+  the user's running editors and original media intact.
+- Publish the installer, portable ZIP, portable update package, and signed
+  `shrapwill-update.json` to the matching GitHub release. Upload the manifest
+  last; prefer a draft until every artifact is ready.
+- Verify the public release, tag/commit, asset sizes, and signed latest-update
+  feed before reporting success. Distinguish a source push from a published
+  release if access or validation blocks completion.
+- Never commit or publish private signing keys, credentials, or local QA data.
+  Use the normal permission-reviewed access route when restricted Git/network
+  commands fail; do not assume other sessions have the same permissions.
+- Follow `CONTRIBUTING.md` and `docs/updates.md` for the release procedure.

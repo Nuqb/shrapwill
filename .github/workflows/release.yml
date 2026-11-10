@@ -13,8 +13,39 @@ concurrency:
   group: shrapwill-release-${{ github.event.release.tag_name || inputs.tag }}
   cancel-in-progress: false
 jobs:
-  windows:
+  inspect:
     if: github.event_name == 'workflow_dispatch' || (!github.event.release.prerelease && !github.event.release.draft)
+    runs-on: ubuntu-latest
+    outputs:
+      needs_build: ${{ steps.assets.outputs.needs_build }}
+    steps:
+      - name: Keep already published release assets unchanged
+        id: assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        shell: node {0}
+        run: |
+          const fs = require('node:fs');
+          const tag = process.env.RELEASE_TAG;
+          if (!/^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(tag)) throw Error('A stable version tag is required.');
+          const version = tag.replace(/^v/, '');
+          async function check() {
+            const response = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/releases/tags/${tag}`, {
+              headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json' }
+            });
+            if (!response.ok && response.status !== 404) throw Error(`Release check failed: ${response.status}`);
+            const release = response.ok ? await response.json() : { assets: [] };
+            const uploaded = new Set(release.assets.filter(asset => asset.state === 'uploaded' && asset.size > 0).map(asset => asset.name));
+            const required = [`Shrapwill_${version}_x64-setup.exe`, `Shrapwill_${version}_portable.zip`, `Shrapwill_${version}_windows-x86_64.shrapwill.gz`, 'shrapwill-update.json'];
+            const complete = required.every(name => uploaded.has(name));
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, `needs_build=${!complete}\n`);
+            console.log(complete ? 'Release assets are already complete; preserving published binaries.' : 'Release assets need to be built.');
+          }
+          check().catch(error => { console.error(error.message); process.exitCode = 1; });
+  windows:
+    needs: inspect
+    if: needs.inspect.outputs.needs_build == 'true'
     runs-on: windows-latest
     defaults:
       run:

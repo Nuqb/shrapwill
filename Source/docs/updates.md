@@ -23,12 +23,23 @@ paste into issues, or include this file in a release.
 In GitHub repository Settings → Secrets and variables → Actions, create a secret
 named `SHRAPWILL_UPDATE_PRIVATE_KEY` containing the PEM private key. Commit the
 public configuration, application changes and `.github/workflows/release.yml`.
+Storing the private key in GitHub needs explicit authorization to export that
+credential. Publishing a release does not authorize this automatically. If the
+secret is unavailable or export is not approved, build and sign locally and
+upload only the finished release assets; the private key stays on the PC.
 Changing the public key breaks updates for installed copies that trust the old
 key; do not regenerate it for each release. `npm run setup:update-signing`
 initializes a new project only and refuses to replace an existing public key
 when its private key is missing.
 
 ## Publish subsequent releases
+
+A request to push a Shrapwill update includes bumping the application version,
+pushing its matching tag, and publishing the matching GitHub release unless the
+user explicitly requests a source-only push. Do not stop after pushing source.
+Update all version files with `release:version` and keep the version, pushed
+commit/tag, installer and signed feed consistent. Verify the public release and
+latest signed feed before reporting completion.
 
 1. Push the source changes and a stable version tag such as `v0.10.0`.
 2. Publish a normal GitHub release for that tag. The Windows workflow sets all
@@ -39,7 +50,9 @@ when its private key is missing.
 
 The manifest is uploaded last so clients cannot see a feed whose downloads have
 not finished uploading. The workflow can also be run manually for an existing
-stable tag. GitHub release immutability must allow these workflow uploads; when
+stable tag. A preflight check skips rebuilding a release whose four update assets
+are already fully uploaded, preserving published binaries and signatures.
+GitHub release immutability must allow these workflow uploads; when
 using immutable releases, prepare/upload assets while the release is a draft
 before publishing it, instead of using the post-publication workflow.
 
@@ -106,10 +119,22 @@ and workspace Clippy checks passed. The actual signed 0.9.0 portable release was
 also verified and fully extracted by Rust into an isolated QA directory; its
 installer matched the signed SHA-256 digest. The generated installer and portable
 ZIP are under `Outputs/releases/v0.9.0`, and the stable local launcher opens the
-updater-enabled build. No GitHub assets were published from this session.
+updater-enabled build. Those initial checks preceded the versioned 0.10.0 release.
 Live editor automation could not connect to
 its isolated WebView debugging endpoint (`ECONNRESET`), so a real installed-app
 upgrade from GitHub remains unverified.
+
+Version 0.10.0 includes the updater and measured editing improvements. Its release
+is published at [GitHub Releases](https://github.com/Nuqb/shrapwill/releases/tag/v0.10.0).
+The release procedure checks the public feed through the same native network and
+signature code as the app:
+
+```powershell
+cargo run -p shrapwill-updater --example check_feed -- 0.10.0
+```
+
+This verifies public feed delivery and its signature/version; it does not install
+the release or replace the separate interactive save/restart checks.
 
 Structural review detected React presentation, native desktop services, HTTPS
 release/file access, and no server backend or database; server/auth/database

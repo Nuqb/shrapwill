@@ -5,6 +5,7 @@ import os from 'node:os';
 import { generateKeyPairSync, verify } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { test } from 'node:test';
+import { runInNewContext } from 'node:vm';
 import {
   packageMagic,
   stableVersion,
@@ -92,4 +93,63 @@ test('release key files are excluded from Git and source archives', () => {
   assert.ok(sourcePackaging.includes("'config'"));
   assert.ok(!sourcePackaging.includes("'.release-keys'"));
   assert.ok(fs.readFileSync(path.join(root, '.gitignore'), 'utf8').includes('.release-keys/'));
+});
+
+test('release automation preserves complete assets and fails closed on API errors', async () => {
+  const workflow = fs.readFileSync(
+    path.resolve(import.meta.dirname, '../../../.github/workflows/release.yml'),
+    'utf8',
+  );
+  const block = workflow.match(
+    /shell: node \{0\}\r?\n        run: \|\r?\n([\s\S]*?)(?=^  windows:)/m,
+  );
+  assert.ok(block, 'release preflight must be present');
+  const script = block[1]
+    .split(/\r?\n/)
+    .map((line) => line.replace(/^          /, ''))
+    .join('\n');
+  const names = [
+    'Shrapwill_0.10.0_x64-setup.exe',
+    'Shrapwill_0.10.0_portable.zip',
+    'Shrapwill_0.10.0_windows-x86_64.shrapwill.gz',
+    'shrapwill-update.json',
+  ];
+  for (const scenario of [
+    { status: 200, assets: names, expected: 'needs_build=false\n' },
+    { status: 200, assets: names.slice(0, -1), expected: 'needs_build=true\n' },
+    { status: 404, assets: [], expected: 'needs_build=true\n' },
+    { status: 503, assets: [], expected: '', failed: true },
+  ]) {
+    let output = '';
+    const process = {
+      env: {
+        RELEASE_TAG: 'v0.10.0',
+        GITHUB_REPOSITORY: 'Nuqb/shrapwill',
+        GH_TOKEN: 'generated-test-credential',
+        GITHUB_OUTPUT: 'fixture',
+      },
+      exitCode: 0,
+    };
+    await runInNewContext(script, {
+      require: (name) => {
+        assert.equal(name, 'node:fs');
+        return {
+          appendFileSync: (_, value) => {
+            output += value;
+          },
+        };
+      },
+      process,
+      console: { log: () => {}, error: () => {} },
+      fetch: async () => ({
+        ok: scenario.status === 200,
+        status: scenario.status,
+        json: async () => ({
+          assets: scenario.assets.map((name) => ({ name, size: 1, state: 'uploaded' })),
+        }),
+      }),
+    });
+    assert.equal(output, scenario.expected);
+    assert.equal(process.exitCode, scenario.failed ? 1 : 0);
+  }
 });
