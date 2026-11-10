@@ -12,7 +12,6 @@ const destination = path.resolve(
 const rootFiles = [
   'README.md',
   'CONTRIBUTING.md',
-  'AGENTS.md',
   'LICENSE',
   '.gitignore',
   '.editorconfig',
@@ -29,6 +28,7 @@ const rootFiles = [
 const directories = ['src', 'crates', 'src-tauri', 'scripts', 'docs', '.cursor'];
 
 function entries(relative) {
+  if (path.basename(relative) === 'AGENTS.md') return [];
   const full = path.join(root, relative);
   if (relative.replaceAll('\\', '/').startsWith('src-tauri/gen')) return [];
   const stats = fs.lstatSync(full);

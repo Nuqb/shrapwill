@@ -1,6 +1,6 @@
 # Working on Shrapwill
 
-Read [AGENTS.md](AGENTS.md), the current [quality guidelines](docs/quality/software-quality.md), and [architecture](docs/architecture.md) before making changes. The guidelines apply to planning and additions as well as reviews. This is a local desktop application; context detection should identify React/TypeScript, Tauri, a local Rust engine, file storage, and no custom server backend. Skip backend-only checks and explain why; local data-access checks can still apply.
+Read the current [quality guidelines](docs/quality/software-quality.md) and [architecture](docs/architecture.md) before making changes. The guidelines apply to planning and additions as well as reviews. This is a local desktop application; context detection should identify React/TypeScript, Tauri, a local Rust engine, file storage, and no custom server backend. Skip backend-only checks and explain why; local data-access checks can still apply.
 
 ## Setup
 
@@ -69,7 +69,7 @@ After timeline/preview changes, run track selection, shortcut customization, mag
 
 Desktop tests must target the published editor from `current-release.txt`, not the short-lived launcher. The desktop runner resolves that reference automatically unless `SHRAPWILL_TEST_EXE` is supplied.
 
-Build the NSIS installer with `npm run tauri -- build`. Run `npm run package:source` to create a source archive in `../Outputs`, including agent instructions, editor rules, documentation, formatting configuration, lockfiles, tests, icons, media binaries, and notices. Dependencies, generated schemas, build output, and personal QA profiles are excluded. Pass a custom destination with `npm run package:source -- "C:/chosen/location/source.zip"`. Packaging streams files through a pinned development dependency and requires only Node; it does not change PowerShell execution policy.
+Build the NSIS installer with `npm run tauri -- build`. Run `npm run package:source` to create a source archive in `../Outputs`, including editor rules, documentation, formatting configuration, lockfiles, tests, icons, media binaries, and notices. Dependencies, generated schemas, build output, and personal QA profiles are excluded. Pass a custom destination with `npm run package:source -- "C:/chosen/location/source.zip"`. Packaging streams files through a pinned development dependency and requires only Node; it does not change PowerShell execution policy.
 
 Keep `../App` and `../Outputs` as generated deliveries. Preserve previous releases in `../Backups`; never move or replace the canonical `Source` directory without checking paths and keeping a restorable copy. Update the version in `package.json`, `package-lock.json`, `src-tauri/Cargo.toml`, `Cargo.lock`, and `src-tauri/tauri.conf.json` together. Do not close a running user session to replace its executable.
 

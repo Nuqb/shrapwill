@@ -4,7 +4,7 @@ The [project README](../README.md) contains the visual overview and Windows down
 
 This folder is the canonical application source. Start with [CONTRIBUTING.md](CONTRIBUTING.md),
 [architecture](docs/architecture.md), and the [editor guide](docs/editor-guide.md).
-Read [AGENTS.md](AGENTS.md) and [quality standards](docs/quality/software-quality.md) before changes.
+Read the [quality standards](docs/quality/software-quality.md) before changes.
 
 ```powershell
 npm ci
