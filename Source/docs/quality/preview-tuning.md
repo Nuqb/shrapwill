@@ -1,0 +1,11 @@
+# Preview timing and strength review
+
+Context: React/TypeScript views and WebGL playback, a Rust desktop editing/rendering core, local project files and desktop IPC. There is no custom server; server, account, authentication and database checks do not apply.
+
+Preview tuning stays in library session state. Presentation controls call editing actions; sample loading stays behind the existing desktop service boundary. Local plan copies isolate previews from project history. Strength fields default to one during legacy deserialization and use the existing atomic validation/history path. Export processes original programs sequentially before geometry, with independent filter/effect strength. Only the last original graph stage mixes with the original input; intermediate HDR values remain intact. A dedicated sampler preserves that original input across graph stages without framebuffer feedback.
+
+Hover rendering uses one shared WebGL context, visible cards, a bounded 48-picture still cache and the existing bounded shader/texture caches. It renders the current animation frame instead of caching a longer strip per preset. Pending imported texture frames pause its clock. Cleanup cancels animation and observation; reduced motion remains still.
+
+The legacy scanner reports 72 candidates and 31 new/growing candidates against its historical inventory. Existing unrelated findings remain open; the inventory was not expanded. The four additional triggers were reviewed under current rules: `PresetPreviewControls` is focused declarative JSX; `fragmentSource` is a shader declaration string; the preset test suite callback is exempt; its context helper remains a straightforward fixture construction. Added scalar fields and uniform bindings do not introduce new responsibilities into the existing rendering coordinators. No new actionable structural finding was identified in this change.
+
+Validation includes frontend tuning/race/isolation tests, native legacy-default/roundtrip/undo/invalid-strength tests, and desktop comparisons of 0%, 60% and 100% strength using built-in effects, original single/multi-stage effects, LUTs, grading and transparency. Full library preview, directional cover, reduced-motion and editing suites exercise the delivered application in disposable profiles.

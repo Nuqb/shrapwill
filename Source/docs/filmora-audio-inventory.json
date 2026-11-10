@@ -1,0 +1,1319 @@
+[
+  {
+    "name": "Echo",
+    "category": "Voice Filters",
+    "source": "audioeffect/15_Echo",
+    "settings": {
+      "Effect.Count": "1",
+      "Effect.EchoDelay": "350",
+      "Effect.EchoGain": "0.500000",
+      "Effect.EnableEcho": "1",
+      "Effect.EnablePhone": "0",
+      "Effect.ReverbEnable": "0",
+      "Effect.ReverbLevel": "5",
+      "Effect.ReverbType": "1"
+    },
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Preset settings are present; the installed audio processor is a compiled plugin, not portable DSP source."
+  },
+  {
+    "name": "Lobby",
+    "category": "Free",
+    "source": "audioeffect/15_Lobby",
+    "settings": {
+      "Effect.Count": "2",
+      "Effect.EchoDelay": "350",
+      "Effect.EchoGain": "0.500000",
+      "Effect.EnableEcho": "0",
+      "Effect.EnablePhone": "0",
+      "Effect.ReverbEnable": "1",
+      "Effect.ReverbLevel": "5",
+      "Effect.ReverbType": "2"
+    },
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Preset settings are present; the installed audio processor is a compiled plugin, not portable DSP source."
+  },
+  {
+    "name": "Corridor",
+    "category": "Voice Changer",
+    "source": "audioeffect/15_voice_change_audio_corridor",
+    "settings": {},
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Preset settings are present; the installed audio processor is a compiled plugin, not portable DSP source."
+  },
+  {
+    "name": "Cave",
+    "category": "Voice Filters",
+    "source": "audioeffect/15_voice_change_cave",
+    "settings": {},
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Preset settings are present; the installed audio processor is a compiled plugin, not portable DSP source."
+  },
+  {
+    "name": "Old Radio",
+    "category": "Free",
+    "source": "audioeffect/15_voice_change_radio",
+    "settings": {},
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Preset settings are present; the installed audio processor is a compiled plugin, not portable DSP source."
+  },
+  {
+    "name": "audio_cave",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_cave/description.json",
+    "definitionHash": "bcb7a2fdfa6c0b62bb4cabbd08ec1cf962a69633936d179aad2f72b6e5187e91",
+    "parameters": [
+      {
+        "name": "level_reverb",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 10
+      },
+      {
+        "name": "level_drop",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 7
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_church",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_church/description.json",
+    "definitionHash": "9a2b326c29cc7b82589d1d0a7c1a27fa56b9bfa23bd3ee6978590f4abc11b558",
+    "parameters": [],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_circular",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_circular/description.json",
+    "definitionHash": "d75225e2b23db9b281d317802765c56e7cbaafd11bedff97173c3466c97d955f",
+    "parameters": [
+      {
+        "name": "position_level",
+        "type": 5,
+        "min_value": -10,
+        "max_value": 10,
+        "default_value": 0
+      },
+      {
+        "name": "speed_level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_corridor",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_corridor/description.json",
+    "definitionHash": "f361dff2c52dce9bd1109b6c50a7245a90d8041daa916123e74c4ed2c0c608fc",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 10
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_deep",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_deep/description.json",
+    "definitionHash": "575adf6d60df324b1a1a8ba681fd13b03edf720a4f18134b03eebc173b97e6e4",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 5
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_desert",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_desert/description.json",
+    "definitionHash": "ef0eaa99ed18ee2c60b1777126b672053b5b22d51529fdd6d75f3ab90c698644",
+    "parameters": [
+      {
+        "name": "effect_type",
+        "type": 5,
+        "min_value": 4,
+        "max_value": 4,
+        "default_value": 4
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "ducking",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_ducking/description.json",
+    "definitionHash": "dafe3b16d8413fe26d7840ca3adb0079bc38cb41dffa31a7a87f94d901bec41d",
+    "parameters": [
+      {
+        "name": "DuckingLevel",
+        "type": 3,
+        "min_value": 0,
+        "max_value": 1,
+        "default_value": 0.5
+      },
+      {
+        "name": "DuckingFadeLength",
+        "type": 3,
+        "min_value": 0,
+        "max_value": 5,
+        "default_value": 2
+      },
+      {
+        "name": "DuckingOffset",
+        "type": 3,
+        "min_value": 0,
+        "max_value": 1,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_electrical",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_electrical/description.json",
+    "definitionHash": "82d63786e970fc470b36af8651173a82b09c1c0106f4bc4616825748a6a02276",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 7
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_enhancer",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_enhancer/description.json",
+    "definitionHash": "593850389a5cb4fadbc73377ea56ac23b3d0ff8609afb14d078c665122a70b2b",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 100,
+        "default_value": 70
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_evil",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_evil/description.json",
+    "definitionHash": "d929fc498e15dec05b4cac6406fc6de3f9c3bd28d724e205ac5ff68b21191d76",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 7
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_forest",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_forest/description.json",
+    "definitionHash": "8aa03dbc4f928cbf64fac81d847dabd59f99ae1658d7c691001e4f92cefece91",
+    "parameters": [
+      {
+        "name": "effect_type",
+        "type": 5,
+        "min_value": 2,
+        "max_value": 2,
+        "default_value": 2
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_helium",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_helium/description.json",
+    "definitionHash": "3ed64f1dd8f497880347830e14df86a3875326f4e3be0bd8646d6c6f39e776a0",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_megaphone",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_megaphone/description.json",
+    "definitionHash": "b197378c89b28791104cf6c494f4b13a1a7d9a9c5d1f8a01e61997af14475959",
+    "parameters": [
+      {
+        "name": "level_strength",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 10
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_phonograph",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_phonograph/description.json",
+    "definitionHash": "e29d7115b5a2c5bbbc6b8371e90fdcc31cacd5b8fe3a34033f9d5821a9560e92",
+    "parameters": [
+      {
+        "name": "level_strength",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 10
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_rain",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_rain/description.json",
+    "definitionHash": "c0db662519968b747176330d84e529ec7a766799e50b940117e62afc3293877b",
+    "parameters": [
+      {
+        "name": "effect_type",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_roadside",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_roadside/description.json",
+    "definitionHash": "276025ae40b9425babd091f5d46029b6c2a2f712d81c4ecb2a02ce94b66978cd",
+    "parameters": [
+      {
+        "name": "effect_type",
+        "type": 5,
+        "min_value": 5,
+        "max_value": 5,
+        "default_value": 5
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_rotating",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_rotating/description.json",
+    "definitionHash": "f841c6a3a1f2a9c2d4dc699078bf27d57d881f40bb20f8985631d8499fdf2266",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 5
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_trembling",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_trembling/description.json",
+    "definitionHash": "4da282eb19b7356ff00c01edb9edcae186691721d6a4d459accf829ae3d891e5",
+    "parameters": [
+      {
+        "name": "level_frequency",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 7
+      },
+      {
+        "name": "level_amplitude",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 9
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_vinyl",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_vinyl/description.json",
+    "definitionHash": "f145bcd49614a713e23b8c6aafcb65d073eca5280caf01058b6bc62e47cb122f",
+    "parameters": [
+      {
+        "name": "level_strength",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 10
+      },
+      {
+        "name": "level_noise",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 7
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "audio_wind",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/audio_wind/description.json",
+    "definitionHash": "11a563ff3d9810c80f848efc1e182452f89fe387919f4d748f2ca2bd434b95e4",
+    "parameters": [
+      {
+        "name": "effect_type",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 1,
+        "default_value": 1
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "change_channel",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/change_channel/description.json",
+    "definitionHash": "478358427c9f1707a7dc2388de9d0b03e99c3efb6edbba4ea7a7e8818fb7c2b0",
+    "parameters": [
+      {
+        "name": "Left",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 2,
+        "default_value": 1
+      },
+      {
+        "name": "Right",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 2,
+        "default_value": 2
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "chorus",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/chorus/description.json",
+    "definitionHash": "4c8020bd67445f5ec0dc0661887b323bfc273791621ad298ae435371964fccd7",
+    "parameters": [
+      {
+        "name": "Chorus_VoiceNumber",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 10,
+        "default_value": 3
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "click_removal",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/click_removal/description.json",
+    "definitionHash": "68e67144100156dba75b47c2c2eaa68130c0143559a765a11109148266b80f22",
+    "parameters": [
+      {
+        "name": "DetectionMult",
+        "type": 3,
+        "min_value": 6,
+        "max_value": 10,
+        "default_value": 8
+      },
+      {
+        "name": "ClickLen",
+        "type": 5,
+        "min_value": 5,
+        "max_value": 30,
+        "default_value": 10
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "clip_volume",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/clip_volume/description.json",
+    "definitionHash": "2a3c457140379a92e0958d7d28aac006f466100f8e9bcd49e437faff26f98c09",
+    "parameters": [
+      {
+        "name": "VolumeGain",
+        "type": 2,
+        "min_value": -100,
+        "max_value": 100,
+        "default_value": 0
+      },
+      {
+        "name": "Agc",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": false
+      },
+      {
+        "name": "Limit",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": false
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "compressor",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/compressor/description.json",
+    "definitionHash": "9c8d59a235a23095603c0475d2d767216f303263e590d73a88fd5a0530d9c4db",
+    "parameters": [
+      {
+        "name": "Threshold",
+        "type": 3,
+        "min_value": -30,
+        "max_value": 0,
+        "default_value": -21
+      },
+      {
+        "name": "Ratio",
+        "type": 3,
+        "min_value": 1,
+        "max_value": 20,
+        "default_value": 5
+      },
+      {
+        "name": "Attack_time",
+        "type": 3,
+        "min_value": 1.5,
+        "max_value": 400,
+        "default_value": 1.5
+      },
+      {
+        "name": "Release_time",
+        "type": 3,
+        "min_value": 2,
+        "max_value": 800,
+        "default_value": 2
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "dehum",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/dehum/description.json",
+    "definitionHash": "0b46bb78082b2c866886a7a5755a1f9759ec97025e169ae3e8de13cb7adf52af",
+    "parameters": [
+      {
+        "name": "Dehum_Gaindb",
+        "type": 3,
+        "min_value": -60,
+        "max_value": 0,
+        "default_value": -25
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "dewind",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/dewind/description.json",
+    "definitionHash": "b841b9b50c1b4e65cef70800fd5b9602e5aab41ae7aff9a0f478217d3e4c0f86",
+    "parameters": [],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "echo",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/echo/description.json",
+    "definitionHash": "d2bb2ad24a8c843c3aef24cefbefa7eba8eb7c9903f5414d41010bf6f62c245c",
+    "parameters": [
+      {
+        "name": "Delay_ms",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 2000,
+        "default_value": 100
+      },
+      {
+        "name": "Gain",
+        "type": 3,
+        "min_value": 0,
+        "max_value": 1,
+        "default_value": 0.5
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "equalizer",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/equalizer/description.json",
+    "definitionHash": "66a45d6eb089abac4a78c5c9d0f10b751fc5f1837a3b05ef0ebd2e299b600786",
+    "parameters": [
+      {
+        "name": "31Hz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "63Hz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "125Hz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "250Hz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "500Hz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "1kHz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "2kHz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "4kHz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "8kHz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "16kHz",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "expander",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/expander/description.json",
+    "definitionHash": "3eba4f9effbd8bd9c28b8e20a52322d87085071084c41384258b3536abac118d",
+    "parameters": [
+      {
+        "name": "Threshold",
+        "type": 3,
+        "min_value": -60,
+        "max_value": 60,
+        "default_value": -8
+      },
+      {
+        "name": "Ratio",
+        "type": 3,
+        "min_value": 1,
+        "max_value": 10,
+        "default_value": 3
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "fade",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/fade/description.json",
+    "definitionHash": "1f577064f63b2612c730ca724a5705fbca2ab4ab7c240eb24dff17b96f3c9db7",
+    "parameters": [
+      {
+        "name": "FadeInTime",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "FadeOutTime",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "hiss_denoise",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/hiss_denoise/description.json",
+    "definitionHash": "afab43e2e1e6d0945ddd52ad44257991b20247772674b6b4e80818c622f49769",
+    "parameters": [
+      {
+        "name": "PrioriSnrDb",
+        "type": 3,
+        "min_value": -100,
+        "max_value": 10,
+        "default_value": 5
+      },
+      {
+        "name": "Mu",
+        "type": 3,
+        "min_value": 1,
+        "max_value": 6,
+        "default_value": 3
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "humming_denoise",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/humming_denoise/description.json",
+    "definitionHash": "9d5bb9015e7a7d90a1cc9baa8a563088d279914136b0608db692a78afe735df1",
+    "parameters": [
+      {
+        "name": "GainDb",
+        "type": 3,
+        "min_value": -60,
+        "max_value": 0,
+        "default_value": -50
+      },
+      {
+        "name": "Freq",
+        "type": 3,
+        "min_value": 40,
+        "max_value": 70,
+        "default_value": 60
+      },
+      {
+        "name": "HarmonicNum",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 8,
+        "default_value": 8
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "limiter",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/limiter/description.json",
+    "definitionHash": "cf6fbae8e0133e05137165a9c5b2f3cd18b02dda720d14d94c6e04fa4038bd7d",
+    "parameters": [
+      {
+        "name": "Threshold",
+        "type": 3,
+        "min_value": -24,
+        "max_value": 0,
+        "default_value": -21
+      },
+      {
+        "name": "Release Time",
+        "type": 3,
+        "min_value": 10,
+        "max_value": 2000,
+        "default_value": 50
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "media_volume",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/media_volume/description.json",
+    "definitionHash": "c387de6eab0a48c60319930c7947d80b55838934547c729b9a76352699189297",
+    "parameters": [
+      {
+        "name": "VolumeGain",
+        "type": 2,
+        "min_value": -100,
+        "max_value": 100,
+        "default_value": 0
+      },
+      {
+        "name": "Agc",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": false
+      },
+      {
+        "name": "Limit",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": false
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "phone",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/phone/description.json",
+    "definitionHash": "447ca2e007880deb38cf448057b24d1627d674d3fa35460324490dad654363fc",
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "pitch shifter",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/pitchshifter/description.json",
+    "definitionHash": "3c83faccac1a34c8204966ef2694e68bea1c6868efb45e22da859642ceed4a5f",
+    "parameters": [
+      {
+        "name": "Semitone",
+        "type": 2,
+        "min_value": -12,
+        "max_value": 12,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "reverb_big_room",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/reverb_big_room/description.json",
+    "definitionHash": "778fb262699d6fcf9994410354e726d0a3eb7e0693d3a96728034ae910a9af65",
+    "parameters": [
+      {
+        "name": "Type",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 1,
+        "default_value": 1
+      },
+      {
+        "name": "Level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 5
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "reverb_denoise",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/reverb_denoise/description.json",
+    "definitionHash": "08e5ac2708566bb60981ef986624856daf74e40143b3ee128c8586b0ea5927c0",
+    "parameters": [
+      {
+        "name": "Level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 100,
+        "default_value": 70
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "reverb_lobby",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/reverb_lobby/description.json",
+    "definitionHash": "0a5fb7671f98a5975ab312760f2dfb7bc0f6c05d4481f9d196392c63533f8414",
+    "parameters": [
+      {
+        "name": "Type",
+        "type": 5,
+        "min_value": 2,
+        "max_value": 2,
+        "default_value": 2
+      },
+      {
+        "name": "Level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 5
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "reverb_small_room",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/reverb_small_room/description.json",
+    "definitionHash": "52229b7818af68c7dc8942a22a77f981e0c7eda8104f8f0d3caca66e227ae413",
+    "parameters": [
+      {
+        "name": "Type",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      },
+      {
+        "name": "Level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 5
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "speech_enhance",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/speech_enhance/description.json",
+    "definitionHash": "fb24e68574d442149ffe78499e050c66108169c01c1cd07b648f554af43b2401",
+    "parameters": [
+      {
+        "name": "atten_lim_db",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 100,
+        "default_value": 80
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "speech_enhance_v2",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/speech_enhance_v2/description.json",
+    "definitionHash": "58a73fe73997115232ef5930747a3d0b0ef52beb553feff85fdfdf7a7f420514",
+    "parameters": [],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "stereo_haas",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/stereo_haas/description.json",
+    "definitionHash": "73d3b155024c2bda2aabb638d670ae7e65f2f62c5f7b951f68afed78d563b072",
+    "parameters": [
+      {
+        "name": "Mode",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 0
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "surround_echo",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/surround_echo/description.json",
+    "definitionHash": "06e0befaa77c3c988bf91dbdbcf98437d05bde8b8c6cef3b305424ad250fcda7",
+    "parameters": [
+      {
+        "name": "Mode",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 1,
+        "default_value": 1
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "under_glacier",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/under_glacier/description.json",
+    "definitionHash": "727e78873856f49af53b20649ae2c83568f8207ff8f4f8dc42db29a4b20d07b5",
+    "parameters": [
+      {
+        "name": "effect_type",
+        "type": 5,
+        "min_value": 3,
+        "max_value": 3,
+        "default_value": 3
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_child",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_child/description.json",
+    "definitionHash": "37a9ad1bd61c67df3c65725fc7d64849617f2057e7c136407c0db261bcac8e15",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 3,
+        "max_value": 3,
+        "default_value": 3
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_chipmunk",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_chipmunk/description.json",
+    "definitionHash": "747783ef0f447e3dbae89dee3249b162bf44cefce04910679a9e3cfbc16fd11a",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 6,
+        "max_value": 6,
+        "default_value": 6
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_husky",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_husky/description.json",
+    "definitionHash": "939332cd2062d37974101444ab86bc69702f1cb10b1861b0e908f904ab5cdc5c",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 13,
+        "max_value": 13,
+        "default_value": 13
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_man",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_man/description.json",
+    "definitionHash": "b210005cd7221b522a23e2c23b308dab1bcda0c3652fc92f84392ccbc6496ded",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 1,
+        "max_value": 1,
+        "default_value": 1
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_phone",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_phone/description.json",
+    "definitionHash": "8938e86b63d714d46f3cadd38a654b6c96116cc77315599058a02143bb2ac410",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 8,
+        "max_value": 8,
+        "default_value": 8
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_radio",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_radio/description.json",
+    "definitionHash": "d907e23219e8fca7286f28d79790e98ca16bca9c232cc346606ec6acfa196a65",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 9,
+        "max_value": 9,
+        "default_value": 9
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_robot",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_robot/description.json",
+    "definitionHash": "e36b25a2493d36196abac0caad404a750bee460828d531dd8caf2dd5ab56c173",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 11,
+        "max_value": 11,
+        "default_value": 11
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_robot2",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_robot2/description.json",
+    "definitionHash": "a3a53a9a7dd1cc1355861a6536c61a065d994cf1f25c5dae9efb345ee625cb60",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 12,
+        "max_value": 12,
+        "default_value": 12
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_transformers",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_transformers/description.json",
+    "definitionHash": "86f032b233124688bc5ee67771615be206cf4d7a34cfe119bf33f4fe618efc04",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 7,
+        "max_value": 7,
+        "default_value": 7
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_water",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_water/description.json",
+    "definitionHash": "b7fb9fd91a308acbe9b2d9baa3a734ac5ca36ea964fc67f2bb751d62806e2fb6",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 10,
+        "max_value": 10,
+        "default_value": 10
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "voice_change_woman",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/voice_change_woman/description.json",
+    "definitionHash": "075903c95fe69508471cbdf46c5ecea41e15539ca9a8a435d50f744a69293f1d",
+    "parameters": [
+      {
+        "name": "VoiceChange_Type",
+        "type": 5,
+        "min_value": 2,
+        "max_value": 2,
+        "default_value": 2
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "volume",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/volume/description.json",
+    "definitionHash": "d8737a1ca6b9a1bee9d5695d6546b5440fce0fbf46b8f07d66775da6c42ddc36",
+    "parameters": [
+      {
+        "name": "Mute",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": false
+      },
+      {
+        "name": "VolumeGain",
+        "type": 2,
+        "min_value": -100,
+        "max_value": 20,
+        "default_value": 0
+      },
+      {
+        "name": "Balance",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 1,
+        "default_value": 0.5
+      },
+      {
+        "name": "Mix2Mono",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": false
+      },
+      {
+        "name": "LoudnessGainEnable",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": false,
+        "ui_type": "NoShow"
+      },
+      {
+        "name": "LoudnessGain",
+        "type": 2,
+        "min_value": 0,
+        "max_value": 0,
+        "default_value": 1,
+        "ui_type": "NoShow"
+      },
+      {
+        "name": "Limit",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": true
+      },
+      {
+        "name": "Agc",
+        "type": 1,
+        "min_value": false,
+        "max_value": true,
+        "default_value": true
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  },
+  {
+    "name": "walkie_talkie",
+    "category": "Audio Effects",
+    "source": "resources/audio_effect/walkie_talkie/description.json",
+    "definitionHash": "0941bfcb709e87df4edbacbd9a3c886c5cc4d809bc405a8dc828642a81fe6e52",
+    "parameters": [
+      {
+        "name": "level",
+        "type": 5,
+        "min_value": 0,
+        "max_value": 10,
+        "default_value": 10
+      }
+    ],
+    "status": "requires-audio-dsp-adapter",
+    "reason": "Parameter description only; executable DSP source is absent from this resource."
+  }
+]

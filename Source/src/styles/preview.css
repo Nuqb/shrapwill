@@ -1,0 +1,233 @@
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  background: #181a21;
+}
+.preset-preview-controls {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.preset-preview-controls label {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text);
+}
+.preset-preview-controls input[type='number'] {
+  width: 72px;
+  padding: 4px 6px;
+}
+.preset-preview-controls input[type='range'] {
+  width: min(240px, 50%);
+  accent-color: var(--accent);
+}
+.preset-preview-controls output {
+  min-width: 36px;
+  font-variant-numeric: tabular-nums;
+}
+.panel-heading {
+  height: 39px;
+  min-height: 39px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #bac1d0;
+  border-bottom: 1px solid #252933;
+}
+.panel-heading select {
+  padding: 3px 6px;
+  font-size: 9px;
+  background: #20242d;
+  border-color: #343a45;
+  color: #929bad;
+}
+.text-button {
+  font-size: 10px;
+  color: var(--accent);
+}
+.viewer {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111319;
+  position: relative;
+  margin: 8px 10px 0;
+  overflow: hidden;
+}
+.viewer canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.viewer-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 9px;
+  color: #687386;
+  background: radial-gradient(ellipse at center, #1e242c 0, #14171d 64%);
+}
+.viewer-empty strong {
+  font-weight: 500;
+  font-size: 13px;
+  color: #9ea9bc;
+  margin-top: 7px;
+}
+.viewer-empty span {
+  font-size: 10px;
+  color: #626e82;
+}
+.viewer-icon {
+  width: 63px;
+  height: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #323c4a;
+  background: #242c37;
+  border-radius: 18px;
+  color: #718599;
+}
+.player-status {
+  height: 30px;
+  min-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 13px;
+  font-size: 10px;
+  color: #b2bdcf;
+  font-variant-numeric: tabular-nums;
+}
+.subtle {
+  color: #677285;
+  font-size: 9px;
+}
+.dot {
+  margin: 0 6px;
+  color: #596276;
+}
+.transport {
+  height: 42px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-top: 1px solid #242933;
+}
+.transport-center {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.transport-center > button {
+  padding: 5px;
+  color: #a6b2c3;
+}
+.transport-center .play-button {
+  color: #e0e7ef;
+  background: none;
+  width: 32px;
+  height: 32px;
+}
+.transport-side {
+  width: 50px;
+  display: flex;
+}
+.transport-side.right {
+  justify-content: flex-end;
+}
+.transport-side button {
+  color: #8794a7;
+  padding: 4px;
+}
+.source-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.source-preview-actions button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.preview-audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 150px;
+}
+.preview-audio-controls button {
+  display: flex;
+  padding: 4px;
+  color: #9ba9bd;
+}
+.preview-audio-controls input {
+  width: 61px;
+  height: 3px;
+  accent-color: var(--accent);
+}
+.preview-level {
+  width: 42px;
+  height: 5px;
+  background: #303845;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.preview-level span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #4bce9b, #d2e57a 80%, #f59b67);
+  transition: width 70ms linear;
+}
+.source-position {
+  height: 3px;
+  min-height: 3px;
+  margin: 8px 13px 0;
+  accent-color: var(--accent);
+  cursor: ew-resize;
+}
+.preview-panel:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+.audio-source-art {
+  pointer-events: none;
+}
+
+.transport-side.right {
+  width: 150px;
+}
+.transport {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+}
+.preview-audio-controls {
+  max-width: 100%;
+  min-width: 0;
+}
+.preview-audio-controls input {
+  min-width: 20px;
+  flex: 1;
+}
+.preview-audio-controls button {
+  flex-shrink: 0;
+}
+.preview-level {
+  min-width: 15px;
+}
+.transport-side.right {
+  width: auto;
+  justify-self: end;
+}

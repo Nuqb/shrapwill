@@ -1,0 +1,96 @@
+.timeline-tools .magnetic-toggle {
+  width: auto;
+  gap: 5px;
+  padding: 0 8px;
+}
+.magnetic-toggle > span {
+  font-size: 10px;
+}
+.main-track-badge {
+  font-size: 7px !important;
+  letter-spacing: 0.5px;
+  border: 1px solid #4a5261;
+  color: #8b97a9;
+  border-radius: 3px;
+  padding: 1px 3px;
+  margin-left: auto;
+}
+.main-track-badge.magnetic-on {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+
+.track-head .track-selector {
+  width: 100%;
+  padding: 0;
+  justify-content: flex-start;
+  text-align: left;
+  border-radius: 3px;
+  min-height: 25px;
+}
+.track-selector > span:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.track-row.selected-track .track-head {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 var(--accent);
+}
+.track-row.selected-track .track-lane {
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+.track-row.drag-target .track-lane {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.timeline-clip.dragging-clip {
+  opacity: 0.85;
+  pointer-events: none;
+  outline: 2px solid var(--accent);
+  z-index: 5;
+  box-shadow: 0 5px 16px #0008;
+}
+.timeline-context-menu {
+  position: fixed;
+  z-index: 130;
+  min-width: 250px;
+  max-width: 270px;
+  padding: 7px;
+  border: 1px solid #465160;
+  border-radius: 7px;
+  background: #272e38;
+  box-shadow: 0 12px 35px #0009;
+}
+.timeline-context-menu .context-heading {
+  display: block;
+  font-size: 10px;
+  color: #98aabc;
+  padding: 7px 9px 10px;
+}
+.timeline-context-menu button {
+  width: 100%;
+  justify-content: flex-start;
+  min-height: 34px;
+  padding: 8px 9px;
+}
+.timeline-context-menu button .shortcut-hint {
+  margin-left: auto;
+  color: #91a2b5;
+  font-size: 10px;
+}
+.timeline-context-menu p {
+  font-size: 10px;
+  line-height: 1.6;
+  padding: 5px 9px;
+  margin: 0;
+  color: #a5b0bf;
+}
+.title-preset.selected-preset {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-line);
+}
+.library-toolbar > .tooltip-host .import-button {
+  white-space: nowrap;
+}

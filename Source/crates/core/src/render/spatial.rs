@@ -1,0 +1,61 @@
+use crate::{Clip, Properties};
+
+fn coordinates(p: &Properties, offset: i64) -> (String, String) {
+    let mut x = "((X+0.5)/W)".to_string();
+    let mut y = "((Y+0.5)/H)".to_string();
+    if p.mirror == 1. {
+        x = format!("abs(2*{x}-1)");
+    }
+    if p.mosaic > 0. {
+        let b = p.mosaic;
+        x = format!("((floor(({x})/{b})+0.5)*{b})");
+        y = format!("((floor(({y})/({b}*W/H))+0.5)*{b}*W/H)");
+    }
+    if p.shake > 0. {
+        let s = p.shake;
+        x = format!("(({x}-0.5)*(1-2*{s})+0.5+{s}*sin((N+{offset})*1.7))");
+        y = format!("(({y}-0.5)*(1-2*{s})+0.5+{s}*0.6*sin((N+{offset})*2.3))");
+    }
+    if p.wave > 0. {
+        x = format!("({x}+{}*sin(({y})*40+(N+{offset})*0.12))", p.wave);
+    }
+    (format!("(({x})*W-0.5)"), format!("(({y})*H-0.5)"))
+}
+
+fn legacy_neutral(p: &Properties) -> bool {
+    [
+        p.mosaic,
+        p.rgb_split,
+        p.shake,
+        p.mirror,
+        p.wave,
+        p.vignette,
+        p.scanlines,
+    ]
+    .iter()
+    .all(|v| *v == 0.)
+}
+
+pub(super) fn is_neutral(p: &Properties) -> bool {
+    p.effect_strength == 0. || (legacy_neutral(p) && (p.effect_style == 0 || p.effect_amount == 0.))
+}
+pub(super) fn filter(clip: &Clip, offset: i64) -> String {
+    let p = &clip.props;
+    if p.effect_strength == 0. {
+        return String::new();
+    }
+    let creative = super::creative_effects::filter(p, offset);
+    if legacy_neutral(p) {
+        return creative;
+    }
+    let (x, y) = coordinates(p, offset);
+    let shift = p.rgb_split;
+    // Explicit clamping matches WebGL's CLAMP_TO_EDGE sampling.
+    let sample = |channel: &str, x: String| format!("{channel}(clip({x},0,W-1),clip({y},0,H-1))");
+    let shade = format!("(1-{}*clip((pow((X+0.5)/W-0.5,2)+pow((Y+0.5)/H-0.5,2))*2,0,1))*(1-{}*(0.5+0.5*cos((Y+0.5)/H*180*PI)))", p.vignette, p.scanlines);
+    let red = sample("r", format!("{x}+{shift}*W"));
+    let green = sample("g", x.clone());
+    let blue = sample("b", format!("{x}-{shift}*W"));
+    let alpha = sample("alpha", x);
+    format!("{creative},format=gbrap,geq=r='({red})*({shade})':g='({green})*({shade})':b='({blue})*({shade})':a='{alpha}':interpolation=bilinear,format=rgba")
+}

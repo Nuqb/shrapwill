@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+                    <Filter>
+                    	<GUID>C5502B80-2A2C-4C40-90B8-26830EE044CC</GUID>
+                    	<Name>Glitch Intro Transition 07</Name>
+                    	<Transition>1</Transition>
+                    	<VideoOverlay>
+                    		<VideoFile>Glitch Intro Transition 07.mp4</VideoFile>
+                    		<BlendType>2</BlendType>
+                    		<MultiLayer>Glitch Intro Transition 07.ml</MultiLayer>
+                    	</VideoOverlay>
+                    </Filter>

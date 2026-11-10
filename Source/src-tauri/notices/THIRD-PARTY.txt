@@ -1,0 +1,11 @@
+Shrapwill 0.1.0 includes FFmpeg and FFprobe 8.1.2 (Gyan essentials Windows x64 build).
+Source archive: https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-8.1.2-essentials_build.zip
+Archive SHA-256: DB580001CAA24AC104C8CB856CD113A87B0A443F7BDF47D8C12B1D740584A2EC
+Build provider and source information: https://www.gyan.dev/ffmpeg/builds/
+FFmpeg source: https://git.ffmpeg.org/ffmpeg.git (tag n8.1.2)
+FFmpeg is Copyright (c) 2000-2026 the FFmpeg developers.
+This build enables GPL and version3 components. See FFmpeg-LICENSE.txt and the source links above.
+FFmpeg runs as an independent executable; Shrapwill communicates through command arguments and streams.
+
+Rust and frontend dependency versions are recorded in Cargo.lock and package-lock.json.
+Their individual licenses are included with the source packages distributed by crates.io and npm.

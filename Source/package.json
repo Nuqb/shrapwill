@@ -1,0 +1,40 @@
+{
+  "name": "shrapwill",
+  "version": "0.9.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "tauri": "node scripts/tauri.mjs",
+    "publish:app": "node scripts/publish-app.mjs",
+    "test:release": "node --test scripts/release/publish.test.mjs scripts/launcher/launcher.test.mjs",
+    "test": "vitest run src",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "quality:audit": "node scripts/quality/check.mjs --audit",
+    "quality:check": "node scripts/quality/check.mjs",
+    "test:quality": "node --test scripts/quality/scan.checks.mjs",
+    "test:desktop": "node scripts/test-desktop.mjs",
+    "package:source": "node scripts/package-source.mjs"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.10.0",
+    "@tauri-apps/plugin-dialog": "^2.6.0",
+    "lucide-react": "^0.577.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@tauri-apps/cli": "^2.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "fflate": "0.8.3",
+    "prettier": "3.6.2",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.0",
+    "vitest": "5.1.0"
+  }
+}

@@ -1,0 +1,281 @@
+.launcher-backdrop {
+  background: #0b1018e0;
+  backdrop-filter: blur(12px);
+}
+.launcher {
+  width: 940px;
+  max-height: 92vh;
+  background: #1b2029;
+  border: 1px solid #3b4759;
+  border-radius: 15px;
+  box-shadow: 0 35px 130px #0009;
+  overflow: auto;
+}
+.launcher-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 31px 15px;
+}
+.launcher-top > button {
+  padding: 5px;
+  color: #8399b7;
+}
+.launcher-intro {
+  padding: 26px 38px 37px;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 98% 70%, #24413f66, transparent 62%);
+}
+.launcher-intro .eyebrow {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #5fbdab;
+}
+.launcher-intro h1 {
+  max-width: calc(100% - 390px);
+  font-size: 39px;
+  font-weight: 450;
+  letter-spacing: -1.8px;
+  line-height: 1.18;
+  color: #e4ecf5;
+  margin: 14px 0 15px;
+}
+.launcher-intro > p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #879bb6;
+  margin-bottom: 23px;
+}
+.launcher-actions {
+  display: flex;
+  gap: 10px;
+}
+.launcher-actions .primary {
+  padding: 11px 15px;
+  gap: 9px;
+  font-size: 11px;
+}
+.launcher-actions .secondary {
+  font-size: 11px;
+  background: #29323e;
+  border-color: #3f4c5e;
+}
+.launcher-art {
+  position: absolute;
+  width: 345px;
+  height: 235px;
+  right: 40px;
+  top: 36px;
+  transform: perspective(700px) rotateY(-8deg) rotateZ(-3deg);
+  box-shadow: 0 18px 40px #0005;
+  background: #121a24;
+  border: 1px solid #3f5967;
+  border-radius: 8px;
+  padding: 9px;
+}
+.art-viewport {
+  position: relative;
+  height: 155px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #c8d3bd, #8fb2ab 55%, #628e89);
+  border-radius: 3px;
+}
+.art-sun {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e5dec0;
+  position: absolute;
+  top: 14px;
+  right: 47px;
+}
+.art-mountain {
+  position: absolute;
+  bottom: -28px;
+  width: 270px;
+  height: 90px;
+  background: #416b69;
+  border-radius: 45% 40% 0 0;
+  transform: rotate(-13deg);
+  left: -30px;
+}
+.art-mountain.two {
+  bottom: -44px;
+  left: 90px;
+  background: #284d4f;
+  transform: rotate(13deg);
+}
+.art-viewport > span {
+  position: absolute;
+  top: 33px;
+  left: 24px;
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+  color: #213d3c;
+}
+.art-timeline {
+  position: relative;
+  height: 57px;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 2px;
+  gap: 4px;
+}
+.art-timeline i {
+  height: 21px;
+  border-radius: 3px;
+  background: #4168a8;
+  width: 87px;
+  border: 1px solid #6c8cbd;
+}
+.art-timeline i:nth-child(2) {
+  background: #5b72a5;
+  width: 65px;
+}
+.art-timeline i:nth-child(3) {
+  background: #427f78;
+  width: 67px;
+}
+.art-timeline i:nth-child(4) {
+  background: #6b568d;
+  width: 69px;
+}
+.art-timeline b {
+  height: 44px;
+  width: 1px;
+  background: #f58b87;
+  position: absolute;
+  top: 3px;
+  left: 130px;
+}
+.recent-projects {
+  padding: 23px 34px 20px;
+  border-top: 1px solid #303e50;
+  min-height: 180px;
+  background: #181e28;
+}
+.recent-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recent-heading h3 {
+  font-size: 12px;
+  font-weight: 550;
+  color: #adbed5;
+  margin: 0;
+}
+.recent-heading > span {
+  font-size: 9px;
+  color: #5d7594;
+}
+.no-recents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px;
+  color: #4e6785;
+}
+.no-recents strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: #839cbb;
+}
+.no-recents > span {
+  font-size: 10px;
+  color: #58718f;
+}
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 17px;
+  max-height: 190px;
+  overflow: auto;
+  gap: 3px;
+}
+.recent-list > button {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 5px;
+}
+.recent-icon {
+  padding: 11px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 5px;
+}
+.recent-list > button > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.recent-list strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: #b8cde5;
+}
+.recent-list > button > div > span {
+  font-size: 9px;
+  color: #6e86a5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.recent-list > button > svg {
+  margin-left: auto;
+  color: #56708f;
+}
+.launcher-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 9px;
+  color: #576f8d;
+  padding: 13px 32px;
+  border-top: 1px solid #2c3b50;
+  background: #171d27;
+}
+.recovery-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  margin: 15px 0 5px;
+  background: #2a3f3b;
+  border: 1px solid #44645b;
+  border-radius: 5px;
+  color: #82bbaa;
+  align-items: center;
+}
+.recovery-card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+.recovery-card strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: #b7d3c6;
+}
+.recovery-card span {
+  font-size: 9px;
+  color: #7fa598;
+}
+.recovery-card button {
+  font-size: 10px;
+  padding: 7px 10px;
+}
+.recovery-card .secondary {
+  background: #364e46;
+  border-color: #4c6e61;
+}

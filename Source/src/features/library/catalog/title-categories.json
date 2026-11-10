@@ -1,0 +1,306 @@
+[
+  {
+    "id": "265038",
+    "name": "Title Effects",
+    "order": 12,
+    "children": [
+      {
+        "id": "129226",
+        "name": "Trending",
+        "order": 0,
+        "children": []
+      },
+      {
+        "id": "129",
+        "name": "Minimal",
+        "order": 1,
+        "children": []
+      },
+      {
+        "id": "505162",
+        "name": "Typing Effect",
+        "order": 4,
+        "children": []
+      },
+      {
+        "id": "54712",
+        "name": "WordArt",
+        "order": 5,
+        "children": [
+          {
+            "id": "811290",
+            "name": "Multicolor",
+            "order": 0,
+            "children": []
+          },
+          {
+            "id": "710286",
+            "name": "Yellow",
+            "order": 1,
+            "children": []
+          },
+          {
+            "id": "709794",
+            "name": "Red",
+            "order": 2,
+            "children": []
+          },
+          {
+            "id": "912290",
+            "name": "Black&White",
+            "order": 3,
+            "children": []
+          },
+          {
+            "id": "1065286",
+            "name": "Manuscript",
+            "order": 5,
+            "children": []
+          },
+          {
+            "id": "709798",
+            "name": "Blue",
+            "order": 6,
+            "children": []
+          },
+          {
+            "id": "670570",
+            "name": "Green",
+            "order": 7,
+            "children": []
+          },
+          {
+            "id": "889038",
+            "name": "Purple",
+            "order": 8,
+            "children": []
+          },
+          {
+            "id": "889350",
+            "name": "Pink",
+            "order": 9,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "126330",
+        "name": "Stylized FX",
+        "order": 6,
+        "children": []
+      },
+      {
+        "id": "327974",
+        "name": "Glow Text",
+        "order": 7,
+        "children": []
+      },
+      {
+        "id": "117264",
+        "name": "3D Titles",
+        "order": 8,
+        "children": []
+      },
+      {
+        "id": "55608",
+        "name": "Cinematic",
+        "order": 9,
+        "children": []
+      },
+      {
+        "id": "300086",
+        "name": "Handwriting",
+        "order": 10,
+        "children": []
+      },
+      {
+        "id": "871202",
+        "name": "Glitch",
+        "order": 11,
+        "children": []
+      },
+      {
+        "id": "109026",
+        "name": "Neon",
+        "order": 13,
+        "children": []
+      },
+      {
+        "id": "206122",
+        "name": "Audio Driven Text",
+        "order": 14,
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "117208",
+    "name": "Title Templates",
+    "order": 13,
+    "children": [
+      {
+        "id": "55524",
+        "name": "Lower Thirds",
+        "order": 0,
+        "children": []
+      },
+      {
+        "id": "119",
+        "name": "Subtitles",
+        "order": 1,
+        "children": []
+      },
+      {
+        "id": "55616",
+        "name": "Social Media",
+        "order": 2,
+        "children": [
+          {
+            "id": "871314",
+            "name": "Thanks",
+            "order": 0,
+            "children": []
+          },
+          {
+            "id": "105252",
+            "name": "Subscribe&Like",
+            "order": 1,
+            "children": []
+          },
+          {
+            "id": "890822",
+            "name": "Follow",
+            "order": 2,
+            "children": []
+          },
+          {
+            "id": "871322",
+            "name": "Welcome",
+            "order": 3,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "106426",
+        "name": "News",
+        "order": 4,
+        "children": []
+      },
+      {
+        "id": "55588",
+        "name": "Callout",
+        "order": 5,
+        "children": []
+      },
+      {
+        "id": "55568",
+        "name": "End Credits",
+        "order": 6,
+        "children": []
+      },
+      {
+        "id": "126414",
+        "name": "Music",
+        "order": 7,
+        "children": []
+      },
+      {
+        "id": "810350",
+        "name": "Halloween",
+        "order": 8,
+        "children": []
+      },
+      {
+        "id": "870730",
+        "name": "Search Bar",
+        "order": 10,
+        "children": []
+      },
+      {
+        "id": "105244",
+        "name": "Chapter",
+        "order": 11,
+        "children": []
+      },
+      {
+        "id": "117288",
+        "name": "Message",
+        "order": 12,
+        "children": []
+      },
+      {
+        "id": "165394",
+        "name": "Awards",
+        "order": 13,
+        "children": []
+      },
+      {
+        "id": "893690",
+        "name": "Real Estate",
+        "order": 14,
+        "children": []
+      },
+      {
+        "id": "300970",
+        "name": "Games",
+        "order": 15,
+        "children": []
+      },
+      {
+        "id": "109",
+        "name": "Sports",
+        "order": 16,
+        "children": []
+      },
+      {
+        "id": "51072",
+        "name": "Love & Romance",
+        "order": 17,
+        "children": []
+      },
+      {
+        "id": "55528",
+        "name": "Openers",
+        "order": 18,
+        "children": []
+      },
+      {
+        "id": "668014",
+        "name": "Birthday",
+        "order": 20,
+        "children": []
+      },
+      {
+        "id": "126198",
+        "name": "Promo",
+        "order": 22,
+        "children": []
+      },
+      {
+        "id": "98410",
+        "name": "Slideshow",
+        "order": 23,
+        "children": []
+      },
+      {
+        "id": "48300",
+        "name": "Thanksgiving Day",
+        "order": 24,
+        "children": []
+      },
+      {
+        "id": "811666",
+        "name": "Christmas",
+        "order": 25,
+        "children": []
+      },
+      {
+        "id": "887654",
+        "name": "New Year",
+        "order": 26,
+        "children": []
+      }
+    ]
+  }
+]

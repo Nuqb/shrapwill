@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+                    <Filter>
+                    	<GUID>E89E9FBF-4B75-4198-AC12-9038B7F44AE4</GUID>
+                    	<Name>16mm Film Look Transition 04</Name>
+                    	<Transition>1</Transition>
+                    	<VideoOverlay>
+                    		<VideoFile>16mm Film Look Transition 04.mp4</VideoFile>
+                    		<BlendType>2</BlendType>
+                    		<MultiLayer>16mm Film Look Transition 04.ml</MultiLayer>
+                    	</VideoOverlay>	
+                    </Filter>

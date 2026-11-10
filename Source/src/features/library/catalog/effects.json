@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Scan lines",
+    "category": "Retro",
+    "description": "Stationary horizontal scan lines",
+    "scanlines": 0.3
+  },
+  {
+    "name": "Old television",
+    "category": "Retro",
+    "description": "One analog television treatment with gentle tracking distortion",
+    "scanlines": 0.3,
+    "wave": 0.003,
+    "rgbSplit": 0.001
+  },
+  {
+    "name": "Soft vignette",
+    "category": "Lens",
+    "description": "Darken corners without shaking or distorting the image",
+    "vignette": 0.65
+  },
+  {
+    "name": "Wave ripple",
+    "category": "Distortion",
+    "description": "A gentle traveling horizontal ripple",
+    "wave": 0.012
+  },
+  {
+    "name": "Soft blur",
+    "category": "Detail",
+    "description": "Smooth the image with a nine-sample blur",
+    "effectStyle": 1,
+    "effectAmount": 0.8
+  },
+  {
+    "name": "Soft glow",
+    "category": "Light",
+    "description": "Add a luminous blurred highlight glow",
+    "effectStyle": 2,
+    "effectAmount": 0.7
+  },
+  {
+    "name": "Sharpen",
+    "category": "Detail",
+    "description": "Increase local edge contrast",
+    "effectStyle": 3,
+    "effectAmount": 0.6
+  },
+  {
+    "name": "Edge outline",
+    "category": "Stylize",
+    "description": "Draw colored outlines from neighboring pixels",
+    "effectStyle": 4,
+    "effectAmount": 1
+  },
+  {
+    "name": "Emboss",
+    "category": "Stylize",
+    "description": "Create raised relief from diagonal differences",
+    "effectStyle": 5,
+    "effectAmount": 1
+  },
+  {
+    "name": "Film grain",
+    "category": "Texture",
+    "description": "Fine changing grain without camera movement",
+    "effectStyle": 6,
+    "effectAmount": 0.5
+  },
+  {
+    "name": "Halftone dots",
+    "category": "Texture",
+    "description": "Convert tonal detail into a dot pattern",
+    "effectStyle": 7,
+    "effectAmount": 1
+  },
+  {
+    "name": "Fisheye",
+    "category": "Lens",
+    "description": "Bend the image around a radial lens",
+    "effectStyle": 8,
+    "effectAmount": 0.8
+  },
+  {
+    "name": "Swirl",
+    "category": "Distortion",
+    "description": "Twist the image smoothly around its center",
+    "effectStyle": 9,
+    "effectAmount": 0.65
+  },
+  {
+    "name": "Kaleidoscope",
+    "category": "Distortion",
+    "description": "Reflect the image into six radial segments",
+    "effectStyle": 10,
+    "effectAmount": 1
+  }
+]

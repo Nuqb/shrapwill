@@ -1,0 +1,12 @@
+node_modules/
+dist/
+target/
+outputs/
+src-tauri/gen/
+src-tauri/binaries/
+src-tauri/icons/
+src-tauri/notices/
+package-lock.json
+Cargo.lock
+docs/quality/software-quality.md
+src/features/preview/ported/originals/

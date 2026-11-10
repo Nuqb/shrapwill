@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+            <Filter>
+            	<GUID>24f2ecb0-b8cc-f15c-dc60-9b14a61adc78</GUID>
+            	<Name>Metropolis Pack Transition 1</Name>
+            	<Transition>1</Transition>
+            	<VideoOverlay>
+            		<VideoFile>Metropolis Pack Transition 1.mp4</VideoFile>
+            		<BlendType>2</BlendType>
+            		<MultiLayer>Metropolis Pack Transition 1.ml</MultiLayer>
+            	</VideoOverlay>	
+            </Filter>

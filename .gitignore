@@ -1,0 +1,20 @@
+# Delivered builds, preserved history, and personal/local test sessions.
+/App/
+/Backups/
+/Outputs/
+/QA/
+*.lnk
+/Read me first.txt
+
+# Dependency caches and generated build output.
+**/node_modules/
+**/target/
+**/dist/
+/Source/src-tauri/gen/
+*.log
+*.tsbuildinfo
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example

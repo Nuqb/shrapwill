@@ -1,0 +1,427 @@
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+.launcher-top .brand-icon {
+  width: 32px;
+  height: 32px;
+}
+.tooltip-host {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+.tool-tooltip {
+  position: fixed;
+  z-index: 500;
+  transform: translate(-50%, -100%);
+  background: #303744;
+  border: 1px solid #58667d;
+  border-radius: 6px;
+  padding: 10px 12px;
+  box-shadow: 0 8px 25px #0007;
+  min-width: 180px;
+  max-width: 290px;
+  pointer-events: none;
+  color: #e4ebf6;
+  font-size: 11px;
+}
+.tool-tooltip.below {
+  transform: translateX(-50%);
+}
+.tool-tooltip > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.tool-tooltip strong {
+  font-weight: 550;
+}
+.tool-tooltip kbd {
+  background: #171d27;
+  border: 1px solid #526078;
+  border-radius: 4px;
+  padding: 3px 5px;
+  color: #b6eadc;
+  font:
+    10px 'Segoe UI',
+    sans-serif;
+  white-space: nowrap;
+}
+.tool-tooltip > span {
+  display: block;
+  margin-top: 7px;
+  color: #a7b6cb;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.header-actions > .tooltip-host > button:not(.primary) {
+  width: 29px;
+  height: 28px;
+  color: #9ca3b3;
+}
+.tool-group > .tooltip-host > button,
+.track-add > .tooltip-host > button {
+  height: 28px;
+  padding: 5px 7px;
+  color: #a6b1c5;
+}
+.tool-group > .tooltip-host > button.active-tool {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.tool-group > .tooltip-host > button.toggled {
+  color: var(--accent);
+}
+.zoom-controls > .tooltip-host > button {
+  padding: 5px;
+  color: #91a0b8;
+}
+.transport-center > .tooltip-host > button {
+  padding: 5px;
+  color: #a6b2c3;
+}
+.transport-center > .tooltip-host > .play-button {
+  color: #e0e7ef;
+  width: 32px;
+  height: 32px;
+}
+.timeline-footer .shortcut-hint {
+  color: inherit;
+  font-size: inherit;
+}
+.razor-mode .timeline-clip,
+.razor-mode .track-lane {
+  cursor: crosshair;
+}
+.razor-guide {
+  position: absolute;
+  top: 30px;
+  width: 1px;
+  background: #f9d58c;
+  z-index: 7;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px #0006;
+}
+.razor-guide > svg {
+  position: absolute;
+  left: 4px;
+  top: 7px;
+  color: #f9d58c;
+  background: #252c38;
+  padding: 3px;
+  box-sizing: content-box;
+  border-radius: 4px;
+}
+.launcher-top > .tooltip-host {
+  margin-left: 10px;
+}
+.launcher-top > button {
+  margin-left: auto;
+}
+.launcher-top > .brand {
+  margin-right: auto;
+}
+.launcher-top > .tooltip-host > button {
+  width: 32px;
+  height: 32px;
+}
+.shortcut-backdrop {
+  z-index: 150;
+}
+.shortcut-settings {
+  width: 900px;
+  max-width: 96vw;
+  max-height: 92vh;
+  height: 760px;
+  background: #222630;
+  border: 1px solid #465367;
+  border-radius: 12px;
+  box-shadow: 0 30px 100px #000a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+}
+.shortcut-settings > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px 26px 12px;
+}
+.shortcut-settings h2 {
+  font-size: 20px;
+  font-weight: 550;
+  letter-spacing: -0.4px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0;
+  color: #e3ebf7;
+}
+.shortcut-settings > header > button {
+  padding: 4px;
+  color: #a1b2cb;
+}
+.shortcut-filters {
+  display: flex;
+  gap: 12px;
+  padding: 0 26px 17px;
+  flex-shrink: 0;
+}
+.shortcut-search {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  border: 1px solid #43516a;
+  background: #161e29;
+  padding: 0 11px;
+  border-radius: 5px;
+  flex: 1;
+  color: #7f94b3;
+}
+.shortcut-search input {
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  background: none;
+  font-size: 11px;
+}
+.shortcut-search:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.shortcut-search input:focus-visible {
+  outline: none;
+}
+.shortcut-filters select {
+  width: 180px;
+  background: #18212e;
+  border-color: #43516a;
+  font-size: 11px;
+}
+.shortcut-list {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  border-top: 1px solid #3b485e;
+  border-bottom: 1px solid #3b485e;
+  background: #1b222d;
+  padding: 0 16px;
+}
+.shortcut-list-heading {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #222d3c;
+  padding: 10px 13px;
+  color: #7d94b4;
+  font-size: 10px;
+  border-bottom: 1px solid #35445a;
+}
+.shortcut-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 13px;
+  border-bottom: 1px solid #2b374a;
+}
+.shortcut-row.recording {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 var(--accent);
+}
+.shortcut-row > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.shortcut-row strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: #cad8ed;
+}
+.shortcut-row > div:first-child > span {
+  font-size: 9px;
+  color: #647f9f;
+}
+.shortcut-bindings {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.shortcut-chip {
+  display: inline-flex;
+  align-items: center;
+  background: #2c384a;
+  border: 1px solid #536783;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.shortcut-chip > button:first-child {
+  padding: 6px 8px;
+  font-size: 10px;
+  color: var(--accent);
+  min-width: 36px;
+  justify-content: flex-start;
+}
+.shortcut-chip > button:last-child {
+  padding: 6px 5px;
+  border-left: 1px solid #46556d;
+  color: #8399b8;
+}
+.add-shortcut {
+  border: 1px dashed #536783;
+  width: 27px;
+  height: 27px;
+  color: #8ca5c8;
+}
+.reset-shortcut {
+  padding: 6px;
+  color: #6983a5;
+  margin-left: auto;
+}
+.unassigned {
+  font-size: 10px;
+  color: #607b9d;
+  margin-right: 8px;
+}
+.shortcut-settings > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 25px;
+  gap: 15px;
+  background: #222c3a;
+}
+.shortcut-settings > footer > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.shortcut-settings > footer > div:first-child {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 7px;
+}
+.shortcut-settings > footer > div:first-child > span {
+  font-size: 9px;
+  color: #6f87aa;
+}
+.shortcut-settings > footer .text-button {
+  padding: 0;
+  color: #b4c9e5;
+  font-size: 10px;
+}
+.shortcut-recorder {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 26px 15px;
+  padding: 13px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 6px;
+}
+.shortcut-recorder > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.shortcut-recorder strong {
+  font-size: 11px;
+  font-weight: 550;
+  color: var(--text);
+}
+.shortcut-recorder span {
+  font-size: 9px;
+  color: var(--muted);
+}
+.shortcut-recorder input {
+  width: 165px;
+  text-align: center;
+  background: var(--bg);
+  color: var(--accent);
+  border-color: var(--accent-line);
+  font-size: 12px;
+  cursor: default;
+}
+.shortcut-conflict {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin: 0 26px 15px;
+  padding: 14px;
+  background: #473b2a;
+  border: 1px solid #92784c;
+  border-radius: 6px;
+  color: #e3c58d;
+  font-size: 11px;
+}
+.shortcut-conflict > svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.shortcut-conflict p {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #c7b58d;
+  margin: 7px 0 11px;
+}
+.shortcut-conflict > div > div {
+  display: flex;
+  gap: 8px;
+}
+.shortcut-conflict button {
+  font-size: 10px;
+  padding: 7px 10px;
+}
+.shortcut-error {
+  margin: 0 26px 13px;
+  padding: 10px;
+  border: 1px solid #8d624e;
+  background: #443329;
+  border-radius: 5px;
+  color: #efc2a5;
+  font-size: 11px;
+}
+.no-shortcuts {
+  text-align: center;
+  padding: 40px;
+  color: #8198b9;
+}
+@media (max-width: 1200px) {
+  .shortcut-settings {
+    width: 850px;
+  }
+  .shortcut-row {
+    grid-template-columns: 1fr 1.1fr;
+  }
+  .shortcut-settings > footer > div:first-child > span {
+    font-size: 8px;
+  }
+  .timeline-caption .pill {
+    display: none;
+  }
+}
+@media (max-height: 780px) {
+  .shortcut-settings {
+    max-height: 94vh;
+  }
+  .shortcut-settings > header {
+    padding-top: 16px;
+  }
+  .shortcut-row {
+    min-height: 53px;
+  }
+}

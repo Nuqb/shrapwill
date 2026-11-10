@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+                        <Filter>
+                            <GUID>133585DE-2661-4108-B6DC-41D22DAA0DC6</GUID>
+                            <Name>Abstract Bubble Intro Transition 02</Name>
+                            <Transition>1</Transition>
+                            <VideoOverlay>
+                                <VideoFile>Abstract Bubble Intro Transition 02.mp4</VideoFile>
+                                <BlendType>2</BlendType>
+                                <MultiLayer>Abstract Bubble Intro Transition 02.ml</MultiLayer>
+                            </VideoOverlay>
+                        </Filter>

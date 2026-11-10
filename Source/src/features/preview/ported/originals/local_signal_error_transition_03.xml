@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Filter>
+<GUID>aef51f5d-73e2-ee11-9d8a-d8bbc1e12cbf</GUID>
+<Name>Signal Error Transition 03</Name>
+<Transition>1</Transition>
+<VideoOverlay>
+<VideoFile>Signal Error Transition 03.MP4</VideoFile>
+<BlendType>2</BlendType>
+<MultiLayer>Signal Error Transition 03.ml</MultiLayer>
+</VideoOverlay>
+</Filter>

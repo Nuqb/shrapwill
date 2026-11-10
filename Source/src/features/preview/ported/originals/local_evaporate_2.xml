@@ -1,0 +1,11 @@
+
+        <?xml version="1.0" encoding="utf-8"?>
+        <Filter>
+        <GUID>Evaporate 2</GUID>
+        <Name>Evaporate 2</Name>
+        <Transition>1</Transition>
+        <ImageAlphaTrans>
+    	<ImageFile>Evaporate_Ripple_2_mask.png</ImageFile>
+    	</ImageAlphaTrans>
+    	</Filter>
+    	

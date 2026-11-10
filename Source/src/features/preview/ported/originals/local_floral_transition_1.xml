@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+            <Filter>
+            	<GUID>29f23b28-0d38-2bd6-9fee-a8b6608e3e5c</GUID>
+            	<Name>Floral Pack - Transition 1</Name>
+            	<Transition>1</Transition>
+            	<VideoOverlay>
+            		<VideoFile>Floral Pack - Transition 1_L0.mp4</VideoFile>
+            		<BlendType>2</BlendType>
+            		<MultiLayer>Floral Pack - Transition 1_L0.ml</MultiLayer>
+            	</VideoOverlay>	
+            </Filter>

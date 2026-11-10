@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+                        <Filter>
+                            <GUID>C9319F9A-4B81-4783-AD22-4DCD8DFB31C4</GUID>
+                            <Name>Animate Effect Transition 02</Name>
+                            <Transition>1</Transition>
+                            <VideoOverlay>
+                                <VideoFile>Animate Effect Transition 02.mp4</VideoFile>
+                                <BlendType>2</BlendType>
+                                <MultiLayer>Animate Effect Transition 02.ml</MultiLayer>
+                            </VideoOverlay>
+                        </Filter>

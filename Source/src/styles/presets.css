@@ -1,0 +1,403 @@
+.preset-library .library-sidebar {
+  display: none;
+}
+.preset-categories {
+  max-height: 84px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 0 11px 5px;
+}
+.preset-collection,
+.preset-results {
+  display: contents;
+}
+.transition-browser {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.sidebar-categories {
+  display: grid;
+  grid-template-columns: clamp(112px, 24%, 148px) minmax(0, 1fr);
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+.sidebar-categories .preset-categories {
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 3px;
+  padding: 8px 6px;
+  overflow-y: auto;
+  background: #191b22;
+  border-right: 1px solid #303540;
+}
+.sidebar-categories .preset-categories button {
+  border: 0;
+  border-radius: 4px;
+  flex-shrink: 0;
+  font-size: 11px;
+  text-align: left;
+  justify-content: flex-start;
+  padding: 9px 8px;
+  min-height: 34px;
+  line-height: 1.4;
+}
+.sidebar-categories .preset-results {
+  display: block;
+  overflow: auto;
+  min-height: 0;
+  min-width: 0;
+}
+.sidebar-categories .preset-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(125px, 100%), 1fr));
+}
+.sidebar-categories .preset-count {
+  margin-top: 12px;
+}
+.sidebar-categories .preset-categories button[aria-pressed='true'] {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.preset-library .search-box {
+  max-width: none;
+}
+.title-categories ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.title-collection {
+  grid-template-columns: 148px minmax(0, 1fr);
+}
+.title-categories ul ul {
+  padding-left: 12px;
+}
+.title-categories li > button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.title-categories > ul > li > button {
+  background: #20242b;
+}
+.title-categories li > button:not([aria-expanded]) {
+  padding-left: 25px;
+}
+.title-categories button svg {
+  flex-shrink: 0;
+}
+.title-categories button svg.expanded {
+  transform: rotate(90deg);
+}
+.title-categories button span {
+  overflow-wrap: anywhere;
+}
+.preset-categories button {
+  font-size: 9px;
+  padding: 5px 8px;
+  border: 1px solid #343b48;
+  border-radius: 12px;
+  color: #aeb9cd;
+}
+.preset-categories button[aria-pressed='true'] {
+  color: #91f0da;
+  border-color: #50796f;
+  background: #284039;
+}
+.preset-count {
+  margin: 4px 12px 12px;
+  color: #8f9bb0;
+  font-size: 9px;
+}
+.preset-empty {
+  margin: 20px;
+  color: #aeb9cd;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.preset-art canvas {
+  width: 100%;
+  height: 100%;
+}
+.video-effect-art {
+  background: linear-gradient(145deg, #365e77, #deb67b);
+  overflow: hidden;
+}
+.effect-demo-shape {
+  width: 58%;
+  height: 70%;
+  background: linear-gradient(45deg, #1d4655 50%, #6ac3b3 50%);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.effect-demo-label {
+  position: absolute;
+  color: white;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px #000;
+}
+.rgb-demo .effect-demo-label {
+  text-shadow:
+    -4px 0 #ff456b,
+    4px 0 #46e5ff;
+}
+.mosaic-demo {
+  background: repeating-conic-gradient(#4a7e88 0% 25%, #9fb48c 0% 50%) 50% / 18px 18px;
+}
+.mirror-demo .effect-demo-shape {
+  clip-path: polygon(0 0, 50% 100%, 100% 0, 100% 100%, 0 100%);
+}
+.shake-demo .effect-demo-shape {
+  animation: effect-shake 0.35s steps(3) infinite alternate;
+}
+@keyframes effect-shake {
+  from {
+    transform: translate(-4px, 2px);
+  }
+  to {
+    transform: translate(4px, -2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shake-demo .effect-demo-shape {
+    animation: none;
+  }
+}
+.selected-preset .preset-art {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.preset-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.title-preset .preset-art > span {
+  max-width: 90%;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.title-preset:is(.cinematic, .design-cinematic) .preset-art > span {
+  font:
+    11px Georgia,
+    serif;
+  letter-spacing: 3px;
+  border-block: 1px solid #ffffff88;
+  padding: 9px 0;
+}
+.title-preset:is(.caption, .design-caption) .preset-art > span {
+  position: absolute;
+  bottom: 12%;
+  background: #10131bcc;
+  border-radius: 3px;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 11px;
+}
+.title-preset:is(.headline, .design-headline) .preset-art > span {
+  font-weight: 800;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 5px;
+}
+.title-preset:is(.outline, .design-outline) .preset-art > span {
+  color: transparent;
+  -webkit-text-stroke: 0.7px white;
+  font-size: 17px;
+  font-weight: 800;
+}
+.title-preset:is(.neon, .design-neon) .preset-art > span {
+  color: #76f7df;
+  text-shadow:
+    0 0 3px #76f7df,
+    0 0 9px #76f7df;
+}
+.title-preset:is(.label, .design-label) .preset-art > span {
+  position: absolute;
+  bottom: 10%;
+  left: 7%;
+  font-size: 8px;
+  letter-spacing: 1px;
+  background: #12151ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+.title-preset:is(.quote, .design-quote) .preset-art > span {
+  border-left: 2px solid var(--accent);
+  font:
+    13px Georgia,
+    serif;
+  padding: 8px;
+}
+.title-preset:is(.minimal, .design-minimal) .preset-art > span {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+.title-preset:is(.retro, .design-retro) .preset-art > span {
+  font:
+    bold 16px Georgia,
+    serif;
+  color: #ffdf9e;
+  text-shadow: 2px 2px #a64c42;
+}
+.title-preset:is(.credits, .design-credits) .preset-art > span {
+  align-self: flex-end;
+  margin-bottom: 16%;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+.transition-preset .preset-art {
+  background: linear-gradient(140deg, #182f43, #347596);
+  isolation: isolate;
+}
+.transition-scene {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, #c3b6e9, #735da8);
+}
+.transition-symbol {
+  z-index: 1;
+  font-size: 17px;
+  letter-spacing: 7px;
+  color: white;
+  text-shadow: 0 1px 4px #000b;
+}
+.transition-preset.fade .transition-scene {
+  background: black;
+  opacity: 0.6;
+}
+.transition-preset.dissolve .transition-scene {
+  opacity: 0.5;
+}
+.transition-preset.wipe_left .transition-scene {
+  clip-path: inset(0 0 0 50%);
+}
+.transition-preset.wipe_right .transition-scene {
+  clip-path: inset(0 50% 0 0);
+}
+.transition-preset.wipe_up .transition-scene {
+  clip-path: inset(50% 0 0 0);
+}
+.transition-preset.wipe_down .transition-scene {
+  clip-path: inset(0 0 50% 0);
+}
+.transition-preset.iris_open .transition-scene {
+  clip-path: ellipse(35% 35% at center);
+}
+.transition-preset.iris_close .transition-scene {
+  background: radial-gradient(ellipse, transparent 45%, #9e88cb 46%);
+}
+.transition-preset.blinds .transition-scene {
+  background: repeating-linear-gradient(transparent 0 6px, #9e88cb 6px 12px);
+}
+.transition-preset.checker .transition-scene {
+  background: conic-gradient(#9e88cb 25%, transparent 0 50%, #9e88cb 0 75%, transparent 0) 0 0 /
+    24px 24px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .transition-preset:is(:hover, :focus-visible) .transition-scene {
+    animation: preset-blend 1.8s ease-in-out infinite;
+  }
+  .transition-preset.wipe_left:is(:hover, :focus-visible) .transition-scene {
+    animation-name: preset-left;
+  }
+  .transition-preset.wipe_right:is(:hover, :focus-visible) .transition-scene {
+    animation-name: preset-right;
+  }
+  .transition-preset.wipe_up:is(:hover, :focus-visible) .transition-scene {
+    animation-name: preset-up;
+  }
+  .transition-preset.wipe_down:is(:hover, :focus-visible) .transition-scene {
+    animation-name: preset-down;
+  }
+  .transition-preset.iris_open:is(:hover, :focus-visible) .transition-scene {
+    animation-name: preset-iris;
+  }
+}
+@keyframes preset-blend {
+  0%,
+  10% {
+    opacity: 0;
+  }
+  75%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes preset-left {
+  0%,
+  10% {
+    clip-path: inset(0 0 0 100%);
+  }
+  75%,
+  100% {
+    clip-path: inset(0);
+  }
+}
+@keyframes preset-right {
+  0%,
+  10% {
+    clip-path: inset(0 100% 0 0);
+  }
+  75%,
+  100% {
+    clip-path: inset(0);
+  }
+}
+@keyframes preset-up {
+  0%,
+  10% {
+    clip-path: inset(100% 0 0 0);
+  }
+  75%,
+  100% {
+    clip-path: inset(0);
+  }
+}
+@keyframes preset-down {
+  0%,
+  10% {
+    clip-path: inset(0 0 100% 0);
+  }
+  75%,
+  100% {
+    clip-path: inset(0);
+  }
+}
+@keyframes preset-iris {
+  0%,
+  10% {
+    clip-path: ellipse(0% 0% at center);
+  }
+  75%,
+  100% {
+    clip-path: ellipse(71% 71% at center);
+  }
+}
+.transition-preset .preset-art canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.video-effect-art canvas {
+  position: absolute;
+  inset: 0;
+}
+.transition-port-pending {
+  color: var(--muted);
+  font-size: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.transition-preset:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

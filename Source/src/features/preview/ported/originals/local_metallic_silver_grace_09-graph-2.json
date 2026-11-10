@@ -1,0 +1,78 @@
+{
+    "nodes": [
+        {
+            "type": "Video_Node",
+            "x": 4328,
+            "y": 5180,
+            "uuid": "230d68b1-b88a-4327-9b76-2d43f8e06ebc",
+            "sort_index": 0,
+            "path": "out/.hidden_folder/Golden Transition 09.mp4",
+            "isLoop": false,
+            "isAdaptiveTime": true,
+            "isMP4WithTransparent": true
+        },
+        {
+            "type": "out/.hidden_folder/3_Allpurpose_BlendMode_Node",
+            "x": 4744,
+            "y": 4993,
+            "uuid": "51f117d3-bcf9-443a-92f0-701cbe2c73ef",
+            "sort_index": 0,
+            "GUID": "7016EEB2-792D-4931-AB00-CCDF0A1AF5EF",
+            "configed_params": {
+                "Blend": {
+                    "NAME": "Blend",
+                    "TYPE": "int",
+                    "DEFAULT": 0,
+                    "MIN": 0,
+                    "MAX": 21
+                }
+            },
+            "auto_all_output_param": false,
+            "is_Support_Embedded": false
+        },
+        {
+            "type": "_Output_Node",
+            "x": 5316,
+            "y": 4981,
+            "uuid": "593bcfa9-500e-4eea-8a0d-5cd7fc7bee7e",
+            "sort_index": 0,
+            "m_IsNeedCpuFrame": false,
+            "guid": "18631A32-A1EF-490C-904E-0FD37452E5AF",
+            "name": "Metallic_Silver_Grace_09",
+            "effect_type": 1,
+            "effect_platform": 0,
+            "m_IsNeedVectorPath": false
+        },
+        {
+            "type": "out/.hidden_folder/2_Box_Turn_1_Node",
+            "x": 4337,
+            "y": 4787,
+            "uuid": "1649700b-e453-4b2e-98cc-831d25a99caa",
+            "sort_index": 0,
+            "GUID": "cbf98da2-80ad-418a-91b8-5bd5c150a3d0",
+            "configed_params": {},
+            "auto_all_output_param": false,
+            "is_Support_Embedded": false
+        }
+    ],
+    "connections": [
+        {
+            "start_id": "51f117d3-bcf9-443a-92f0-701cbe2c73ef",
+            "end_id": "593bcfa9-500e-4eea-8a0d-5cd7fc7bee7e",
+            "start_pin": "Tex",
+            "end_pin": "dst_data"
+        },
+        {
+            "start_id": "230d68b1-b88a-4327-9b76-2d43f8e06ebc",
+            "end_id": "51f117d3-bcf9-443a-92f0-701cbe2c73ef",
+            "start_pin": "Tex",
+            "end_pin": "src_bg_data"
+        },
+        {
+            "start_id": "1649700b-e453-4b2e-98cc-831d25a99caa",
+            "end_id": "51f117d3-bcf9-443a-92f0-701cbe2c73ef",
+            "start_pin": "Tex",
+            "end_pin": "src_fg_data"
+        }
+    ]
+}

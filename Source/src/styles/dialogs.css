@@ -1,0 +1,366 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #080b12b8;
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.dialog {
+  width: 470px;
+  background: #22262f;
+  border: 1px solid #414958;
+  border-radius: 13px;
+  box-shadow: 0 30px 110px #0009;
+  padding: 26px;
+  max-height: 94vh;
+  overflow: auto;
+}
+.project-info-name {
+  font-size: 17px;
+  overflow-wrap: anywhere;
+  margin: 0 0 22px;
+}
+.project-info-details {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 15px 24px;
+  margin: 0 0 24px;
+  font-size: 12px;
+}
+.project-info-details dt {
+  color: var(--muted);
+}
+.project-info-details dd {
+  margin: 0;
+  text-align: right;
+}
+.dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  gap: 14px;
+}
+.dialog-heading h2 {
+  font-size: 21px;
+  font-weight: 550;
+  letter-spacing: -0.6px;
+  margin: 0;
+  color: #e2eaf6;
+}
+.dialog-heading button {
+  color: #99a7bd;
+  padding: 4px;
+}
+.form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 11px;
+  color: #aab6c9;
+  margin: 17px 0;
+}
+.form-label input,
+.form-label select {
+  padding: 10px 12px;
+  background: #181d25;
+  border-color: #3b4555;
+  color: #d0dbec;
+  font-size: 12px;
+}
+.aspect-choices {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0 22px;
+}
+.aspect-choices button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  border: 1px solid #3a4556;
+  background: #1a202a;
+  border-radius: 7px;
+  padding: 15px 9px;
+  color: #8596af;
+}
+.aspect-choices button.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.aspect-choices button strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+.aspect-choices button > span:last-child {
+  font-size: 9px;
+}
+.aspect-box {
+  border: 1px solid currentColor;
+  display: block;
+  height: 20px;
+  width: 35px;
+  margin: 7px 0;
+  border-radius: 2px;
+}
+.aspect-box.portrait {
+  height: 30px;
+  width: 18px;
+  margin: 2px 0;
+}
+.aspect-box.square {
+  width: 27px;
+  height: 27px;
+  margin: 3px 0 4px;
+}
+.dialog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  gap: 12px;
+}
+.dialog-footer > span {
+  font-size: 10px;
+  color: #7586a1;
+}
+.eyebrow {
+  font-size: 9px;
+  color: #64cfb9;
+  letter-spacing: 1.9px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+.export-dialog {
+  width: 490px;
+}
+.export-dialog .dialog-heading {
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+.export-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #1a202a;
+  border: 1px solid #343f50;
+  border-radius: 7px;
+  padding: 16px;
+  margin: 12px 0 22px;
+}
+.export-summary-icon {
+  padding: 11px;
+  border-radius: 8px;
+  background: #283e40;
+  color: #68bbad;
+}
+.export-summary > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+.export-summary strong {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #c9d6e9;
+}
+.export-summary span {
+  font-size: 10px;
+  color: #778ca8;
+  font-variant-numeric: tabular-nums;
+}
+.export-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.export-settings .form-label {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  margin: 10px 0;
+}
+.export-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: #5f9a93;
+  background: #283734;
+  border-radius: 6px;
+  padding: 13px;
+  margin-top: 20px;
+}
+.export-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.export-note p {
+  font-size: 10px;
+  color: #a0bfb7;
+  line-height: 1.7;
+  margin: 0;
+}
+.export-progress {
+  text-align: center;
+  padding-top: 8px;
+}
+.export-percent {
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+.export-percent > span {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -2px;
+}
+.export-percent small {
+  font-size: 19px;
+  margin-left: 3px;
+}
+.export-progress h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #ccd9eb;
+}
+.progress-bar {
+  height: 4px;
+  background: #394454;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar i {
+  height: 100%;
+  display: block;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.15s;
+}
+.export-path {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #8ea4c1;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+.export-progress .dialog-footer {
+  text-align: left;
+}
+.error-text {
+  color: #f0a88f;
+  font-size: 11px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.jobs-panel {
+  position: fixed;
+  bottom: 43px;
+  right: 21px;
+  width: 340px;
+  background: #2a303c;
+  border: 1px solid #46556b;
+  border-radius: 8px;
+  box-shadow: 0 9px 30px #0007;
+  padding: 6px;
+  z-index: 40;
+}
+.job {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 9px;
+  color: #97b7c0;
+}
+.job > div {
+  flex: 1;
+  min-width: 0;
+}
+.job > div > span {
+  display: block;
+  font-size: 10px;
+  margin-bottom: 9px;
+  color: #c1d0e2;
+}
+.job > span {
+  font-size: 10px;
+  color: #91a5c0;
+}
+.job button {
+  padding: 4px;
+  color: #8b9db7;
+}
+.toast {
+  position: fixed;
+  z-index: 200;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: #303a49;
+  border: 1px solid #5c6c83;
+  box-shadow: 0 12px 40px #0007;
+  padding: 13px 15px;
+  border-radius: 7px;
+  max-width: 700px;
+  min-width: 230px;
+  user-select: text;
+}
+.toast > span {
+  font-size: 11px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.toast button {
+  margin-left: auto;
+  color: #a3b7cf;
+  flex-shrink: 0;
+}
+.spinning {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.missing-notice {
+  position: fixed;
+  z-index: 30;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #604838;
+  color: #f1d2ad;
+  border: 1px solid #a67b4f;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+.missing-notice button {
+  font-size: 10px;
+  text-decoration: underline;
+  color: #ffdfaa;
+  max-width: 260px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

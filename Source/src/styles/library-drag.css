@@ -1,0 +1,41 @@
+.media-card,
+.title-preset {
+  user-select: none;
+  touch-action: none;
+}
+.media-card img {
+  -webkit-user-drag: none;
+}
+.library-drag-ghost {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 9px 12px;
+  border: 1px solid #738098;
+  border-radius: 5px;
+  background: #292f3d;
+  color: #fff;
+  font-size: 12px;
+  box-shadow: 0 4px 16px #0008;
+}
+.library-drag-ghost.can-drop {
+  border-color: var(--accent);
+}
+.library-drop-preview {
+  position: absolute;
+  top: 5px;
+  height: 66px;
+  z-index: 10;
+  pointer-events: none;
+  padding: 8px;
+  overflow: hidden;
+  border: 2px dashed var(--accent);
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: #fff;
+  font-size: 11px;
+}

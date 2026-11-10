@@ -1,0 +1,70 @@
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #181d26;
+}
+::-webkit-scrollbar-thumb {
+  background: #3b4658;
+  border: 1px solid #181d26;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #54657d;
+}
+::-webkit-scrollbar-corner {
+  background: #181d26;
+}
+@media (max-width: 1250px) {
+  .app-header {
+    gap: 14px;
+  }
+  .beta-tag {
+    display: none;
+  }
+  .library-tabs button {
+    font-size: 9px;
+  }
+  .timeline-footer > span:nth-child(2) {
+    display: none;
+  }
+  .launcher-art {
+    width: 300px;
+    right: 35px;
+  }
+  .header-project > button {
+    max-width: 200px;
+  }
+}
+@media (max-height: 780px) {
+  .library-empty {
+    padding-bottom: 20px;
+    min-height: 180px;
+  }
+  .import-outline {
+    width: 47px;
+    height: 43px;
+  }
+  .format-hint {
+    margin-top: 10px;
+  }
+  .launcher-intro {
+    padding-top: 15px;
+    padding-bottom: 25px;
+    min-height: 270px;
+  }
+  .launcher-intro h1 {
+    font-size: 34px;
+  }
+  .launcher-art {
+    top: 22px;
+  }
+  .recent-projects {
+    padding-top: 15px;
+    min-height: 140px;
+  }
+  .no-recents {
+    padding: 20px;
+  }
+}

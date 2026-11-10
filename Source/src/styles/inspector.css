@@ -1,0 +1,163 @@
+.inspector {
+  display: flex;
+  flex-direction: column;
+}
+.inspector-tabs {
+  height: 41px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #2d323e;
+  display: flex;
+  padding: 0 8px;
+  gap: 5px;
+}
+.inspector-tabs button {
+  font-size: 10px;
+  gap: 5px;
+  padding: 0 9px;
+  border-radius: 0;
+  color: #939db0;
+  position: relative;
+}
+.inspector-tabs button.active {
+  color: var(--accent);
+}
+.inspector-tabs button.active:after {
+  content: '';
+  height: 2px;
+  background: var(--accent);
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+}
+.inspector-scroll {
+  overflow: auto;
+  flex: 1;
+  padding-bottom: 20px;
+}
+.selected-name {
+  padding: 16px 16px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.selected-name strong {
+  font-size: 11px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.selected-name span {
+  font-size: 9px;
+  color: #79859c;
+}
+.property-section {
+  padding: 2px 16px 13px;
+  border-bottom: 1px solid #2c313c;
+}
+.property-section h4 {
+  font-weight: 600;
+  color: #c0cadb;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 13px 0 18px;
+}
+.section-reset {
+  margin-left: auto;
+  color: #71809a;
+  padding: 2px;
+}
+.property-control {
+  margin: 15px 0 19px;
+}
+.property-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #919eb3;
+}
+.property-label span {
+  font-size: 9px;
+  padding: 3px 5px;
+  background: #141820;
+  border: 1px solid #30394a;
+  border-radius: 3px;
+  color: #abb9ce;
+  min-width: 40px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 9px;
+}
+.slider-row input {
+  flex: 1;
+  min-width: 0;
+}
+.slider-row button {
+  padding: 3px;
+  color: #73829d;
+}
+.numeric-row {
+  display: flex;
+  gap: 9px;
+  margin: 9px 0;
+}
+.numeric-field {
+  display: flex;
+  align-items: center;
+  background: #161920;
+  border: 1px solid #333b49;
+  border-radius: 4px;
+  min-width: 0;
+  flex: 1;
+  padding-left: 8px;
+  gap: 3px;
+  justify-content: space-between;
+}
+.numeric-field > span {
+  font-size: 9px;
+  color: #8695ad;
+  white-space: nowrap;
+}
+.numeric-field input {
+  border: 0;
+  width: 55px;
+  padding: 7px 4px;
+  text-align: right;
+  font-size: 10px;
+  min-width: 25px;
+  background: none;
+}
+.color-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  flex: 1;
+  gap: 5px;
+  color: #8b98ae;
+}
+.color-field input {
+  padding: 2px;
+  width: 44px;
+  height: 30px;
+}
+.property-section select {
+  width: 100%;
+  font-size: 10px;
+}
+.field-note {
+  font-size: 9px;
+  color: #69778f;
+  line-height: 1.7;
+  margin: 9px 0 3px;
+}

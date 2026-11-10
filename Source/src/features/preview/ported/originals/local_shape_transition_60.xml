@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+                    <Filter>
+                    	<GUID>301BF2C8-C057-4B2C-B2A6-6E8C8F5DAAF6</GUID>
+                    	<Name>Shape Transitions Pack Transition 60_L0</Name>
+                    	<Transition>1</Transition>
+                    	<VideoOverlay>
+                    		<VideoFile>Shape Transitions Pack Transition 60_L0.mp4</VideoFile>
+                    		<BlendType>2</BlendType>
+                    		<MultiLayer>Shape Transitions Pack Transition 60_L0.ml</MultiLayer>
+                    	</VideoOverlay>	
+                    </Filter>

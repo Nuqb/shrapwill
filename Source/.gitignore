@@ -1,0 +1,11 @@
+node_modules/
+dist/
+target/
+src-tauri/binaries/*.exe
+!src-tauri/binaries/ffmpeg-x86_64-pc-windows-msvc.exe
+!src-tauri/binaries/ffprobe-x86_64-pc-windows-msvc.exe
+*.log
+.DS_Store
+*.tsbuildinfo
+QA/
+Outputs/

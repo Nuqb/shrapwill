@@ -1,0 +1,415 @@
+{
+  "reviewedOn": "2026-11-08",
+  "version": "0.5.0",
+  "policy": "Open findings documented in audit.md. Do not refresh to silence regressions.",
+  "findings": [
+    {
+      "file": "src/app/layout/Menus.tsx",
+      "line": 5,
+      "name": "EditMenu",
+      "rule": "length",
+      "value": 42,
+      "limit": 40
+    },
+    {
+      "file": "src/app/layout/Workspace.tsx",
+      "line": 49,
+      "name": "EditorTimeline",
+      "rule": "length",
+      "value": 46,
+      "limit": 40
+    },
+    {
+      "file": "src/features/preview/color.ts",
+      "line": 11,
+      "name": "makeLut",
+      "rule": "nesting",
+      "value": 4,
+      "limit": 3
+    },
+    {
+      "file": "src/features/preview/Compositor.ts",
+      "line": 23,
+      "name": "Compositor.constructor",
+      "rule": "length",
+      "value": 54,
+      "limit": 40
+    },
+    {
+      "file": "src/features/preview/Compositor.ts",
+      "line": 81,
+      "name": "Compositor.player",
+      "rule": "length",
+      "value": 41,
+      "limit": 40
+    },
+    {
+      "file": "src/features/preview/Compositor.ts",
+      "line": 122,
+      "name": "Compositor.draw",
+      "rule": "length",
+      "value": 141,
+      "limit": 40
+    },
+    {
+      "file": "src/features/preview/Compositor.ts",
+      "line": 122,
+      "name": "Compositor.draw",
+      "rule": "parameters",
+      "value": 5,
+      "limit": 4
+    },
+    {
+      "file": "src/features/preview/Compositor.ts",
+      "line": 122,
+      "name": "Compositor.draw",
+      "rule": "nesting",
+      "value": 4,
+      "limit": 3
+    },
+    {
+      "file": "src/features/preview/usePreview.ts",
+      "line": 6,
+      "name": "usePreview",
+      "rule": "length",
+      "value": 123,
+      "limit": 40
+    },
+    {
+      "file": "src/features/preview/usePreview.ts",
+      "line": 45,
+      "name": "usePreview.callback#4",
+      "rule": "length",
+      "value": 45,
+      "limit": 40
+    },
+    {
+      "file": "src/features/timeline/Clips.tsx",
+      "line": 7,
+      "name": "TimelineClip",
+      "rule": "length",
+      "value": 58,
+      "limit": 40
+    },
+    {
+      "file": "src/features/timeline/ContextMenu.tsx",
+      "line": 6,
+      "name": "ContextMenuContent",
+      "rule": "length",
+      "value": 63,
+      "limit": 40
+    },
+    {
+      "file": "src/features/timeline/Footer.tsx",
+      "line": 5,
+      "name": "TimelineFooter",
+      "rule": "nesting",
+      "value": 4,
+      "limit": 3
+    },
+    {
+      "file": "src/features/timeline/TimelineView.tsx",
+      "line": 11,
+      "name": "TimelineView",
+      "rule": "length",
+      "value": 58,
+      "limit": 40
+    },
+    {
+      "file": "src/features/timeline/Tracks.tsx",
+      "line": 120,
+      "name": "TrackRow",
+      "rule": "length",
+      "value": 44,
+      "limit": 40
+    },
+    {
+      "file": "src/features/timeline/useTimeline.ts",
+      "line": 8,
+      "name": "useTimeline",
+      "rule": "length",
+      "value": 237,
+      "limit": 40
+    },
+    {
+      "file": "src/features/timeline/useTimeline.ts",
+      "line": 8,
+      "name": "useTimeline",
+      "rule": "nesting",
+      "value": 4,
+      "limit": 3
+    },
+    {
+      "file": "src/Inspector.tsx",
+      "line": 6,
+      "name": "Inspector",
+      "rule": "length",
+      "value": 323,
+      "limit": 40
+    },
+    {
+      "file": "src/Inspector.tsx",
+      "line": 43,
+      "name": "Inspector.slider",
+      "rule": "length",
+      "value": 45,
+      "limit": 40
+    },
+    {
+      "file": "src/Inspector.tsx",
+      "line": 43,
+      "name": "Inspector.slider",
+      "rule": "parameters",
+      "value": 6,
+      "limit": 4
+    },
+    {
+      "file": "src/Inspector.tsx",
+      "line": 88,
+      "name": "Inspector.number",
+      "rule": "parameters",
+      "value": 5,
+      "limit": 4
+    },
+    {
+      "file": "src/shortcuts.test.ts",
+      "line": 27,
+      "name": "callback#2",
+      "rule": "length",
+      "value": 110,
+      "limit": 40
+    },
+    {
+      "file": "src/shortcuts.ts",
+      "line": 342,
+      "name": "readBindings",
+      "rule": "nesting",
+      "value": 4,
+      "limit": 3
+    },
+    {
+      "file": "src/ShortcutSettings.tsx",
+      "line": 15,
+      "name": "ShortcutSettings",
+      "rule": "length",
+      "value": 324,
+      "limit": 40
+    },
+    {
+      "file": "src/ShortcutSettings.tsx",
+      "line": 246,
+      "name": "ShortcutSettings.callback#17",
+      "rule": "length",
+      "value": 54,
+      "limit": 40
+    },
+    {
+      "file": "src/ShortcutUI.tsx",
+      "line": 22,
+      "name": "ToolButton",
+      "rule": "length",
+      "value": 71,
+      "limit": 40
+    },
+    {
+      "file": "src/timelineGesture.test.ts",
+      "line": 37,
+      "name": "callback#3",
+      "rule": "length",
+      "value": 64,
+      "limit": 40
+    },
+    {
+      "file": "src/types.ts",
+      "line": 139,
+      "name": "emptySnapshot",
+      "rule": "length",
+      "value": 41,
+      "limit": 40
+    },
+    {
+      "file": "src/UnsavedChangesDialog.tsx",
+      "line": 4,
+      "name": "UnsavedChangesDialog",
+      "rule": "length",
+      "value": 117,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/media/preview.rs",
+      "line": 13,
+      "name": "prepare",
+      "rule": "length",
+      "value": 167,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/media/preview.rs",
+      "line": 13,
+      "name": "prepare",
+      "rule": "parameters",
+      "value": 6,
+      "limit": 4
+    },
+    {
+      "file": "crates/core/src/media/probe.rs",
+      "line": 2,
+      "name": "probe",
+      "rule": "length",
+      "value": 77,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/media/process.rs",
+      "line": 34,
+      "name": "capture",
+      "rule": "length",
+      "value": 63,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/media/process.rs",
+      "line": 97,
+      "name": "run_progress",
+      "rule": "length",
+      "value": 76,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/media/process.rs",
+      "line": 97,
+      "name": "run_progress",
+      "rule": "parameters",
+      "value": 5,
+      "limit": 4
+    },
+    {
+      "file": "crates/core/src/model/clipboard.rs",
+      "line": 25,
+      "name": "paste_clips",
+      "rule": "length",
+      "value": 43,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/model/magnetic.rs",
+      "line": 44,
+      "name": "insert_main_clips",
+      "rule": "length",
+      "value": 60,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/model/magnetic.rs",
+      "line": 104,
+      "name": "close_main_gaps",
+      "rule": "length",
+      "value": 45,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/model/magnetic.rs",
+      "line": 185,
+      "name": "finish",
+      "rule": "length",
+      "value": 43,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/model/mutations/timeline.rs",
+      "line": 15,
+      "name": "move_clips",
+      "rule": "length",
+      "value": 59,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/model/mutations/timeline.rs",
+      "line": 75,
+      "name": "trim",
+      "rule": "length",
+      "value": 56,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/render/export.rs",
+      "line": 10,
+      "name": "export",
+      "rule": "length",
+      "value": 288,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/render/export.rs",
+      "line": 10,
+      "name": "export",
+      "rule": "parameters",
+      "value": 7,
+      "limit": 4
+    },
+    {
+      "file": "crates/core/src/render/plan.rs",
+      "line": 23,
+      "name": "plan",
+      "rule": "length",
+      "value": 81,
+      "limit": 40
+    },
+    {
+      "file": "crates/core/src/render/titles.rs",
+      "line": 9,
+      "name": "prepare_titles",
+      "rule": "length",
+      "value": 72,
+      "limit": 40
+    },
+    {
+      "file": "src-tauri/src/commands/editing.rs",
+      "line": 43,
+      "name": "clipboard",
+      "rule": "parameters",
+      "value": 5,
+      "limit": 4
+    },
+    {
+      "file": "src-tauri/src/commands/media.rs",
+      "line": 13,
+      "name": "import_media",
+      "rule": "length",
+      "value": 63,
+      "limit": 40
+    },
+    {
+      "file": "src-tauri/src/commands/media.rs",
+      "line": 77,
+      "name": "prepare_preview",
+      "rule": "length",
+      "value": 47,
+      "limit": 40
+    },
+    {
+      "file": "src-tauri/src/commands/media.rs",
+      "line": 136,
+      "name": "relink_media",
+      "rule": "parameters",
+      "value": 5,
+      "limit": 4
+    },
+    {
+      "file": "src-tauri/src/commands/projects.rs",
+      "line": 8,
+      "name": "new_project",
+      "rule": "parameters",
+      "value": 6,
+      "limit": 4
+    },
+    {
+      "file": "src-tauri/src/runtime.rs",
+      "line": 28,
+      "name": "setup",
+      "rule": "length",
+      "value": 70,
+      "limit": 40
+    }
+  ]
+}

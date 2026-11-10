@@ -1,0 +1,17 @@
+* text=auto
+*.rs text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Keep the large, bundled media/tool library out of ordinary Git history.
+Source/src/features/preview/ported/assets/** filter=lfs diff=lfs merge=lfs -text
+Source/src/features/preview/ported/originals/** -text
+Source/src/features/preview/ported/originals/*.mp4 filter=lfs diff=lfs merge=lfs -text
+Source/src-tauri/binaries/** filter=lfs diff=lfs merge=lfs -text
+
+# License notices and documentation screenshots remain ordinary repository files.
+Source/src-tauri/notices/** -filter -diff -merge text
+Source/docs/images/** -filter -diff -merge -text

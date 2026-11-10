@@ -1,0 +1,922 @@
+[
+  {
+    "name": "Soft portrait",
+    "category": "Portrait",
+    "description": "Portrait look with soft contrast and cool tones",
+    "brightness": 0.015,
+    "contrast": 0.82,
+    "saturation": 0.72,
+    "warmth": -0.58,
+    "tint": -0.17
+  },
+  {
+    "name": "Peach skin",
+    "category": "Portrait",
+    "description": "Portrait look with soft contrast and cool tones",
+    "brightness": 0.04,
+    "contrast": 0.895,
+    "saturation": 0.89,
+    "warmth": -0.46,
+    "tint": -0.085
+  },
+  {
+    "name": "Blush portrait",
+    "category": "Portrait",
+    "description": "Portrait look with soft contrast and cool tones",
+    "brightness": 0.065,
+    "contrast": 0.97,
+    "saturation": 1.06,
+    "warmth": -0.34,
+    "tint": 0.0
+  },
+  {
+    "name": "Clean beauty",
+    "category": "Portrait",
+    "description": "Portrait look with crisp contrast and cool tones",
+    "brightness": 0.015,
+    "contrast": 1.045,
+    "saturation": 1.23,
+    "warmth": -0.22,
+    "tint": 0.085
+  },
+  {
+    "name": "Cream portrait",
+    "category": "Portrait",
+    "description": "Portrait look with crisp contrast and cool tones",
+    "brightness": 0.04,
+    "contrast": 1.12,
+    "saturation": 0.72,
+    "warmth": -0.1,
+    "tint": 0.17
+  },
+  {
+    "name": "Warm portrait",
+    "category": "Portrait",
+    "description": "Portrait look with soft contrast and warm tones",
+    "brightness": 0.065,
+    "contrast": 0.82,
+    "saturation": 0.89,
+    "warmth": 0.02,
+    "tint": -0.17
+  },
+  {
+    "name": "Cool portrait",
+    "category": "Portrait",
+    "description": "Portrait look with soft contrast and warm tones",
+    "brightness": 0.015,
+    "contrast": 0.895,
+    "saturation": 1.06,
+    "warmth": 0.14,
+    "tint": -0.085
+  },
+  {
+    "name": "Studio portrait",
+    "category": "Portrait",
+    "description": "Portrait look with soft contrast and warm tones",
+    "brightness": 0.04,
+    "contrast": 0.97,
+    "saturation": 1.23,
+    "warmth": 0.26,
+    "tint": 0.0
+  },
+  {
+    "name": "Natural portrait",
+    "category": "Portrait",
+    "description": "Portrait look with crisp contrast and warm tones",
+    "brightness": 0.065,
+    "contrast": 1.045,
+    "saturation": 0.72,
+    "warmth": 0.38,
+    "tint": 0.085
+  },
+  {
+    "name": "Fresh food",
+    "category": "Food",
+    "description": "Food look with soft contrast and cool tones",
+    "brightness": 0.015,
+    "contrast": 0.826,
+    "saturation": 0.729,
+    "warmth": -0.48,
+    "tint": -0.17
+  },
+  {
+    "name": "Warm bakery",
+    "category": "Food",
+    "description": "Food look with soft contrast and cool tones",
+    "brightness": 0.04,
+    "contrast": 0.901,
+    "saturation": 0.899,
+    "warmth": -0.36,
+    "tint": -0.085
+  },
+  {
+    "name": "Coffee shop",
+    "category": "Food",
+    "description": "Food look with soft contrast and cool tones",
+    "brightness": 0.065,
+    "contrast": 0.976,
+    "saturation": 1.069,
+    "warmth": -0.24,
+    "tint": 0.0
+  },
+  {
+    "name": "Citrus pop",
+    "category": "Food",
+    "description": "Food look with crisp contrast and cool tones",
+    "brightness": 0.015,
+    "contrast": 1.051,
+    "saturation": 1.239,
+    "warmth": -0.12,
+    "tint": 0.085
+  },
+  {
+    "name": "Berry bowl",
+    "category": "Food",
+    "description": "Food look with crisp contrast and cool tones",
+    "brightness": 0.04,
+    "contrast": 1.126,
+    "saturation": 0.729,
+    "warmth": 0.0,
+    "tint": 0.17
+  },
+  {
+    "name": "Green salad",
+    "category": "Food",
+    "description": "Food look with soft contrast and warm tones",
+    "brightness": 0.065,
+    "contrast": 0.826,
+    "saturation": 0.899,
+    "warmth": 0.12,
+    "tint": -0.17
+  },
+  {
+    "name": "Dinner mood",
+    "category": "Food",
+    "description": "Food look with soft contrast and warm tones",
+    "brightness": 0.015,
+    "contrast": 0.901,
+    "saturation": 1.069,
+    "warmth": 0.24,
+    "tint": -0.085
+  },
+  {
+    "name": "Sweet pastel",
+    "category": "Food",
+    "description": "Food look with soft contrast and warm tones",
+    "brightness": 0.04,
+    "contrast": 0.976,
+    "saturation": 1.239,
+    "warmth": 0.36,
+    "tint": 0.0
+  },
+  {
+    "name": "Rustic kitchen",
+    "category": "Food",
+    "description": "Food look with crisp contrast and warm tones",
+    "brightness": 0.065,
+    "contrast": 1.051,
+    "saturation": 0.729,
+    "warmth": 0.48,
+    "tint": 0.085
+  },
+  {
+    "name": "City night",
+    "category": "Night",
+    "description": "Night look with soft contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 0.832,
+    "saturation": 0.738,
+    "warmth": -0.38,
+    "tint": -0.17
+  },
+  {
+    "name": "Blue hour",
+    "category": "Night",
+    "description": "Night look with soft contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 0.907,
+    "saturation": 0.908,
+    "warmth": -0.26,
+    "tint": -0.085
+  },
+  {
+    "name": "Neon street",
+    "category": "Night",
+    "description": "Night look with soft contrast and cool tones",
+    "brightness": 0.01,
+    "contrast": 0.982,
+    "saturation": 1.078,
+    "warmth": -0.14,
+    "tint": 0.0
+  },
+  {
+    "name": "Night market",
+    "category": "Night",
+    "description": "Night look with crisp contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 1.057,
+    "saturation": 1.248,
+    "warmth": -0.02,
+    "tint": 0.085
+  },
+  {
+    "name": "Midnight blue",
+    "category": "Night",
+    "description": "Night look with crisp contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 1.132,
+    "saturation": 0.738,
+    "warmth": 0.1,
+    "tint": 0.17
+  },
+  {
+    "name": "Warm streetlight",
+    "category": "Night",
+    "description": "Night look with soft contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 0.832,
+    "saturation": 0.908,
+    "warmth": 0.22,
+    "tint": -0.17
+  },
+  {
+    "name": "Moonlit",
+    "category": "Night",
+    "description": "Night look with soft contrast and warm tones",
+    "brightness": -0.04,
+    "contrast": 0.907,
+    "saturation": 1.078,
+    "warmth": 0.34,
+    "tint": -0.085
+  },
+  {
+    "name": "Night drive",
+    "category": "Night",
+    "description": "Night look with soft contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 0.982,
+    "saturation": 1.248,
+    "warmth": 0.46,
+    "tint": 0.0
+  },
+  {
+    "name": "After dark",
+    "category": "Night",
+    "description": "Night look with crisp contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 1.057,
+    "saturation": 0.738,
+    "warmth": 0.58,
+    "tint": 0.085
+  },
+  {
+    "name": "Alpine air",
+    "category": "Scenery",
+    "description": "Scenery look with soft contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 0.838,
+    "saturation": 0.747,
+    "warmth": -0.58,
+    "tint": -0.17
+  },
+  {
+    "name": "Ocean blue",
+    "category": "Scenery",
+    "description": "Scenery look with soft contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 0.913,
+    "saturation": 0.917,
+    "warmth": -0.46,
+    "tint": -0.085
+  },
+  {
+    "name": "Forest walk",
+    "category": "Scenery",
+    "description": "Scenery look with soft contrast and cool tones",
+    "brightness": 0.01,
+    "contrast": 0.988,
+    "saturation": 1.087,
+    "warmth": -0.34,
+    "tint": 0.0
+  },
+  {
+    "name": "Desert sun",
+    "category": "Scenery",
+    "description": "Scenery look with crisp contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 1.063,
+    "saturation": 1.257,
+    "warmth": -0.22,
+    "tint": 0.085
+  },
+  {
+    "name": "Autumn trail",
+    "category": "Scenery",
+    "description": "Scenery look with crisp contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 1.138,
+    "saturation": 0.747,
+    "warmth": -0.1,
+    "tint": 0.17
+  },
+  {
+    "name": "Spring meadow",
+    "category": "Scenery",
+    "description": "Scenery look with soft contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 0.838,
+    "saturation": 0.917,
+    "warmth": 0.02,
+    "tint": -0.17
+  },
+  {
+    "name": "Winter frost",
+    "category": "Scenery",
+    "description": "Scenery look with soft contrast and warm tones",
+    "brightness": -0.04,
+    "contrast": 0.913,
+    "saturation": 1.087,
+    "warmth": 0.14,
+    "tint": -0.085
+  },
+  {
+    "name": "Tropical coast",
+    "category": "Scenery",
+    "description": "Scenery look with soft contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 0.988,
+    "saturation": 1.257,
+    "warmth": 0.26,
+    "tint": 0.0
+  },
+  {
+    "name": "Misty mountain",
+    "category": "Scenery",
+    "description": "Scenery look with crisp contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 1.063,
+    "saturation": 0.747,
+    "warmth": 0.38,
+    "tint": 0.085
+  },
+  {
+    "name": "Analog warmth",
+    "category": "Vintage",
+    "description": "Retro look with soft contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 0.844,
+    "saturation": 0.756,
+    "warmth": -0.48,
+    "tint": -0.17,
+    "sepia": 0.12
+  },
+  {
+    "name": "Seventies",
+    "category": "Vintage",
+    "description": "Retro look with soft contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 0.919,
+    "saturation": 0.926,
+    "warmth": -0.36,
+    "tint": -0.085,
+    "sepia": 0.155
+  },
+  {
+    "name": "Dusty rose",
+    "category": "Vintage",
+    "description": "Retro look with soft contrast and cool tones",
+    "brightness": 0.01,
+    "contrast": 0.994,
+    "saturation": 1.096,
+    "warmth": -0.24,
+    "tint": 0.0,
+    "sepia": 0.19
+  },
+  {
+    "name": "Old postcard",
+    "category": "Vintage",
+    "description": "Retro look with crisp contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 1.069,
+    "saturation": 1.266,
+    "warmth": -0.12,
+    "tint": 0.085,
+    "sepia": 0.225
+  },
+  {
+    "name": "Amber memory",
+    "category": "Vintage",
+    "description": "Retro look with crisp contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 1.144,
+    "saturation": 0.756,
+    "warmth": 0.0,
+    "tint": 0.17,
+    "sepia": 0.26
+  },
+  {
+    "name": "Matte print",
+    "category": "Vintage",
+    "description": "Retro look with soft contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 0.844,
+    "saturation": 0.926,
+    "warmth": 0.12,
+    "tint": -0.17,
+    "sepia": 0.295
+  },
+  {
+    "name": "Vintage blue",
+    "category": "Vintage",
+    "description": "Retro look with soft contrast and warm tones",
+    "brightness": -0.04,
+    "contrast": 0.919,
+    "saturation": 1.096,
+    "warmth": 0.24,
+    "tint": -0.085,
+    "sepia": 0.33
+  },
+  {
+    "name": "Warm negative",
+    "category": "Vintage",
+    "description": "Retro look with soft contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 0.994,
+    "saturation": 1.266,
+    "warmth": 0.36,
+    "tint": 0.0,
+    "sepia": 0.365
+  },
+  {
+    "name": "Faded summer",
+    "category": "Vintage",
+    "description": "Retro look with crisp contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 1.069,
+    "saturation": 0.756,
+    "warmth": 0.48,
+    "tint": 0.085,
+    "sepia": 0.4
+  },
+  {
+    "name": "Charcoal",
+    "category": "Mono",
+    "description": "Mono look with soft contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 0.85,
+    "saturation": 0,
+    "warmth": -0.38,
+    "tint": -0.17,
+    "sepia": 0.0
+  },
+  {
+    "name": "Soft silver",
+    "category": "Mono",
+    "description": "Mono look with soft contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 0.925,
+    "saturation": 0,
+    "warmth": -0.26,
+    "tint": -0.085,
+    "sepia": 0.025
+  },
+  {
+    "name": "High key mono",
+    "category": "Mono",
+    "description": "Mono look with crisp contrast and cool tones",
+    "brightness": 0.01,
+    "contrast": 1.0,
+    "saturation": 0,
+    "warmth": -0.14,
+    "tint": 0.0,
+    "sepia": 0.05
+  },
+  {
+    "name": "Low key mono",
+    "category": "Mono",
+    "description": "Mono look with crisp contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 1.075,
+    "saturation": 0,
+    "warmth": -0.02,
+    "tint": 0.085,
+    "sepia": 0.075
+  },
+  {
+    "name": "Classic street",
+    "category": "Mono",
+    "description": "Mono look with crisp contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 1.15,
+    "saturation": 0,
+    "warmth": 0.1,
+    "tint": 0.17,
+    "sepia": 0.1
+  },
+  {
+    "name": "Documentary",
+    "category": "Mono",
+    "description": "Mono look with soft contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 0.85,
+    "saturation": 0,
+    "warmth": 0.22,
+    "tint": -0.17,
+    "sepia": 0.125
+  },
+  {
+    "name": "Matte mono",
+    "category": "Mono",
+    "description": "Mono look with soft contrast and warm tones",
+    "brightness": -0.04,
+    "contrast": 0.925,
+    "saturation": 0,
+    "warmth": 0.34,
+    "tint": -0.085,
+    "sepia": 0.15
+  },
+  {
+    "name": "Warm silver",
+    "category": "Mono",
+    "description": "Mono look with crisp contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 1.0,
+    "saturation": 0,
+    "warmth": 0.46,
+    "tint": 0.0,
+    "sepia": 0.175
+  },
+  {
+    "name": "Cold steel",
+    "category": "Mono",
+    "description": "Mono look with crisp contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 1.075,
+    "saturation": 0,
+    "warmth": 0.58,
+    "tint": 0.085,
+    "sepia": 0.2
+  },
+  {
+    "name": "Blockbuster",
+    "category": "Cinema",
+    "description": "Movie look with soft contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 0.856,
+    "saturation": 0.774,
+    "warmth": -0.58,
+    "tint": -0.17
+  },
+  {
+    "name": "Indie drama",
+    "category": "Cinema",
+    "description": "Movie look with soft contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 0.931,
+    "saturation": 0.944,
+    "warmth": -0.46,
+    "tint": -0.085
+  },
+  {
+    "name": "Desert cinema",
+    "category": "Cinema",
+    "description": "Movie look with crisp contrast and cool tones",
+    "brightness": 0.01,
+    "contrast": 1.006,
+    "saturation": 1.114,
+    "warmth": -0.34,
+    "tint": 0.0
+  },
+  {
+    "name": "Cold thriller",
+    "category": "Cinema",
+    "description": "Movie look with crisp contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 1.081,
+    "saturation": 1.284,
+    "warmth": -0.22,
+    "tint": 0.085
+  },
+  {
+    "name": "Warm romance",
+    "category": "Cinema",
+    "description": "Movie look with crisp contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 1.156,
+    "saturation": 0.774,
+    "warmth": -0.1,
+    "tint": 0.17
+  },
+  {
+    "name": "Muted drama",
+    "category": "Cinema",
+    "description": "Movie look with soft contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 0.856,
+    "saturation": 0.944,
+    "warmth": 0.02,
+    "tint": -0.17
+  },
+  {
+    "name": "Deep teal",
+    "category": "Cinema",
+    "description": "Movie look with soft contrast and warm tones",
+    "brightness": -0.04,
+    "contrast": 0.931,
+    "saturation": 1.114,
+    "warmth": 0.14,
+    "tint": -0.085
+  },
+  {
+    "name": "Cinema gold",
+    "category": "Cinema",
+    "description": "Movie look with crisp contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 1.006,
+    "saturation": 1.284,
+    "warmth": 0.26,
+    "tint": 0.0
+  },
+  {
+    "name": "Art house",
+    "category": "Cinema",
+    "description": "Movie look with crisp contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 1.081,
+    "saturation": 0.774,
+    "warmth": 0.38,
+    "tint": 0.085
+  },
+  {
+    "name": "Daily vlog",
+    "category": "Social",
+    "description": "Life look with soft contrast and cool tones",
+    "brightness": 0.015,
+    "contrast": 0.862,
+    "saturation": 0.783,
+    "warmth": -0.48,
+    "tint": -0.17
+  },
+  {
+    "name": "Sunday morning",
+    "category": "Social",
+    "description": "Life look with soft contrast and cool tones",
+    "brightness": 0.04,
+    "contrast": 0.937,
+    "saturation": 0.953,
+    "warmth": -0.36,
+    "tint": -0.085
+  },
+  {
+    "name": "Cozy home",
+    "category": "Social",
+    "description": "Life look with crisp contrast and cool tones",
+    "brightness": 0.065,
+    "contrast": 1.012,
+    "saturation": 1.123,
+    "warmth": -0.24,
+    "tint": 0.0
+  },
+  {
+    "name": "Clean daylight",
+    "category": "Social",
+    "description": "Life look with crisp contrast and cool tones",
+    "brightness": 0.015,
+    "contrast": 1.087,
+    "saturation": 1.293,
+    "warmth": -0.12,
+    "tint": 0.085
+  },
+  {
+    "name": "Warm afternoon",
+    "category": "Social",
+    "description": "Life look with crisp contrast and cool tones",
+    "brightness": 0.04,
+    "contrast": 1.162,
+    "saturation": 0.783,
+    "warmth": 0.0,
+    "tint": 0.17
+  },
+  {
+    "name": "City walk",
+    "category": "Social",
+    "description": "Life look with soft contrast and warm tones",
+    "brightness": 0.065,
+    "contrast": 0.862,
+    "saturation": 0.953,
+    "warmth": 0.12,
+    "tint": -0.17
+  },
+  {
+    "name": "Weekend diary",
+    "category": "Social",
+    "description": "Life look with soft contrast and warm tones",
+    "brightness": 0.015,
+    "contrast": 0.937,
+    "saturation": 1.123,
+    "warmth": 0.24,
+    "tint": -0.085
+  },
+  {
+    "name": "Fresh start",
+    "category": "Social",
+    "description": "Life look with crisp contrast and warm tones",
+    "brightness": 0.04,
+    "contrast": 1.012,
+    "saturation": 1.293,
+    "warmth": 0.36,
+    "tint": 0.0
+  },
+  {
+    "name": "Gentle evening",
+    "category": "Social",
+    "description": "Life look with crisp contrast and warm tones",
+    "brightness": 0.065,
+    "contrast": 1.087,
+    "saturation": 0.783,
+    "warmth": 0.48,
+    "tint": 0.085
+  },
+  {
+    "name": "Candy color",
+    "category": "Experimental",
+    "description": "Style look with soft contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 0.868,
+    "saturation": 0.792,
+    "warmth": -0.38,
+    "tint": -0.17
+  },
+  {
+    "name": "Cyber violet",
+    "category": "Experimental",
+    "description": "Style look with soft contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 0.943,
+    "saturation": 0.962,
+    "warmth": -0.26,
+    "tint": -0.085
+  },
+  {
+    "name": "Acid green",
+    "category": "Experimental",
+    "description": "Style look with crisp contrast and cool tones",
+    "brightness": 0.01,
+    "contrast": 1.018,
+    "saturation": 1.132,
+    "warmth": -0.14,
+    "tint": 0.0
+  },
+  {
+    "name": "Graphic pop",
+    "category": "Experimental",
+    "description": "Style look with crisp contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 1.093,
+    "saturation": 1.302,
+    "warmth": -0.02,
+    "tint": 0.085,
+    "posterize": 6
+  },
+  {
+    "name": "Blue steel",
+    "category": "Experimental",
+    "description": "Style look with crisp contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 1.168,
+    "saturation": 0.792,
+    "warmth": 0.1,
+    "tint": 0.17
+  },
+  {
+    "name": "Amber glow",
+    "category": "Experimental",
+    "description": "Style look with soft contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 0.868,
+    "saturation": 0.962,
+    "warmth": 0.22,
+    "tint": -0.17
+  },
+  {
+    "name": "Lavender haze",
+    "category": "Experimental",
+    "description": "Style look with soft contrast and warm tones",
+    "brightness": -0.04,
+    "contrast": 0.943,
+    "saturation": 1.132,
+    "warmth": 0.34,
+    "tint": -0.085
+  },
+  {
+    "name": "Copper tone",
+    "category": "Experimental",
+    "description": "Style look with crisp contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 1.018,
+    "saturation": 1.302,
+    "warmth": 0.46,
+    "tint": 0.0
+  },
+  {
+    "name": "Digital color",
+    "category": "Experimental",
+    "description": "Style look with crisp contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 1.093,
+    "saturation": 0.792,
+    "warmth": 0.58,
+    "tint": 0.085,
+    "posterize": 9
+  },
+  {
+    "name": "Beach day",
+    "category": "Travel",
+    "description": "Travel look with soft contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 0.874,
+    "saturation": 0.801,
+    "warmth": -0.58,
+    "tint": -0.17
+  },
+  {
+    "name": "Road trip",
+    "category": "Travel",
+    "description": "Travel look with soft contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 0.949,
+    "saturation": 0.971,
+    "warmth": -0.46,
+    "tint": -0.085
+  },
+  {
+    "name": "Urban explorer",
+    "category": "Travel",
+    "description": "Travel look with crisp contrast and cool tones",
+    "brightness": 0.01,
+    "contrast": 1.024,
+    "saturation": 1.141,
+    "warmth": -0.34,
+    "tint": 0.0
+  },
+  {
+    "name": "Island light",
+    "category": "Travel",
+    "description": "Travel look with crisp contrast and cool tones",
+    "brightness": -0.04,
+    "contrast": 1.099,
+    "saturation": 1.311,
+    "warmth": -0.22,
+    "tint": 0.085
+  },
+  {
+    "name": "Mountain dawn",
+    "category": "Travel",
+    "description": "Travel look with crisp contrast and cool tones",
+    "brightness": -0.015,
+    "contrast": 1.174,
+    "saturation": 0.801,
+    "warmth": -0.1,
+    "tint": 0.17
+  },
+  {
+    "name": "Sunset trip",
+    "category": "Travel",
+    "description": "Travel look with soft contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 0.874,
+    "saturation": 0.971,
+    "warmth": 0.02,
+    "tint": -0.17
+  },
+  {
+    "name": "Rainy city",
+    "category": "Travel",
+    "description": "Travel look with soft contrast and warm tones",
+    "brightness": -0.04,
+    "contrast": 0.949,
+    "saturation": 1.141,
+    "warmth": 0.14,
+    "tint": -0.085
+  },
+  {
+    "name": "Summer postcard",
+    "category": "Travel",
+    "description": "Travel look with crisp contrast and warm tones",
+    "brightness": -0.015,
+    "contrast": 1.024,
+    "saturation": 1.311,
+    "warmth": 0.26,
+    "tint": 0.0
+  },
+  {
+    "name": "Wanderlust",
+    "category": "Travel",
+    "description": "Travel look with crisp contrast and warm tones",
+    "brightness": 0.01,
+    "contrast": 1.099,
+    "saturation": 0.801,
+    "warmth": 0.38,
+    "tint": 0.085
+  }
+]

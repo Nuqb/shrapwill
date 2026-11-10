@@ -1,0 +1,434 @@
+[
+  {
+    "kind": "reveal_0",
+    "name": "Diagonal southeast",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 0,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_1",
+    "name": "Diagonal southwest",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 1,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_2",
+    "name": "Diagonal northeast",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 0,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_3",
+    "name": "Diagonal northwest",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 1,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_4",
+    "name": "Diagonal southeast reverse",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 0,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_5",
+    "name": "Diagonal southwest reverse",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 1,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_6",
+    "name": "Diagonal northeast reverse",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 0,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_7",
+    "name": "Diagonal northwest reverse",
+    "category": "Directional",
+    "family": "diagonal",
+    "axis": 1,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_8",
+    "name": "Horizontal doors open",
+    "category": "Classic",
+    "family": "door",
+    "axis": 0,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_9",
+    "name": "Vertical doors open",
+    "category": "Classic",
+    "family": "door",
+    "axis": 1,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_10",
+    "name": "Horizontal doors close",
+    "category": "Classic",
+    "family": "door",
+    "axis": 0,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_11",
+    "name": "Vertical doors close",
+    "category": "Classic",
+    "family": "door",
+    "axis": 1,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_12",
+    "name": "Offset horizontal open",
+    "category": "Classic",
+    "family": "door",
+    "axis": 0,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_13",
+    "name": "Offset vertical open",
+    "category": "Classic",
+    "family": "door",
+    "axis": 1,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_14",
+    "name": "Offset horizontal close",
+    "category": "Classic",
+    "family": "door",
+    "axis": 0,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_15",
+    "name": "Offset vertical close",
+    "category": "Classic",
+    "family": "door",
+    "axis": 1,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_16",
+    "name": "Diamond open",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 0,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_17",
+    "name": "Box open",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 1,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_18",
+    "name": "Diamond close",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 0,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_19",
+    "name": "Box close",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 1,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_20",
+    "name": "Corner diamond open",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 0,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_21",
+    "name": "Corner box open",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 1,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_22",
+    "name": "Corner diamond close",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 0,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_23",
+    "name": "Corner box close",
+    "category": "Geometric",
+    "family": "shape",
+    "axis": 1,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_24",
+    "name": "Vertical slats",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 0,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_25",
+    "name": "Horizontal slats",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 1,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_26",
+    "name": "Vertical slats reverse",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 0,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_27",
+    "name": "Horizontal slats reverse",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 1,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_28",
+    "name": "Fine vertical blinds",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 0,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_29",
+    "name": "Fine horizontal blinds",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 1,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_30",
+    "name": "Fine vertical reverse",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 0,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_31",
+    "name": "Fine horizontal reverse",
+    "category": "Blinds",
+    "family": "stripe",
+    "axis": 1,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_32",
+    "name": "Zigzag right",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 0,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_33",
+    "name": "Zigzag down",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 1,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_34",
+    "name": "Zigzag left",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 0,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_35",
+    "name": "Zigzag up",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 1,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_36",
+    "name": "Fine zigzag right",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 0,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_37",
+    "name": "Fine zigzag down",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 1,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_38",
+    "name": "Fine zigzag left",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 0,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_39",
+    "name": "Fine zigzag up",
+    "category": "Pattern",
+    "family": "zigzag",
+    "axis": 1,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_40",
+    "name": "Tile cascade",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 0,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_41",
+    "name": "Tile cascade vertical",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 1,
+    "reverse": false,
+    "count": 4
+  },
+  {
+    "kind": "reveal_42",
+    "name": "Tile cascade reverse",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 0,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_43",
+    "name": "Tile cascade vertical reverse",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 1,
+    "reverse": true,
+    "count": 4
+  },
+  {
+    "kind": "reveal_44",
+    "name": "Fine tile cascade",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 0,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_45",
+    "name": "Fine vertical cascade",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 1,
+    "reverse": false,
+    "count": 12
+  },
+  {
+    "kind": "reveal_46",
+    "name": "Fine tiles reverse",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 0,
+    "reverse": true,
+    "count": 12
+  },
+  {
+    "kind": "reveal_47",
+    "name": "Fine vertical tiles reverse",
+    "category": "Tiles",
+    "family": "tile",
+    "axis": 1,
+    "reverse": true,
+    "count": 12
+  }
+]

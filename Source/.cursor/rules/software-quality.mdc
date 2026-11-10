@@ -1,0 +1,14 @@
+---
+description: Apply Shrapwill's software quality standard to every review, change, and addition
+alwaysApply: true
+---
+
+Read and follow `AGENTS.md` and `docs/quality/software-quality.md` before proposing or editing code.
+
+Detect the stack, backend presence, data access, and existing conventions before review. Count code excluding blanks/comments. Treat thresholds as review triggers, apply declarative/test exemptions, and explain deliberate skips. The previous physical-line scanner is a source of candidates, not the current guideline's verdict. Do not hide complexity by compressing formatting.
+
+Review only the requested scope or current changes; skip generated/vendor/build/lockfile content. Reviews are read-only unless edits are requested. Report detected context and skipped checks, then actionable findings ordered by impact. Check layering, repeated logic, validation, and cognitive load using existing module boundaries.
+
+This is a local desktop application. Server, authentication, and database examples in the template apply only if those systems actually exist; do not add them.
+
+Use `CONTRIBUTING.md` for required checks and `docs/architecture.md` for module boundaries.

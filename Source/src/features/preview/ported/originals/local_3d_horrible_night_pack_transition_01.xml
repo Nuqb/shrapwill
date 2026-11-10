@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+                    <Filter>
+                    	<GUID>F86022EF-7E22-4877-9062-6C762A0E9621</GUID>
+                    	<Name>3D Halloween Horror Night Pack Transition 01</Name>
+                    	<Transition>1</Transition>
+                    	<VideoOverlay>
+                    		<VideoFile>3D Halloween Horror Night Pack Transition 01.mp4</VideoFile>
+                    		<BlendType>2</BlendType>
+                    		<MultiLayer>3D Halloween Horror Night Pack Transition 01.ml</MultiLayer>
+                    	</VideoOverlay>
+                    </Filter>

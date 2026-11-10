@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+                        <Filter>
+                            <GUID>ED302EED-2D2C-4422-8AD6-B2F9EF78C094</GUID>
+                            <Name>Cinematic Digital Slideshow Transition 07</Name>
+                            <Transition>1</Transition>
+                            <VideoOverlay>
+                                <VideoFile>Cinematic Digital Slideshow Transition 07.mp4</VideoFile>
+                                <BlendType>2</BlendType>
+                                <MultiLayer>Cinematic Digital Slideshow Transition 07.ml</MultiLayer>
+                            </VideoOverlay>
+                        </Filter>
