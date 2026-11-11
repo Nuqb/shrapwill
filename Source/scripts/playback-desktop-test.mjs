@@ -158,6 +158,10 @@ await page
 await expect.poll(signal).toBeGreaterThan(0.01);
 await page.getByRole('button', { name: 'Back to timeline', exact: true }).click();
 // The handle must remain over the sticky ruler, including while vertically scrolling tracks.
+await page.locator('.timeline-scroll').evaluate((element) => {
+  element.scrollLeft = 0;
+  element.scrollTop = 0;
+});
 await page.locator('.player-status').click();
 await page.keyboard.press('Home');
 const handle = page.getByRole('button', { name: 'Timeline playhead', exact: true });
