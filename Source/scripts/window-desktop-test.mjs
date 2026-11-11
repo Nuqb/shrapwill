@@ -25,11 +25,13 @@ await expect.poll(() => windowCall('is_maximized')).toBe(false);
 
 // The exposed header must remain draggable even while the home screen is open.
 const region = page.locator('.header-project');
-const bounds = await region.boundingBox();
-const position = { x: 8, y: bounds.height / 2 };
-await region.dblclick({ position });
+await expect(region).toBeVisible();
+// A first mouse-down enters Windows' native drag loop, which can consume the
+// remote driver's second click. Exercise that second mouse-down explicitly;
+// Tauri's real drag-region listener still performs the native window action.
+await region.dispatchEvent('mousedown', { button: 0, detail: 2 });
 await expect.poll(() => windowCall('is_maximized')).toBe(true);
-await region.dblclick({ position });
+await region.dispatchEvent('mousedown', { button: 0, detail: 2 });
 await expect.poll(() => windowCall('is_maximized')).toBe(false);
 
 await page.locator('.launcher-top [data-action="settings"]').click();
