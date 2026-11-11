@@ -1,3 +1,4 @@
+import { overlayMotion } from './features/overlays/motion';
 import {
   createContext,
   useContext,
@@ -74,6 +75,7 @@ export function ToolButton({
       {position &&
         createPortal(
           <div
+            ref={overlayMotion}
             className={`tool-tooltip ${position.below ? 'below' : ''}`}
             role="tooltip"
             id={id}

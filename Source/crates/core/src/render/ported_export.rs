@@ -119,8 +119,16 @@ fn overlay(request: &Request<'_>, index: usize, base: &str, output: &str) -> Str
     let scale = request.size.1 as f64 / request.project.height as f64;
     format!(
         "[{base}][v{index}]overlay=x=(W-w)/2+{}:y=(H-h)/2+{}:shortest=1:format=auto[{output}]",
-        p.x * scale,
-        p.y * scale
+        if p.animation.is_some() {
+            0.
+        } else {
+            p.x * scale
+        },
+        if p.animation.is_some() {
+            0.
+        } else {
+            p.y * scale
+        }
     )
 }
 fn pair_inputs(

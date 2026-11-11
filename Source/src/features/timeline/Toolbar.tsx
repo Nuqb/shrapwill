@@ -1,10 +1,12 @@
+import { overlayMotion } from '../overlays/motion';
 import {
   MousePointer2,
   Scissors,
   Trash2,
   Link2,
   Magnet,
-  ScanLine,
+  BetweenVerticalStart,
+  ArrowRightToLine,
   Plus,
   ZoomIn,
   ZoomOut,
@@ -14,7 +16,6 @@ import {
 } from 'lucide-react';
 import { ToolButton } from '../../ShortcutUI';
 import { useTimeline } from './context';
-import { head } from './constants';
 
 export function AddTrackMenu() {
   const { setTrackMenu, trackMenu, edit } = useTimeline();
@@ -26,7 +27,7 @@ export function AddTrackMenu() {
         <ChevronDown size={11} />
       </ToolButton>
       {trackMenu && (
-        <div className="small-menu">
+        <div ref={overlayMotion} className="small-menu">
           <button
             onClick={() => {
               void edit({ type: 'add_track', kind: 'video' });
@@ -50,7 +51,7 @@ export function AddTrackMenu() {
 }
 
 export function TimelineZoom() {
-  const { changeZoom, zoom, width, total, fps } = useTimeline();
+  const { changeZoom, zoom, minZoom, maxZoom } = useTimeline();
 
   return (
     <div className="zoom-controls">
@@ -60,19 +61,16 @@ export function TimelineZoom() {
       <input
         aria-label="Timeline zoom"
         type="range"
-        min="0.08"
-        max="8"
-        step="0.02"
+        min={minZoom}
+        max={maxZoom}
+        step="any"
         value={zoom}
         onChange={(e) => changeZoom(+e.target.value)}
       />
       <ToolButton action="zoom_in" onClick={() => changeZoom(zoom * 1.3)}>
         <ZoomIn size={16} />
       </ToolButton>
-      <ToolButton
-        action="zoom_fit"
-        onClick={() => changeZoom((width - head - 70) / (Math.max(10, total / fps) * 45))}
-      >
+      <ToolButton action="zoom_fit" onClick={() => changeZoom(minZoom)}>
         <Maximize size={15} />
       </ToolButton>
     </div>
@@ -120,7 +118,7 @@ export function EditTools() {
 }
 
 export function TimelineModes() {
-  const { snap, onSnapChange, project, onMagneticChange, mainTrack } = useTimeline();
+  const { snap, onSnapChange, project, onMagneticChange, mainTrack, edit } = useTimeline();
 
   return (
     <div className="tool-group">
@@ -130,7 +128,7 @@ export function TimelineModes() {
         aria-pressed={snap}
         onClick={() => onSnapChange(!snap)}
       >
-        <ScanLine size={17} />
+        <BetweenVerticalStart size={17} />
       </ToolButton>
       <ToolButton
         action="magnetic_timeline"
@@ -140,7 +138,15 @@ export function TimelineModes() {
         description={`${project.magneticTimeline ? 'On' : 'Off'} · Close gaps on ${mainTrack?.name || 'the main video track'}. Linked audio follows. Other tracks stay in place.`}
       >
         <Magnet size={17} />
-        <span>Magnetic</span>
+      </ToolButton>
+      <ToolButton
+        action="auto_ripple"
+        className={project.autoRipple ? 'toggled' : ''}
+        aria-pressed={!!project.autoRipple}
+        onClick={() => void edit({ type: 'set_auto_ripple', enabled: !project.autoRipple })}
+        description="Shift following clips when inserting, trimming or deleting. Locked tracks stay in place."
+      >
+        <ArrowRightToLine size={17} />
       </ToolButton>
       <AddTrackMenu />
     </div>

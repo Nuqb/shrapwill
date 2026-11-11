@@ -77,7 +77,8 @@ export const commands = {
   },
   tool_select: { name: 'Selection tool', category: 'Tools', defaults: ['V'], scope: 'editor' },
   tool_razor: { name: 'Razor tool', category: 'Tools', defaults: ['C'], scope: 'editor' },
-  snapping: { name: 'Toggle snapping', category: 'Tools', defaults: ['S'], scope: 'editor' },
+  auto_ripple: { name: 'Auto Ripple', category: 'Timeline', defaults: [], scope: 'editor' },
+  snapping: { name: 'Enable timeline snap', category: 'Tools', defaults: ['S'], scope: 'editor' },
   magnetic_timeline: {
     name: 'Magnetic timeline (main track magnet)',
     category: 'Timeline',

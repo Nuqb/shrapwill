@@ -77,6 +77,51 @@
   color: #687386;
   background: radial-gradient(ellipse at center, #1e242c 0, #14171d 64%);
 }
+.filter-comparison {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.comparison-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 2px solid white;
+  filter: drop-shadow(0 0 2px black);
+  pointer-events: auto;
+  cursor: ew-resize;
+  touch-action: none;
+}
+.comparison-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0 -10px;
+}
+.comparison-divider span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #222832;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 4px;
+}
+.comparison-label {
+  position: absolute;
+  top: 8px;
+  background: #111a;
+  padding: 3px 7px;
+  border-radius: 3px;
+}
+.comparison-label.filtered {
+  left: 8px;
+}
+.comparison-label.original {
+  right: 8px;
+}
+.filter-comparison:focus-within .comparison-divider {
+  border-color: var(--accent);
+}
 .viewer-empty strong {
   font-weight: 500;
   font-size: 13px;

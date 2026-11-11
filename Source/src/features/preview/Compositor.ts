@@ -1,3 +1,6 @@
+import { animatedPicture } from './animation';
+import { ProcessedAudio } from './ProcessedAudio';
+import { duckGain } from './audioDucking';
 import { PreviewAudio } from './audio';
 import type { RenderClip, RenderPlan } from '../../types';
 import { fpsOf } from '../../types';
@@ -8,11 +11,13 @@ import { hasPortedShader } from './ported/registry';
 import { PortedPass } from './ported/PortedPass';
 import { SourcePass } from './ported/SourcePass';
 import { playbackCandidates } from './playbackIndex';
+import { comparisonScissor, withoutFilter } from './comparison';
 type Player = {
   el: HTMLVideoElement | HTMLAudioElement | HTMLImageElement;
   tex: WebGLTexture | null;
   lut: WebGLTexture | null;
   lutKey: string;
+  comparisonLut?: { lut: WebGLTexture | null; lutKey: string };
   source: string;
   gain?: GainNode;
   node?: MediaElementAudioSourceNode;
@@ -24,8 +29,10 @@ export class Compositor {
   buffer: WebGLBuffer;
   players = new Map<string, Player>();
   sound = new PreviewAudio(() => this.dirty++);
+  private processed = new ProcessedAudio(() => this.dirty++);
   error?: string;
   dirty = 0;
+  comparison: number | null = null;
   failedMedia = new Set<string>();
   private ported: PortedPass;
   private originals: SourcePass;
@@ -94,6 +101,41 @@ export class Compositor {
     this.players.set(rc.clip.id, p);
     return p;
   }
+  private syncMedia(
+    p: Player,
+    rc: RenderClip,
+    state: { plan: RenderPlan; frame: number; playing: boolean; active: boolean },
+  ) {
+    const fps = fpsOf(state.plan.fps);
+    const timing = {
+      frame: state.frame,
+      fps,
+      playing: state.playing && state.active,
+      duckGain: duckGain(state.plan, rc, state.frame),
+    };
+    const processed = this.processed.sync(rc, this.sound, timing);
+    if (!(p.el instanceof HTMLMediaElement)) return;
+    const el = p.el;
+    const time = rc.clip.sourceIn + (state.frame - rc.clip.start) / fps;
+    this.sound.sync(p, rc, state.frame, {
+      ...timing,
+      playing: state.playing && state.active && !processed,
+    });
+    if (!state.active) {
+      el.pause();
+      return;
+    }
+    if (
+      !el.seeking &&
+      Number.isFinite(el.duration) &&
+      Math.abs(el.currentTime - time) > (state.playing ? 0.12 : 0.012)
+    ) {
+      el.currentTime = Math.min(time, Math.max(0, el.duration - 0.001));
+    }
+    if (state.playing) {
+      if (el.paused) void el.play().catch(() => {});
+    } else el.pause();
+  }
   draw(
     plan: RenderPlan,
     frame: number,
@@ -119,10 +161,12 @@ export class Compositor {
       this.error =
         'Too many layers are playing at once. Hide or mute a track to continue previewing. Your export still includes all enabled layers.';
       for (const id of [...this.players.keys()]) this.release(id);
+      this.processed.destroy();
       return;
     }
     this.error = undefined;
     const wanted = new Set([...active, ...upcoming].map((rc) => rc.clip.id));
+    this.processed.retain(wanted);
     for (const [id] of this.players) {
       if (!wanted.has(id)) this.release(id);
     }
@@ -130,23 +174,11 @@ export class Compositor {
       if (!rc.previewReady) continue;
       const p = this.player(rc);
       p.lastUsed = performance.now();
+      this.syncMedia(p, rc, { plan, frame, playing, active: active.includes(rc) });
       if (!active.includes(rc)) continue;
-      const c = rc.clip;
+      const { motion, props } = animatedPicture(rc.clip, frame, plan.width, plan.height);
+      const c = { ...rc.clip, props };
       const el = p.el;
-      const time = c.sourceIn + (frame - c.start) / fps;
-      if (el instanceof HTMLMediaElement) {
-        this.sound.sync(p, rc, frame, playing);
-        if (
-          !el.seeking &&
-          Number.isFinite(el.duration) &&
-          Math.abs(el.currentTime - time) > (playing ? 0.12 : 0.012)
-        ) {
-          el.currentTime = Math.min(time, Math.max(0, el.duration - 0.001));
-        }
-        if (playing) {
-          if (el.paused) void el.play().catch(() => {});
-        } else el.pause();
-      }
       if (rc.kind !== 'video' || !p.tex) continue;
       if (el instanceof HTMLMediaElement && el.readyState < 2) continue;
       if (el instanceof HTMLImageElement && (!el.complete || el.naturalWidth === 0)) continue;
@@ -170,8 +202,8 @@ export class Compositor {
       const cw = rc.width * (1 - cl - cr),
         ch = rc.height * (1 - ct - cb);
       const fit = Math.min(plan.width / cw, plan.height / ch) * cp.scale;
-      const w = cw * fit,
-        h = ch * fit;
+      const w = cw * fit * motion.scaleX,
+        h = ch * fit * motion.scaleY * (cp.video?.heightScale ?? 1);
       const a = (cp.rotation * Math.PI) / 180,
         cos = Math.cos(a),
         sin = Math.sin(a);
@@ -190,8 +222,8 @@ export class Compositor {
           return [
             (px * cos - py * sin + cp.x) / (plan.width / 2),
             -(px * sin + py * cos + cp.y) / (plan.height / 2),
-            cl + x * (1 - cl - cr),
-            ct + y * (1 - ct - cb),
+            cl + (cp.video?.flipHorizontal ? 1 - x : x) * (1 - cl - cr),
+            ct + (cp.video?.flipVertical ? 1 - y : y) * (1 - ct - cb),
           ];
         }),
       );
@@ -222,7 +254,10 @@ export class Compositor {
       const ported =
         transition && hasPortedShader(transition.kind) && frame - c.start < transition.frames;
       if (ported) this.ported.capture(0, this.canvas.width, this.canvas.height);
+      comparisonScissor(gl, this.comparison);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
+      gl.disable(gl.SCISSOR_TEST);
+      if (this.comparison !== null) this.drawOriginal({ player: p, clip: c, frame, fps });
       if (ported && transition) {
         this.ported.frameRate = fps;
         this.ported.capture(1, this.canvas.width, this.canvas.height);
@@ -234,7 +269,40 @@ export class Compositor {
       }
     }
   }
+  audioStatus() {
+    return this.processed.status();
+  }
+  private drawOriginal({
+    player,
+    clip,
+    frame,
+    fps,
+  }: {
+    player: Player;
+    clip: RenderClip['clip'];
+    frame: number;
+    fps: number;
+  }) {
+    const gl = this.gl;
+    const original = withoutFilter(clip);
+    const el = player.el as HTMLVideoElement | HTMLImageElement;
+    player.comparisonLut ??= { lut: gl.createTexture(), lutKey: '' };
+    bindColorLut(gl, player.comparisonLut, original);
+    const texture = this.originals.apply(player.tex!, original.props, {
+      elapsed: (frame - clip.start) / fps,
+      duration: clip.duration / fps,
+      width: el instanceof HTMLVideoElement ? el.videoWidth : el.naturalWidth,
+      height: el instanceof HTMLVideoElement ? el.videoHeight : el.naturalHeight,
+    });
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    bindPictureUniforms(gl, this.program, original, frame);
+    comparisonScissor(gl, this.comparison, true);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    gl.disable(gl.SCISSOR_TEST);
+  }
   pause() {
+    this.processed.pause();
     for (const player of this.players.values()) {
       if (player.el instanceof HTMLMediaElement) player.el.pause();
     }
@@ -251,9 +319,11 @@ export class Compositor {
     p.gain?.disconnect();
     if (p.tex) this.gl.deleteTexture(p.tex);
     if (p.lut) this.gl.deleteTexture(p.lut);
+    if (p.comparisonLut?.lut) this.gl.deleteTexture(p.comparisonLut.lut);
     this.players.delete(id);
   }
   destroy() {
+    this.processed.destroy();
     this.ported.dispose();
     this.originals.dispose();
     for (const id of [...this.players.keys()]) this.release(id);

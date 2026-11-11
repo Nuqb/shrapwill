@@ -2,10 +2,21 @@ use super::*;
 mod creation;
 mod links;
 mod properties;
+mod retime;
 mod timeline;
 mod tracks;
 pub(super) fn apply(p: &mut Project, edit: Edit) -> Result<(), String> {
     match edit {
+        Edit::Retime {
+            id,
+            asset,
+            settings,
+            ripple,
+        } => retime::apply(p, id, asset, settings, ripple),
+        Edit::SetAutoRipple { enabled } => {
+            p.auto_ripple = enabled;
+            Ok(())
+        }
         Edit::SetMagneticTimeline { enabled } => {
             p.magnetic_timeline = enabled;
             Ok(())

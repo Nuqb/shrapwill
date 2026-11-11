@@ -49,7 +49,7 @@ export function EditorPreview() {
   );
 }
 export function EditorInspector() {
-  const { p, selectedClip, selectedTrack, edit, setDraft } = useEditor();
+  const { p, selectedClip, selectedTrack, edit, setDraft, setSource } = useEditor();
   return (
     <Inspector
       project={p}
@@ -58,6 +58,7 @@ export function EditorInspector() {
       kind={selectedTrack?.kind}
       edit={edit}
       onDraft={setDraft}
+      onShowTimeline={() => setSource(null)}
     />
   );
 }

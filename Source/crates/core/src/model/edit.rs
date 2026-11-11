@@ -3,6 +3,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum Edit {
+    Retime {
+        id: String,
+        asset: MediaAsset,
+        #[serde(default)]
+        settings: Option<Box<super::SpeedSettings>>,
+        ripple: bool,
+    },
+    SetAutoRipple {
+        enabled: bool,
+    },
     SetMagneticTimeline {
         enabled: bool,
     },

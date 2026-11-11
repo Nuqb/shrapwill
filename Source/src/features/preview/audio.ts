@@ -35,7 +35,12 @@ export class PreviewAudio {
     this.output.gain.setTargetAtTime(value, this.context.currentTime, 0.008);
     this.outputValue = value;
   }
-  sync(player: AudioPlayer, clip: RenderClip, frame: number, playing: boolean) {
+  sync(
+    player: AudioPlayer,
+    clip: RenderClip,
+    frame: number,
+    options: { playing: boolean; duckGain: number },
+  ) {
     if (!(player.el instanceof HTMLMediaElement)) return;
     const el = player.el;
     if (!this.context || !this.output) {
@@ -50,7 +55,8 @@ export class PreviewAudio {
     }
     const c = clip.clip;
     const local = frame - c.start;
-    let gain = playing && clip.audible ? Math.pow(10, c.props.gainDb / 20) : 0;
+    let gain = options.playing && clip.audible ? Math.pow(10, c.props.gainDb / 20) : 0;
+    gain *= options.duckGain;
     if (c.props.fadeIn > 0) gain *= Math.min(1, local / c.props.fadeIn);
     if (c.props.fadeOut > 0) gain *= Math.min(1, (c.duration - local) / c.props.fadeOut);
     if (player.targetGain !== gain) {

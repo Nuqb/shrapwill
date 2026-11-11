@@ -161,3 +161,28 @@
   line-height: 1.7;
   margin: 9px 0 3px;
 }
+
+.audio-preparation {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: #161920e6;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  pointer-events: none;
+}
+.color-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 6px;
+  margin: 10px 0;
+}
+.inspector fieldset {
+  min-width: 0;
+  border: 0;
+  margin: 0;
+}
+.inspector .inspector-tabs {
+  flex-wrap: wrap;
+}

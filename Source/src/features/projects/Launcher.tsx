@@ -1,3 +1,4 @@
+import { overlayMotion } from '../overlays/motion';
 import { FolderOpen, Plus, X, Settings, ArrowUpRight } from 'lucide-react';
 import { durationOf } from '../../types';
 import brandIcon from '../../assets/shrapwill-icon.png';
@@ -101,7 +102,7 @@ export function LauncherContent() {
 }
 export function ProjectLauncher() {
   return (
-    <div className="modal-backdrop launcher-backdrop">
+    <div ref={overlayMotion} className="modal-backdrop launcher-backdrop">
       <LauncherContent />
     </div>
   );

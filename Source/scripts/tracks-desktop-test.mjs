@@ -36,12 +36,12 @@ const original = await state(),
 const laneOf = (id) => page.locator(`[data-track="${id}"] .track-lane`);
 const frameBefore = await page.locator('.ruler-corner').innerText(),
   revisionBefore = (await state()).revision;
-await laneOf(main.id).click({ position: { x: 600, y: 35 } });
+await laneOf(main.id).click({ position: { x: 600, y: 73 } });
 assert.equal(await selector(main.name).getAttribute('aria-pressed'), 'true');
-await laneOf(audio.id).click({ position: { x: 600, y: 35 }, modifiers: ['Control'] });
+await laneOf(audio.id).click({ position: { x: 600, y: 73 }, modifiers: ['Control'] });
 assert.equal(await selector(audio.name).getAttribute('aria-pressed'), 'true');
 assert.equal(await selector(main.name).getAttribute('aria-pressed'), 'true');
-await laneOf(audio.id).click({ position: { x: 600, y: 35 }, modifiers: ['Control'] });
+await laneOf(audio.id).click({ position: { x: 600, y: 73 }, modifiers: ['Control'] });
 assert.equal(await selector(audio.name).getAttribute('aria-pressed'), 'false');
 assert.equal(await page.locator('.ruler-corner').innerText(), frameBefore);
 assert.equal((await state()).revision, revisionBefore);

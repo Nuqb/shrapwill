@@ -6,6 +6,7 @@ import { fpsOf, timecode } from '../../types';
 import { usePreview } from './context';
 import { sourceHeading } from './sourceHeading';
 import { PresetPreviewControls } from './PresetPreviewControls';
+import { FilterComparison } from './FilterComparison';
 
 function SourcePreviewActions() {
   const { source, onClearSource, onApplyPreset } = usePreview();
@@ -50,7 +51,7 @@ export function PreviewHeading() {
 }
 
 export function PreviewViewer() {
-  const { canvas, container, source, plan, error } = usePreview();
+  const { canvas, container, source, plan, error, audioStatus } = usePreview();
 
   return (
     <div
@@ -59,6 +60,7 @@ export function PreviewViewer() {
       onContextMenu={(e) => e.preventDefault()}
     >
       <canvas ref={canvas} width={1280} height={720} data-testid="preview-canvas" />
+      <FilterComparison />
       {source?.kind === 'media' && source.mediaKind === 'audio' && (
         <div className="viewer-empty audio-source-art">
           <Volume2 size={32} />
@@ -78,6 +80,11 @@ export function PreviewViewer() {
           </div>
           <strong>Your story starts here</strong>
           <span>Add media to the timeline to begin.</span>
+        </div>
+      )}
+      {audioStatus && (
+        <div className="audio-preparation" role="status">
+          {audioStatus}
         </div>
       )}
       {error && <div className="viewer-empty error-text">{error}</div>}

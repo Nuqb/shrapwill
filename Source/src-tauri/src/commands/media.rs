@@ -52,14 +52,42 @@ pub(crate) fn prepare_compatible_preview(
     )
 }
 pub(crate) fn trim_cache(state: &AppState) {
+    trim_cache_protecting(state, &[]);
+}
+pub(crate) fn trim_cache_protecting(state: &AppState, extra: &[PathBuf]) {
     let s = state.session.lock().unwrap();
-    let protected = s
+    let mut protected = s
         .editor
         .project
         .assets
         .iter()
         .filter_map(|a| a.preview_path.as_ref().map(PathBuf::from))
         .collect::<Vec<_>>();
+    let project = &s.editor.project;
+    for c in project
+        .tracks
+        .iter()
+        .flat_map(|t| &t.clips)
+        .filter(|c| c.props.audio.needs_processing())
+    {
+        let Some(asset) = project
+            .assets
+            .iter()
+            .find(|a| Some(&a.id) == c.media_id.as_ref())
+        else {
+            continue;
+        };
+        if let Ok(path) = media::audio::cache_path(
+            Path::new(&asset.path),
+            (c.source_in, project.fps.seconds(c.duration)),
+            &c.props.audio,
+            &state.cache,
+        ) {
+            protected.push(path);
+        }
+    }
+    protected.extend_from_slice(extra);
+    drop(s);
     media::evict_cache(&state.cache, &protected, 10 * 1024 * 1024 * 1024);
 }
 #[tauri::command]

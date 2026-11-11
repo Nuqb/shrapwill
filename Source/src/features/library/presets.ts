@@ -75,7 +75,7 @@ function look(
 ) {
   return { name, category, description, ...neutralColor, ...adjustments };
 }
-const builtInFilters = [
+export const builtInFilters = [
   look('Original', 'Essentials', 'Reset all picture color effects', {}),
   look('Monochrome', 'Essentials', 'Clean black and white', { contrast: 1.08, saturation: 0 }),
   look('Soft light', 'Essentials', 'Gentle, lifted shadows', {

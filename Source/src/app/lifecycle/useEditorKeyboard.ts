@@ -14,6 +14,13 @@ function cancelEditorSelection(ctx: LifecycleContext) {
 
 function handleKey(ctx: LifecycleContext, event: KeyboardEvent) {
   if (event.defaultPrevented || event.isComposing) return;
+  if (
+    (event.ctrlKey || event.metaKey) &&
+    !event.altKey &&
+    event.key.toLowerCase() === 'c' &&
+    window.getSelection()?.toString()
+  )
+    return;
   const state = ctx.keyboardState.current;
   if (state.settingsOpen || state.unsavedOpen || state.projectInfoOpen) return;
   if (event.key === 'Escape' && !isTextEntry(event.target)) {

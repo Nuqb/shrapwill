@@ -3,6 +3,7 @@ import brandIcon from '../../assets/shrapwill-icon.png';
 import { ToolButton } from '../../ShortcutUI';
 import { useEditor } from '../EditorContext';
 import { MenuDropdown } from './Menus';
+import { WindowControls } from './WindowControls';
 export function MainMenuItem({ item }: { item: string }) {
   const { menu, setMenu } = useEditor();
   return (
@@ -31,13 +32,13 @@ export function MainMenu() {
 export function HeaderProject() {
   const { snap, renameProject, p } = useEditor();
   return (
-    <div className="header-project">
-      <span className={snap.dirty ? 'unsaved-dot' : 'saved-dot'} />
+    <div className="header-project" data-tauri-drag-region>
+      <span className={snap.dirty ? 'unsaved-dot' : 'saved-dot'} data-tauri-drag-region />
       <button title="Rename project" onClick={() => void renameProject()}>
         {p.name}
         <ChevronDown size={11} />
       </button>
-      <span className="project-ratio">
+      <span className="project-ratio" data-tauri-drag-region>
         {p.width === p.height ? '1:1' : p.width > p.height ? '16:9' : '9:16'}
       </span>
     </div>
@@ -73,7 +74,7 @@ export function HeaderActions() {
 export function AppHeader() {
   const { setLauncher } = useEditor();
   return (
-    <header className="app-header">
+    <header className="app-header" data-tauri-drag-region>
       <button className="brand" onClick={() => setLauncher(true)} title="Shrapwill home">
         <img className="brand-icon" src={brandIcon} alt="" />
         <strong>shrapwill</strong>
@@ -82,6 +83,7 @@ export function AppHeader() {
       <MainMenu />
       <HeaderProject />
       <HeaderActions />
+      <WindowControls />
     </header>
   );
 }

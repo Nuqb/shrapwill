@@ -9,6 +9,7 @@ export function bindColorLut(gl: WebGL2RenderingContext, player: ColorTexture, c
   const cp = clip.props;
   const key = [
     cp.brightness,
+    JSON.stringify(cp.grade),
     cp.contrast,
     cp.saturation,
     cp.warmth,
@@ -37,6 +38,16 @@ export function bindPictureUniforms(
   frame: number,
 ) {
   const cp = clip.props;
+  const shape = cp.grade?.vignetteSettings ?? [1, 0, 0.5, 0, 0.5];
+  gl.uniform4f(
+    gl.getUniformLocation(program, 'vignetteShape'),
+    shape[0],
+    shape[1],
+    shape[2],
+    shape[3],
+  );
+  gl.uniform1f(gl.getUniformLocation(program, 'vignetteHighlight'), shape[4]);
+  gl.uniform1f(gl.getUniformLocation(program, 'sharpen'), cp.grade?.sharpen ?? 0);
   gl.uniform1f(gl.getUniformLocation(program, 'effectStrength'), cp.effectStrength ?? 1);
   gl.uniform1i(gl.getUniformLocation(program, 'creativeStyle'), cp.effectStyle || 0);
   gl.uniform1f(gl.getUniformLocation(program, 'creativeAmount'), cp.effectAmount || 0);

@@ -84,6 +84,7 @@
 }
 .timeline-content {
   position: relative;
+  overflow: clip;
 }
 .ruler {
   height: 30px;
@@ -329,8 +330,14 @@
   top: 0;
   width: 1px;
   background: #fa666f;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: ew-resize;
   z-index: 8;
+}
+.playhead::before {
+  content: '';
+  position: absolute;
+  inset: 0 -5px;
 }
 .playhead:after {
   content: '';

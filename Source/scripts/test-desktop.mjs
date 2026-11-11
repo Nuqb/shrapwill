@@ -5,6 +5,13 @@ import { setTimeout } from 'node:timers/promises';
 import { sourceRoot, qaDir, debugUrl } from './test-support/paths.mjs';
 
 const suites = {
+  window: 'window-desktop-test.mjs',
+  'timeline-tools': 'timeline-tools-desktop-test.mjs',
+  animation: 'animation-desktop-test.mjs',
+  'inspector-render': 'render-compare.mjs',
+  'inspector-style': 'inspector-style-desktop-test.mjs',
+  audio: 'audio-desktop-test.mjs',
+  'speed-color': 'speed-color-desktop-test.mjs',
   'rust-performance': 'rust-desktop-performance.mjs',
   readme: 'capture-readme.mjs',
   layout: 'layout-desktop-test.mjs',
@@ -102,25 +109,27 @@ async function run(name) {
   try {
     await ready(child);
     const args =
-      name === 'original-media-controls'
-        ? ['--original-smoke']
-        : name === 'original-media-export'
-          ? ['--local-transitions', '--original-media']
-          : name === 'original-effects'
-            ? ['--effects']
-            : name === 'original-export'
-              ? ['--local-transitions', '--ported-only']
-              : name === 'local-transition-colors'
-                ? ['--local-transitions', '--color-transitions']
-                : name === 'local-transitions'
-                  ? ['--local-transitions']
-                  : name === 'close'
-                    ? ['save-event']
-                    : name === 'close-discard'
-                      ? ['discard']
-                      : name === 'originals'
-                        ? ['direct']
-                        : [];
+      name === 'inspector-render'
+        ? ['--inspector']
+        : name === 'original-media-controls'
+          ? ['--original-smoke']
+          : name === 'original-media-export'
+            ? ['--local-transitions', '--original-media']
+            : name === 'original-effects'
+              ? ['--effects']
+              : name === 'original-export'
+                ? ['--local-transitions', '--ported-only']
+                : name === 'local-transition-colors'
+                  ? ['--local-transitions', '--color-transitions']
+                  : name === 'local-transitions'
+                    ? ['--local-transitions']
+                    : name === 'close'
+                      ? ['save-event']
+                      : name === 'close-discard'
+                        ? ['discard']
+                        : name === 'originals'
+                          ? ['direct']
+                          : [];
     await completed(
       spawn(process.execPath, [path.join(sourceRoot, 'scripts', suites[name]), ...args], {
         cwd: sourceRoot,

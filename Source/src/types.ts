@@ -16,7 +16,36 @@ export interface MediaAsset {
   waveform: number[];
   missing: boolean;
 }
+export interface AudioSettings {
+  enabled?: Record<string, boolean>;
+  hissNoiseVolume?: number;
+  humReduction?: number;
+  channels: string;
+  balance: number;
+  pitch: number;
+  equalizer: number[];
+  normalize: boolean;
+  normalizeTarget?: number;
+  duckFadeDuration?: number;
+  duckFadePosition?: number;
+  duckFadeSplit?: number;
+  ducking: boolean;
+  duckAmount: number;
+  denoise: number;
+  reverbReduction: number;
+  windRemoval: boolean;
+  hiss: number;
+  dehum: number;
+  deess: number;
+  voiceFilter: string;
+  voiceCharacter: string;
+}
 export interface Properties {
+  video?: VideoSettings;
+  animation?: AnimationSettings;
+  speed?: SpeedSettings;
+  audio?: AudioSettings;
+  grade?: ColorGrade;
   x: number;
   y: number;
   scale: number;
@@ -51,6 +80,46 @@ export interface Properties {
   fadeIn: number;
   fadeOut: number;
 }
+export interface VideoSettings {
+  transformEnabled: boolean;
+  compositingEnabled: boolean;
+  flipHorizontal: boolean;
+  flipVertical: boolean;
+  heightScale: number;
+}
+export interface AnimationSettings {
+  keyframe: string;
+  inPreset: string;
+  outPreset: string;
+  frames: number;
+}
+export interface SpeedSettings {
+  mediaId: string;
+  sourceIn: number;
+  duration: number;
+  renderedDuration: number;
+  rate: number;
+  reverse: boolean;
+  maintainPitch: boolean;
+  points: number[][];
+}
+export interface ColorGrade {
+  hdrWheels?: number[][];
+  lutStrength?: number;
+  sharpen?: number;
+  vignetteSettings?: number[];
+  enabled?: Record<string, boolean>;
+  secondaryCurves?: number[][];
+  exposure: number;
+  vibrance: number;
+  highlights: number;
+  shadows: number;
+  whites: number;
+  blacks: number;
+  hsl: number[][];
+  curves: number[][];
+  wheels: number[][];
+}
 export interface Title {
   text: string;
   style: string;
@@ -83,6 +152,7 @@ export interface Track {
 export interface Project {
   version: number;
   magneticTimeline: boolean;
+  autoRipple?: boolean;
   id: string;
   name: string;
   width: number;

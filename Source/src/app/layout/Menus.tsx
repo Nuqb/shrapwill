@@ -1,3 +1,4 @@
+import { overlayMotion } from '../../features/overlays/motion';
 import { durationOf } from '../../types';
 import { ShortcutHint } from '../../ShortcutUI';
 import { useEditor } from '../EditorContext';
@@ -127,7 +128,7 @@ export function FileMenu() {
 }
 export function MenuDropdown({ item }: { item: string }) {
   return (
-    <div className="dropdown-menu" onPointerDown={(e) => e.stopPropagation()}>
+    <div ref={overlayMotion} className="dropdown-menu" onPointerDown={(e) => e.stopPropagation()}>
       {item === 'File' ? <FileMenu /> : item === 'Edit' ? <EditMenu /> : <ViewMenu />}
     </div>
   );

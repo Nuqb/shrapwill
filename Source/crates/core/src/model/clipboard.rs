@@ -62,6 +62,9 @@ impl Editor {
             insert_main_clips(&mut p, &added)?;
             close_main_gaps(&mut p)?;
         }
+        if p.auto_ripple {
+            timeline_rules::ripple_insert(&self.project, &mut p)?;
+        }
         self.commit(p)?;
         Ok(added)
     }

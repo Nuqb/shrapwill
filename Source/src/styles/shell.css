@@ -2,17 +2,49 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  user-select: none;
+  user-select: text;
 }
 .app-header {
   height: 49px;
   min-height: 49px;
   display: flex;
   align-items: center;
-  padding: 0 17px;
+  padding: 0 0 0 17px;
   gap: 22px;
   border-bottom: 1px solid #08090d;
   background: #17191f;
+  user-select: none;
+}
+.window-controls {
+  display: flex;
+  align-self: stretch;
+  flex-shrink: 0;
+  gap: 0;
+  position: relative;
+}
+.window-controls > button {
+  width: 44px;
+  padding: 0;
+  border-radius: 0;
+  color: var(--muted);
+}
+.window-controls > button:hover {
+  background: #ffffff12;
+  color: var(--text);
+}
+.window-controls > .window-close:hover {
+  background: #c42b35;
+  color: #fff;
+}
+.window-control-error {
+  position: absolute;
+  right: 8px;
+  top: 100%;
+  width: 240px;
+  padding: 12px;
+  background: var(--panel2);
+  color: var(--text);
+  z-index: 200;
 }
 .brand {
   gap: 8px;
@@ -107,6 +139,9 @@
   gap: 8px;
   align-items: center;
   margin: auto;
+  flex: 1;
+  align-self: stretch;
+  justify-content: center;
   min-width: 0;
   color: #bfc5d0;
 }

@@ -1,5 +1,4 @@
 import { timecode } from '../../types';
-import { ShortcutHint } from '../../ShortcutUI';
 import { useTimeline } from './context';
 
 export function TimelineFooter() {
@@ -19,11 +18,6 @@ export function TimelineFooter() {
             : selected.length
               ? `${selected.length} clip${selected.length > 1 ? 's' : ''} selected`
               : 'Selection tool'}
-      </span>
-      <span>
-        <ShortcutHint action="play_pause" /> to play <span className="dot">·</span>{' '}
-        <ShortcutHint action="split" /> to split <span className="dot">·</span>{' '}
-        <ShortcutHint action="save" /> to save
       </span>
       <span>
         Duration <strong>{timecode(total, project.fps)}</strong>

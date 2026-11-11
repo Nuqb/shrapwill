@@ -1,3 +1,4 @@
+import { overlayMotion } from '../overlays/motion';
 import { type CSSProperties } from 'react';
 import { Check } from 'lucide-react';
 import ShortcutSettings from '../../ShortcutSettings';
@@ -53,7 +54,7 @@ function SettingsCategories({
 }) {
   const dialog = useDialogFocus();
   return (
-    <div className="modal-backdrop shortcut-backdrop">
+    <div ref={overlayMotion} className="modal-backdrop shortcut-backdrop">
       <section
         ref={dialog}
         tabIndex={-1}

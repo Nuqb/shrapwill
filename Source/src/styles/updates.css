@@ -1,20 +1,164 @@
 .update-settings {
   display: grid;
-  gap: 16px;
-  padding: 24px;
+  gap: 24px;
+  padding: 28px;
+  font-size: 12px;
+  line-height: 1.6;
 }
 .update-settings p {
   color: var(--muted);
+  margin: 0;
+}
+.update-overview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.update-overview h3 {
+  margin: 3px 0 4px;
+  font-size: 22px;
+  letter-spacing: -0.6px;
+  font-weight: 600;
+}
+.update-app-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+}
+.update-kicker {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+.update-version {
+  margin-left: auto;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 10px;
 }
 .update-preference {
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel2);
+  cursor: pointer;
+}
+.update-preference strong,
+.update-preference small {
+  display: block;
+}
+.update-preference strong {
+  font-size: 12px;
+  font-weight: 550;
+}
+.update-preference small {
+  color: var(--muted);
+  margin-top: 3px;
+  font-size: 11px;
+}
+.update-preference input {
+  appearance: none;
+  width: 36px;
+  height: 21px;
+  flex-shrink: 0;
+  padding: 2px;
+  margin: 0;
+  border: 1px solid #535966;
+  border-radius: 20px;
+  background: #353944;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease;
+}
+.update-preference input::before {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #f5f6f8;
+  transition: transform 160ms ease;
+}
+.update-preference input:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.update-preference input:checked::before {
+  transform: translateX(15px);
+}
+.update-preference input:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.update-status {
+  display: grid;
+  gap: 12px;
+}
+.update-status:empty {
+  display: none;
+}
+.update-release {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-left: 2px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--panel2);
+}
+.update-release strong {
+  font-size: 15px;
+  font-weight: 550;
 }
 .update-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: flex-end;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.update-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  min-height: 36px;
+}
+.update-actions button.primary {
+  border-color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .update-preference input,
+  .update-preference input::before {
+    transition: none;
+  }
+}
+@media (max-width: 520px) {
+  .update-settings {
+    padding: 20px;
+  }
+  .update-version {
+    display: none;
+  }
+  .update-overview h3 {
+    font-size: 19px;
+  }
 }
 .update-actions button,
 .update-notice button {

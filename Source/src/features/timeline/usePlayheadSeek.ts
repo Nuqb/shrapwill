@@ -6,8 +6,9 @@ type SeekOptions = {
   ppf: number;
   onFrame: (frame: number) => void;
   projectId: string;
+  resolveFrame: (frame: number) => number;
 };
-export function usePlayheadSeek({ scroll, ppf, onFrame, projectId }: SeekOptions) {
+export function usePlayheadSeek({ scroll, ppf, onFrame, projectId, resolveFrame }: SeekOptions) {
   const cleanup = useRef<() => void>(() => {});
   useEffect(() => () => cleanup.current(), [projectId]);
   return useCallback(
@@ -24,9 +25,11 @@ export function usePlayheadSeek({ scroll, ppf, onFrame, projectId }: SeekOptions
         const host = scroll.current;
         if (host)
           onFrame(
-            Math.max(
-              0,
-              Math.round((x - host.getBoundingClientRect().left + host.scrollLeft - head) / ppf),
+            resolveFrame(
+              Math.max(
+                0,
+                Math.round((x - host.getBoundingClientRect().left + host.scrollLeft - head) / ppf),
+              ),
             ),
           );
       };
@@ -57,6 +60,6 @@ export function usePlayheadSeek({ scroll, ppf, onFrame, projectId }: SeekOptions
         options,
       );
     },
-    [scroll, ppf, onFrame],
+    [scroll, ppf, onFrame, resolveFrame],
   );
 }

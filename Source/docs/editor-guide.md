@@ -68,14 +68,20 @@ Click **Magnetic** above the timeline, use **View → Magnetic timeline**, or pr
 
 Linked audio moves with its video. Unlinked audio, titles, and other video tracks keep their timing; use explicit ripple delete if you intend to ripple all unlocked tracks. Existing intentional overlaps are retained. Locked linked tracks block an edit that would move them, and the whole operation is cancelled. Each edit and its automatic shifts form one undo step. Enabling or disabling the setting is undoable too.
 
-The setting is saved in each project and recovery file. It starts **off** in new and older projects, so opening a previous edit does not rearrange it. Turn it off for intentional gaps. Magnetic timeline and regular **Snapping (S)** are independent: snapping aligns clip edges while dragging; magnetic timeline closes empty space after edits. Its shortcut can be changed in Keyboard shortcuts.
+The setting is saved in each project and recovery file. It starts **off** in new and older projects, so opening a previous edit does not rearrange it. Turn it off for intentional gaps. Its shortcut can be changed in Keyboard shortcuts.
+
+The timeline has three independent icon switches. **Magnetic timeline** keeps the main video sequence together. **Auto Ripple** shifts following unlocked clips when inserting, trimming or deleting and starts off in new and older projects. **Enable timeline snap (S)** attracts clip edges and the playhead to clip boundaries while dragging. Hover an icon to see its name. Invalid overlapping drops on the same track return the clip to its original position; use separate tracks for layered playback or apply an explicit transition.
+
+Zoom out stops at the project duration plus a small amount of working space. Fit timeline shows this complete range. Right-click a track or clip to find **Add Video Track** and **Add Audio Track**. Select ordinary interface text and press **Ctrl+C** to copy it; clicking a timeline clip returns copying to the clip selection.
+
+Click a filter to compare it in the player. The left side shows the filter and the right side shows the original picture. Drag the vertical divider to reveal more of either side. With the divider focused, Left/Right adjusts it and Home/End shows the complete original/filtered picture. This comparison does not change the project; double-click the filter or use Apply to selected clip to apply it.
 
 ## First-release boundaries
 
 The creative library includes titles, filters, video effects, and transitions. Covers show the actual rendered result. Single-click previews without editing; double-click or the player’s Apply button applies a preset.
 
 - Windows 10/11 x64; 1080p SDR workflows with 720p preview by default. MP4 H.264/AAC export at 720p or 1080p, including portrait and square layouts.
-- This is a preview release. Advanced keyframes, masks, tracking, nested sequences, multicamera editing, recording, HDR finishing, plugin hosting, and compatibility with other editors' project files are not implemented.
+- This is a preview release. Arbitrary keyframe editing, masks, tracking, nested sequences, multicamera editing, recording, HDR finishing, plugin hosting, and compatibility with other editors' project files are not implemented.
 - Live preview allows up to eight simultaneous media/title layers, with at most two upcoming clips preloaded within that budget. Above this, the viewer asks you to hide or mute layers; export includes all enabled layers. The project can contain more than eight tracks or clips overall.
 - Generated compatibility previews use 30 fps. Compatible originals can play directly at their native cadence. Projects and exports support the selected frame rate, including 29.97 and 59.94.
 - The preview cache has a 10 GB budget and evicts older entries when needed. Evicted media is regenerated on demand as you seek or play. In-progress jobs are protected; if the budget cannot be met, the job reports that the cache is full. Export uses temporary disk space beside the cache and cleans it after completion/cancellation. Source files are never modified.
@@ -83,6 +89,77 @@ The creative library includes titles, filters, video effects, and transitions. C
 - Text is rasterized with installed system fonts. Rebuilding titles on a different computer can change typography if fonts differ.
 - Hardware encoders appear only after a successful encoding probe. Software encoding is the default. Unsupported or corrupt files report a readable error.
 - This installer is unsigned. No code-signing certificate was provided.
+
+## Video, speed, and color controls
+
+**Video → Basic** groups transform, compositing, and crop controls. Width and
+height display as percentages and can be linked or adjusted independently. Flip
+horizontally/vertically or rotate in quarter turns. Transform and Compositing
+switches bypass their adjustments without erasing them. Position uses project pixels.
+
+**Animation** has Motion Presets with **In** and **Out** choices, plus eleven
+Keyframe Presets. These animate clip-local position, scale, rotation, and opacity;
+they preserve timeline placement and linked audio. Motion duration applies to
+the entrance/exit; keyframe presets span the clip. **Transition** is also here.
+Transitions overlap the preceding clip and keep their existing timing behavior.
+
+**Speed** has Uniform Speed and Speed Ramping areas. Changes apply when you
+release a slider, finish typing, toggle an option, or select a ramp. Reverse,
+Ripple Edit, and Maintain Pitch belong to Uniform Speed. Repeated changes use
+the original selected range, so 2× followed by 3× produces 3× overall. Trimming
+an already processed clip establishes a new range for subsequent speed edits.
+Speed changes create local media, preserve original files, and support Undo.
+
+**Color** has Basic, HSL, Curves, Color Wheels, and HDR areas. Basic includes
+photographic preset previews and expandable LUT, Color, Light, Adjust, and
+Vignette sections, each enabled initially. The switches preserve settings while
+bypassing their effects. Presets wrap into rows and scroll vertically. LUT strength
+is independent of basic color adjustments. Adjust includes Sharpen; Vignette
+includes Amount, Size, Roundness, Feather, Exposure, and Highlight.
+
+HSL swatches choose the color range. Curves includes Master/R/G/B plus Hue vs Sat,
+Hue vs Hue, Hue vs Luma, Luma vs Sat, Sat vs Sat, and Sat vs Luma. Drag the five
+fixed curve points vertically or use their arrow keys. Color Wheels provides
+Shadows, Midtones, and Highlights with RGB inputs and level controls. HDR provides
+Black, Dark, Shadow, Light, Highlight, Specular, and Global tone wheels with X/Y
+inputs. These are SDR tone adjustments; HDR delivery remains unavailable.
+A graph drag creates one Undo step.
+
+The inspector follows your selected Shrapwill accent theme. Voice filters and
+characters use distinct SVG illustrations.
+
+## Audio adjustments
+
+Select an audio or video clip and open **Audio** in the properties panel. Choose
+**Basic**, **Denoise**, **Voice Filters**, or **Voice Characters** from the tabs at
+the top. Switching tabs preserves your settings and does not create an Undo step.
+
+**Basic** includes stereo/mono routing, copying either source channel to both
+speakers, swapping channels, sound balance, volume, fades, pitch, and a ten-band
+equalizer with presets and custom gains. Fade durations display in seconds.
+Click **Setting** next to Equalizer to open the custom bands. Pitch preserves the clip's duration.
+
+**Auto normalize** offers −23, −16, −14 LUFS and a custom target before manual volume changes. Enable
+**Audio ducking** on a foreground clip to lower other overlapping audio by the
+chosen percentage. Fade Duration controls the fade envelope; Fade Position shifts its start time. Linked clips and other foreground clips are excluded. Muting a
+foreground track removes its ducking effect.
+
+**Denoise** includes normal noise reduction, wind rumble reduction, hiss removal,
+50/60 Hz hum removal, quiet reverb-tail reduction, and de-essing. Each noise tool can be switched off while retaining its intensity. Tail reduction
+uses a soft gate; strong settings can also reduce quiet speech. Voice filters
+include telephone/radio treatments, echo and room effects, vinyl/phonograph,
+megaphone, surround, rotating, trembling, and walkie-talkie. Voice characters
+include child, chipmunk, deep, man, woman, husky, robot variants, transformer,
+water, helium, evil, and monster. These are local pitch/modulation effects.
+
+Hum removal offers frequency and reduction in dB. Hiss removal provides separate
+Noise Volume and Denoise Level controls.
+
+The player shows a brief preparation status when an audio effect changes. Preview
+and export use the same processing. Changes save with the project, support Undo,
+and respect locked tracks. **Reset audio** clears only the audio settings. Original
+media is preserved. AI voice enhancement, vocal removal, cloning, and cloud audio
+processing are unavailable.
 
 ## Development
 

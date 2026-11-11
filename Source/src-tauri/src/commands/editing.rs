@@ -3,6 +3,17 @@ use cutline_core::Edit;
 use tauri::State;
 
 #[tauri::command]
+pub(crate) async fn retime_clip(
+    app: tauri::AppHandle,
+    id: String,
+    options: cutline_core::media::retime::SpeedOptions,
+    ripple: bool,
+) -> Result<(), String> {
+    tauri::async_runtime::spawn_blocking(move || crate::retiming::apply(&app, id, options, ripple))
+        .await
+        .map_err(|e| e.to_string())?
+}
+#[tauri::command]
 pub(crate) fn startup(state: State<AppState>) -> Startup {
     let session = state.session.lock().unwrap();
     Startup {

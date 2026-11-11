@@ -23,11 +23,14 @@ export function usePreview({
   onNeedMedia,
 }: Props) {
   const previewRequest = isRenderedSource(source) ? source.requestId : '';
+  const comparing = source?.kind === 'preset' && source.presetKind === 'filter';
+  const [comparison, setComparison] = useState(0.5);
   const canvas = useRef<HTMLCanvasElement>(null),
     renderer = useRef<Compositor | null>(null),
     latest = useRef({ plan, frame, playing });
   const [muted, setMuted] = useState(false),
     [error, setError] = useState(''),
+    [audioStatus, setAudioStatus] = useState(''),
     [volume, setVolume] = useState(1),
     [audioLevel, setAudioLevel] = useState(0);
   const container = useRef<HTMLElement>(null);
@@ -51,6 +54,14 @@ export function usePreview({
     clock.current = { frame, time: performance.now() };
     if (playing) renderer.current?.resume();
   }, [playing, previewRequest]);
+  useEffect(() => {
+    setComparison(0.5);
+  }, [source?.kind === 'preset' ? source.presetKey : source?.kind]);
+  useEffect(() => {
+    if (!renderer.current) return;
+    renderer.current.comparison = comparing ? comparison : null;
+    renderer.current.dirty++;
+  }, [comparing, comparison]);
   useEffect(() => {
     let req = 0,
       lastEmit = 0,
@@ -82,7 +93,9 @@ export function usePreview({
       ) {
         r.draw(s.plan, f, { playing: s.playing, muted, volume, quality });
         requestMediaFallback(r, onNeedMedia);
-        setError(r.error || '');
+        const status = r.audioStatus();
+        setAudioStatus(status === 'Preparing audio effects…' ? status : '');
+        setError(r.error || (status === 'Preparing audio effects…' ? '' : status));
         previous = { frame: f, plan: s.plan, dirty: r.dirty, playing: s.playing };
       }
       if (!s.plan) r?.pause();
@@ -119,6 +132,8 @@ export function usePreview({
   };
   return {
     source,
+    comparison,
+    setComparison,
     onClearSource,
     onApplyPreset,
     onNeedMedia,
@@ -130,6 +145,7 @@ export function usePreview({
     volume,
     setVolume,
     audioLevel,
+    audioStatus,
     plan,
     error,
     frame,

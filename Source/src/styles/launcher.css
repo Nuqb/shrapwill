@@ -1,10 +1,11 @@
 .launcher-backdrop {
+  top: 49px;
   background: #0b1018e0;
   backdrop-filter: blur(12px);
 }
 .launcher {
   width: 940px;
-  max-height: 92vh;
+  max-height: calc(100vh - 97px);
   background: #1b2029;
   border: 1px solid #3b4759;
   border-radius: 15px;

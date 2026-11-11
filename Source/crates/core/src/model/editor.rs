@@ -56,8 +56,13 @@ impl Editor {
     pub fn apply(&mut self, edit: Edit) -> Result<(), String> {
         let mut p = self.project.clone();
         let context = magnetic::MagneticEdit::capture(&p, &edit);
-        mutations::apply(&mut p, edit)?;
+        mutations::apply(&mut p, edit.clone())?;
+        timeline_rules::auto_ripple(&self.project, &mut p, &edit)?;
         context.finish(&self.project, &mut p)?;
+        if p.auto_ripple && matches!(edit, Edit::AddClip { .. } | Edit::AddTitle { .. }) {
+            timeline_rules::ripple_insert(&self.project, &mut p)?;
+        }
+        timeline_rules::check_placement(&self.project, &p, &edit)?;
         self.commit(p)
     }
 }

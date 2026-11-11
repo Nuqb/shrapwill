@@ -13,12 +13,21 @@ await p.waitForTimeout(300);
 const s = (await call('startup')).snapshot;
 const track = s.project.tracks.find((t) => t.kind === 'video' && t.clips.some((c) => !c.title));
 const c = track.clips[0];
+await p.locator('[data-action="zoom_fit"]').click();
 const loc = p.getByRole('button', { name: `${c.name}, ${track.name}`, exact: true }).first();
 await loc.scrollIntoViewIfNeeded();
 const box = await loc.boundingBox();
+const pixelsPerFrame = Number(
+  await p.locator(`[data-track="${track.id}"] .track-lane`).getAttribute('data-ppf'),
+);
+const projectEnd = Math.max(
+  ...s.project.tracks.flatMap((t) => t.clips).map((c) => c.start + c.duration),
+);
+// Move into empty space: dropping onto another clip must now roll back.
+const movement = (projectEnd - c.start) * pixelsPerFrame;
 await p.mouse.move(box.x + box.width / 2, box.y + 36);
 await p.mouse.down();
-await p.mouse.move(box.x + box.width / 2 + 45, box.y + 36, { steps: 7 });
+await p.mouse.move(box.x + box.width / 2 + movement, box.y + 36, { steps: 7 });
 await p.mouse.up();
 await p.waitForTimeout(250);
 let after = (await call('startup')).snapshot;
@@ -27,20 +36,31 @@ if (moved.start <= c.start) throw Error(`Drag did not move clip: ${JSON.stringif
 const audio = after.project.tracks.find((t) => t.kind === 'audio').clips[0];
 if (audio.start !== moved.start) throw Error('Linked audio did not move');
 await call('history', { direction: 'undo' });
+await p.waitForTimeout(150);
 const second = track.clips[1];
 const secondLoc = p
   .getByRole('button', { name: `${second.name}, ${track.name}`, exact: true })
   .nth(1);
+await secondLoc.click({ position: { x: 12, y: 30 } });
+await p.waitForTimeout(100);
 const handle = secondLoc.locator('.trim-handle.right');
 const h = await handle.boundingBox();
+const trimPpf = Number(
+  await p.locator(`[data-track="${track.id}"] .track-lane`).getAttribute('data-ppf'),
+);
 await p.mouse.move(h.x + h.width / 2, h.y + 40);
 await p.mouse.down();
-await p.mouse.move(h.x + h.width / 2 - 15, h.y + 40, { steps: 5 });
+await p.mouse.move(h.x + h.width / 2 - 10 * trimPpf, h.y + 40, { steps: 5 });
 await p.mouse.up();
 await p.waitForTimeout(200);
 after = (await call('startup')).snapshot;
 const trimmed = after.project.tracks.flatMap((t) => t.clips).find((x) => x.id === second.id);
-if (trimmed.duration >= second.duration) throw Error('Edge trim did not shorten clip');
+if (trimmed.duration >= second.duration) {
+  await p.screenshot({ path: path.join(qa, 'gesture-trim-failure.png') });
+  throw Error(
+    `Edge trim did not shorten clip: ${JSON.stringify({ duration: trimmed.duration, expectedLessThan: second.duration, trimPpf, handle: h })}`,
+  );
+}
 await call('history', { direction: 'undo' });
 await p
   .getByRole('button', { name: `${c.name}, ${track.name}`, exact: true })

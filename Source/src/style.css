@@ -5,6 +5,8 @@
 @import './styles/presets.css';
 @import './styles/preview.css';
 @import './styles/inspector.css';
+@import './styles/audio-inspector.css';
+@import './styles/inspector-scenes.css';
 @import './styles/timeline.css';
 @import './styles/dialogs.css';
 @import './styles/launcher.css';

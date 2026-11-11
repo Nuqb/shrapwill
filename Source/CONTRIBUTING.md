@@ -19,6 +19,7 @@ npm run test:release
 npm run test:updates
 npm run test:updates-ui
 npm test
+node scripts/timeline-ui-test.mjs
 npm run test:transitions
 npm run build
 cargo fmt --all -- --check

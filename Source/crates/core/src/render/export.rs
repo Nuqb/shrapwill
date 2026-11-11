@@ -38,6 +38,7 @@ pub fn export(
     fs::create_dir_all(&tempdir).map_err(|e| e.to_string())?;
     let temporary = parent.join(format!(".cutline-export-{}.mp4", id()));
     let result = (|| {
+        let processed_audio = audio::prepare(ffmpeg, &plan, &tempdir, cancel)?;
         // Render bounded intervals so long timelines do not open every source decoder at once.
         let mut boundaries = vec![0, plan.duration];
         for rc in &plan.clips {
@@ -98,6 +99,16 @@ pub fn export(
                     &file.to_string_lossy(),
                 ]));
             }
+            let audio_indices = audio::inputs(
+                &mut args,
+                &processed_audio,
+                &active,
+                (
+                    p,
+                    start,
+                    active.len() + source_inputs.len() + usize::from(original.is_some()),
+                ),
+            );
             let scale = h as f64 / p.height as f64;
             let fps = format!("{}/{}", p.fps.num, p.fps.den);
             let format = compositing_format(&active, p, settings);
@@ -141,15 +152,16 @@ pub fn export(
                     });
                     filters.push(chain);
                     let next = format!("o{i}");
-                    filters.push(format!("[{base}][v{i}]overlay=x=(W-w)/2+{}:y=(H-h)/2+{}:shortest=1:format=auto[{next}]",cp.x*scale,cp.y*scale));
+                    filters.push(format!("[{base}][v{i}]overlay=x=(W-w)/2+{}:y=(H-h)/2+{}:shortest=1:format=auto[{next}]",if cp.animation.is_some() { 0. } else { cp.x*scale },if cp.animation.is_some() { 0. } else { cp.y*scale }));
                     base = next;
                 }
                 if rc.audible {
                     let fi = p.fps.seconds(cp.fade_in.min(c.duration));
                     let fo = p.fps.seconds(cp.fade_out.min(c.duration));
                     let full = p.fps.seconds(c.duration);
+                    let audio_index = audio_indices.get(&c.id).copied().unwrap_or(i);
                     let mut chain = format!(
-                        "[{i}:a]asetpts=PTS-STARTPTS,aresample=48000,volume={}dB",
+                        "[{audio_index}:a]asetpts=PTS-STARTPTS,aresample=48000,volume={}dB",
                         cp.gain_db
                     );
                     // Evaluate fades in source-clip time, retaining their envelope when a render interval starts midway through a clip.
@@ -162,6 +174,10 @@ pub fn export(
                             envelope.push_str(&format!("*min(1,max(0,({full}-t-{local})/{fo}))"));
                         }
                         chain.push_str(&format!(",volume='{envelope}':eval=frame"));
+                    }
+                    let duck = audio::duck_envelope(&plan, c, start);
+                    if duck != "1" {
+                        chain.push_str(&format!(",volume='{duck}':eval=frame"));
                     }
                     chain.push_str(&format!(",apad,atrim=duration={duration}[a{i}]"));
                     filters.push(chain);
@@ -254,6 +270,7 @@ fn compositing_format(
         let cp = &rc.clip.props;
         color::is_neutral(cp)
             && spatial::is_neutral(cp)
+            && cp.animation.is_none()
             && cp.opacity == 1.
             && cp.rotation == 0.
             && cp.x == 0.

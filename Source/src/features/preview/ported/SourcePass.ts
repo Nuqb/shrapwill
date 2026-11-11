@@ -17,7 +17,7 @@ export class SourcePass {
   ready(props: Properties) {
     return [
       [props.originalEffect, props.effectStrength ?? 1],
-      [props.originalFilter, props.filterStrength ?? 1],
+      [props.originalFilter, (props.filterStrength ?? 1) * (props.grade?.lutStrength ?? 1)],
     ].every(([kind, strength]) => !kind || !strength || this.pass.ready(kind as string));
   }
   private output(index: number, width: number, height: number) {
@@ -46,7 +46,7 @@ export class SourcePass {
   ) {
     const kinds = [
       [props.originalEffect, props.effectStrength ?? 1],
-      [props.originalFilter, props.filterStrength ?? 1],
+      [props.originalFilter, (props.filterStrength ?? 1) * (props.grade?.lutStrength ?? 1)],
     ] as const;
     const applied = kinds.filter(([kind, strength]) => kind && strength > 0);
     if (!applied.length) return input;

@@ -8,6 +8,7 @@ pub(super) fn apply(p: &mut Project, edit: Edit) -> Result<(), String> {
 }
 
 fn delete(p: &mut Project, ids: Vec<String>, ripple: bool) -> Result<(), String> {
+    let ripple = ripple || p.auto_ripple;
     let selected = linked_ids(p, &ids);
     ensure_unlocked(p, &selected)?;
     let mut spans: Vec<(i64, i64)> = p
@@ -27,6 +28,9 @@ fn delete(p: &mut Project, ids: Vec<String>, ripple: bool) -> Result<(), String>
             }
         }
         merged.push((s, e))
+    }
+    if ripple && p.auto_ripple {
+        super::super::timeline_rules::validate_ripple_delete(p, &selected, &merged)?;
     }
     for t in &mut p.tracks {
         t.clips.retain(|c| !selected.contains(&c.id));

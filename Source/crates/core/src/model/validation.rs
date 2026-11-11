@@ -50,6 +50,17 @@ fn validate_clip(project: &Project, clip: &Clip, ids: &mut HashSet<String>) -> R
         return Err("A clip has invalid timing.".into());
     }
     validate_properties(&clip.props)?;
+    if !clip.props.video.height_scale.is_finite()
+        || !(0.01..=100.).contains(&clip.props.video.height_scale)
+    {
+        return Err("Invalid vertical scale.".into());
+    }
+    if clip.props.animation.as_ref().is_some_and(|a| !a.valid()) {
+        return Err("Invalid animation settings.".into());
+    }
+    if let Some(s) = &clip.props.speed {
+        validate_speed(project, s)?;
+    }
     if let Some(title) = &clip.title {
         validate_title(title)?;
     }
@@ -95,6 +106,12 @@ fn finite_properties(p: &Properties) -> bool {
 }
 
 fn validate_properties(p: &Properties) -> Result<(), String> {
+    if !p.audio.valid() {
+        return Err("Invalid audio settings.".into());
+    }
+    if !p.grade.valid() {
+        return Err("Invalid color grading values.".into());
+    }
     if !crate::transition_sources::valid_property(&p.original_filter, "filter")
         || !crate::transition_sources::valid_property(&p.original_effect, "effect")
     {
@@ -174,6 +191,30 @@ fn validate_source(project: &Project, clip: &Clip) -> Result<(), String> {
             > asset.duration + project.fps.seconds(1) + 0.001
     {
         return Err("The edit extends beyond the source media.".into());
+    }
+    Ok(())
+}
+
+fn validate_speed(project: &Project, s: &SpeedSettings) -> Result<(), String> {
+    if !s.source_in.is_finite()
+        || s.source_in < 0.
+        || s.duration < 1
+        || s.rendered_duration < 1
+        || !project.assets.iter().any(|a| a.id == s.media_id)
+        || !s.rate.is_finite()
+        || !(0.1..=16.).contains(&s.rate)
+        || s.points.len() > 16
+        || (!s.points.is_empty()
+            && (s.points.len() < 2 || s.points[0][0] != 0. || s.points.last().unwrap()[0] != 1.))
+        || s.points.iter().any(|p| {
+            !p[0].is_finite()
+                || !(0. ..=1.).contains(&p[0])
+                || !p[1].is_finite()
+                || !(0.1..=16.).contains(&p[1])
+        })
+        || s.points.windows(2).any(|p| p[0][0] >= p[1][0])
+    {
+        return Err("Invalid speed baseline.".into());
     }
     Ok(())
 }

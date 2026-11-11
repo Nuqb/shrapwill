@@ -3,6 +3,16 @@ import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { defaultGrade } from '../src/features/preview/grading.ts';
+import animationPresets from '../src/features/library/catalog/animation-presets.json' with { type: 'json' };
+const inspector = process.argv.includes('--inspector');
+const grade = defaultGrade();
+grade.secondaryCurves[0][2] = 0.7;
+grade.secondaryCurves[2][1] = 0.6;
+grade.secondaryCurves[3][3] = 0.4;
+grade.hdrWheels[2] = [0.1, -0.1, 0.05];
+grade.sharpen = 0.3;
+grade.vignetteSettings = [0.8, 0.3, 0.7, 0.1, 0.7];
 const qa = qaDir,
   ff = path.resolve('src-tauri/binaries/ffmpeg-x86_64-pc-windows-msvc.exe');
 const b = await chromium.connectOverCDP(debugUrl(9223));
@@ -39,6 +49,27 @@ await call('edit', {
       brightness: 0.05,
       contrast: 0.93,
       saturation: 0.8,
+      ...(inspector
+        ? {
+            grade,
+            vignette: 0.4,
+            video: {
+              transformEnabled: true,
+              compositingEnabled: true,
+              flipHorizontal: true,
+              flipVertical: false,
+              heightScale: 0.8,
+            },
+            animation: {
+              keyframe: animationPresets.find(
+                (p) => p.scene === 'keyframe' && p.name === 'Slide Right',
+              ).id,
+              inPreset: '',
+              outPreset: '',
+              frames: 30,
+            },
+          }
+        : {}),
     },
   },
 });
@@ -53,7 +84,7 @@ await p.evaluate(async () => {
     handler,
   });
 });
-const file = path.join(qa, 'Compare.mp4');
+const file = path.join(qa, inspector ? 'Compare-inspector.mp4' : 'Compare.mp4');
 const id = await call('start_export', {
   path: file,
   settings: { width: 640, height: 360, quality: 'high', encoder: 'software' },
@@ -61,14 +92,18 @@ const id = await call('start_export', {
 await p.waitForFunction(
   (id) => window.__compareJobs[id] && window.__compareJobs[id].status !== 'running',
   id,
-  { timeout: 120000 },
+  { timeout: inspector ? 300000 : 120000 },
 );
 const job = await p.evaluate((id) => window.__compareJobs[id], id);
 if (job.status !== 'complete') throw Error(JSON.stringify(job));
 await p.locator('.timeline-scroll').evaluate((el) => (el.scrollLeft = 0));
+await p.locator('[data-action="zoom_fit"]').click();
+const snapButton = p.locator('[data-action="snapping"]');
+if ((await snapButton.getAttribute('aria-pressed')) === 'true') await snapButton.click();
+const pixelsPerFrame = Number(await p.locator('.track-lane').first().getAttribute('data-ppf'));
 const results = [];
 for (const f of [12, 45, 82, 105, 140]) {
-  await p.locator('.ruler').click({ position: { x: 142 + f * 1.5, y: 14 } });
+  await p.locator('.ruler').click({ position: { x: 142 + f * pixelsPerFrame, y: 14 } });
   await p.waitForTimeout(450);
   const expected = `00:00:${String(Math.floor(f / 30)).padStart(2, '0')}:${String(f % 30).padStart(2, '0')}`;
   const actual = await p.locator('.player-status>span').first().textContent();
@@ -126,7 +161,7 @@ for (const f of [12, 45, 82, 105, 140]) {
   results.push({ frame: f, meanAbsoluteChannelError: mean, fractionWithin16: within });
 }
 await fs.writeFile(
-  path.join(qa, 'render-comparison.json'),
+  path.join(qa, inspector ? 'inspector-render-comparison.json' : 'render-comparison.json'),
   JSON.stringify(
     {
       passed: results.every((r) => r.meanAbsoluteChannelError < 10 && r.fractionWithin16 > 0.85),

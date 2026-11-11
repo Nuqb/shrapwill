@@ -6,6 +6,7 @@ import type { Track, Clip } from '../../types';
 import { durationOf, fpsOf } from '../../types';
 import type { Props, ContextMenu } from './types';
 import { head } from './constants';
+import { timelineBounds, snapPlayhead } from './geometry';
 export function useTimeline({
   selectedTracks,
   onSelectedTracks,
@@ -112,7 +113,7 @@ export function useTimeline({
       kind: 'tracks',
       ids,
       x: Math.min(e.clientX, innerWidth - 265),
-      y: Math.min(e.clientY, innerHeight - 150),
+      y: Math.min(e.clientY, innerHeight - 255),
     });
   }
   function clipContext(e: React.MouseEvent, c: Clip) {
@@ -124,7 +125,7 @@ export function useTimeline({
       kind: 'clips',
       ids,
       x: Math.min(e.clientX, innerWidth - 265),
-      y: Math.min(e.clientY, innerHeight - 150),
+      y: Math.min(e.clientY, innerHeight - 255),
     });
   }
   const mainTrack = [...project.tracks].reverse().find((t) => t.kind === 'video');
@@ -132,8 +133,9 @@ export function useTimeline({
     pps = 45 * zoom,
     ppf = pps / fps,
     total = durationOf(project);
-  const length = Math.max(total / fps + 20, 60);
-  const timelineWidth = Math.max(width - head, length * pps);
+  const { length, minZoom, maxZoom } = timelineBounds(project, width);
+  const previousExtent = useRef<{ id: string | null; total: number }>({ id: null, total: 0 });
+  const timelineWidth = Math.max(width - head - 16, length * pps);
   const totalHeight = Math.max(190, project.tracks.length * 76 + 30);
   useEffect(() => {
     if (!scroll.current) return;
@@ -141,13 +143,24 @@ export function useTimeline({
     r.observe(scroll.current);
     return () => r.disconnect();
   }, []);
-  const changeZoom = (n: number) => setZoom(Math.min(8, Math.max(0.08, n)));
+  const changeZoom = (n: number) => setZoom(Math.min(maxZoom, Math.max(minZoom, n)));
+  useEffect(() => {
+    const previous = previousExtent.current;
+    const fitNewContent = previous.id !== project.id || (previous.total === 0 && total > 0);
+    previousExtent.current = { id: project.id, total };
+    setZoom((value) => (fitNewContent ? minZoom : Math.min(maxZoom, Math.max(minZoom, value))));
+    const host = scroll.current;
+    if (host) {
+      host.scrollLeft = Math.min(host.scrollLeft, Math.max(0, timelineWidth + head - width));
+      setScrollX(host.scrollLeft);
+    }
+  }, [minZoom, maxZoom, timelineWidth, width, project.id, total]);
   useImperativeHandle(
     controls,
     () => ({
       zoomIn: () => changeZoom(zoom * 1.3),
       zoomOut: () => changeZoom(zoom / 1.3),
-      fit: () => changeZoom((width - head - 70) / (Math.max(10, total / fps) * 45)),
+      fit: () => changeZoom(minZoom),
       trackMenu: () => setTrackMenu((v) => !v),
     }),
     [zoom, width, total, fps],
@@ -172,10 +185,19 @@ export function useTimeline({
       { event: e, clip: c, track: t, edge },
     );
   }
-  const seek = usePlayheadSeek({ scroll, ppf, onFrame, projectId: project.id });
+  const seek = usePlayheadSeek({
+    scroll,
+    ppf,
+    onFrame,
+    projectId: project.id,
+    resolveFrame: (n) => Math.min(total, snap ? snapPlayhead(project, n, ppf) : n),
+  });
   const interval = pps > 140 ? 1 : pps > 55 ? 2 : pps > 24 ? 5 : pps > 10 ? 10 : 30;
   const firstTick = Math.floor(Math.max(0, scrollX - head) / pps / interval);
-  const lastTick = Math.ceil((scrollX + width) / pps / interval);
+  const lastTick = Math.min(
+    Math.floor(length / interval),
+    Math.ceil((scrollX + width) / pps / interval),
+  );
   return {
     selected,
     width,
@@ -205,6 +227,8 @@ export function useTimeline({
     trackMenu,
     changeZoom,
     zoom,
+    minZoom,
+    maxZoom,
     onToolChange,
     split,
     remove,

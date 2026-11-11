@@ -1,3 +1,4 @@
+import { overlayMotion } from './features/overlays/motion';
 import { useEffect, useRef } from 'react';
 import { FileVideo, FileWarning, Save, X, LoaderCircle } from 'lucide-react';
 
@@ -49,7 +50,7 @@ export default function UnsavedChangesDialog({
     };
   }, []);
   return (
-    <div className="modal-backdrop unsaved-backdrop">
+    <div ref={overlayMotion} className="modal-backdrop unsaved-backdrop">
       <section
         ref={root}
         className="unsaved-dialog"

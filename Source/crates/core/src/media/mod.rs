@@ -19,12 +19,14 @@ use std::{
 
 pub type Cancel = Arc<AtomicBool>;
 mod analysis;
+pub mod audio;
 mod cache;
 mod direct;
 mod preparation_lock;
 mod preview;
 mod probe;
 mod process;
+pub mod retime;
 mod settings;
 pub use cache::{evict_cache, managed_cache_size};
 pub use preview::{cache_key, prepare};

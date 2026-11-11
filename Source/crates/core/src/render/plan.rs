@@ -79,7 +79,11 @@ fn render_clip(
             .and_then(|a| a.preview_path.as_ref())
             .is_some_and(|path| Path::new(path).is_file());
     Ok(Some(RenderClip {
-        clip: clip.clone(),
+        clip: {
+            let mut c = clip.clone();
+            c.props = c.props.effective_picture();
+            c
+        },
         track_id: track.id.clone(),
         kind: if track.kind == "video" && !track.visible {
             "audio".into()

@@ -1,3 +1,4 @@
+import { overlayMotion } from '../overlays/motion';
 import { ChevronRight, X } from 'lucide-react';
 import { desktop } from '../../bridge';
 import { useEditor } from '../../app/EditorContext';
@@ -91,7 +92,7 @@ export function NewProjectForm() {
 }
 export function NewProjectDialog() {
   return (
-    <div className="modal-backdrop">
+    <div ref={overlayMotion} className="modal-backdrop">
       <NewProjectForm />
     </div>
   );

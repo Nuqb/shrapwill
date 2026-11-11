@@ -94,9 +94,14 @@ await press('Control+z');
 await press('s');
 const first = page.getByRole('button', { name: 'First, ' + main.name, exact: true });
 const edge = await first.locator('.trim-handle.right').boundingBox();
+const trimPixelsPerFrame = Number(
+  await page.locator(`[data-track="${main.id}"] .track-lane`).getAttribute('data-ppf'),
+);
 await page.mouse.move(edge.x + edge.width / 2, edge.y + edge.height / 2);
 await page.mouse.down();
-await page.mouse.move(edge.x + edge.width / 2 - 15, edge.y + edge.height / 2, { steps: 5 });
+await page.mouse.move(edge.x + edge.width / 2 - 10 * trimPixelsPerFrame, edge.y + edge.height / 2, {
+  steps: 5,
+});
 await page.mouse.up();
 await wait();
 let s = await check([0, 20, 50]);
@@ -132,7 +137,9 @@ await press('Control+z');
 await check([0, 30, 60]);
 // Disabled mode keeps manual gaps, and re-enabling closes them immediately.
 await press('Shift+m');
-await page.getByRole('button', { name: 'Middle, ' + main.name, exact: true }).click();
+await page
+  .getByRole('button', { name: 'Middle, ' + main.name, exact: true })
+  .click({ position: { x: 12, y: 30 } });
 await page.keyboard.press('Delete');
 await wait();
 await check([0, 60]);

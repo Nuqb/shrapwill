@@ -51,6 +51,7 @@ export function startClipGesture(ctx: GestureContext, input: PointerInput) {
   if (event.button !== 0 || ctx.committing.current) return;
   event.preventDefault();
   event.stopPropagation();
+  window.getSelection()?.removeAllRanges();
   ctx.setContext(null);
   if (ctx.tool === 'razor') return splitWithRazor(ctx, input);
   const ids = selectedIds(ctx, input);

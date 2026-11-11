@@ -12,6 +12,10 @@ export const timelineHandlers = {
     const { setSnapping } = ctx;
     setSnapping((v) => !v);
   },
+  auto_ripple: (ctx: CommandContext) => {
+    ctx.setPlaying(false);
+    void ctx.edit({ type: 'set_auto_ripple', enabled: !ctx.p.autoRipple });
+  },
   magnetic_timeline: (ctx: CommandContext) => {
     const { setPlaying, p, edit } = ctx;
     setPlaying(false);

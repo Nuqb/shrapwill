@@ -1,3 +1,4 @@
+import { overlayMotion } from './features/overlays/motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X, Plus, RotateCcw, AlertTriangle, Check } from 'lucide-react';
 import { useDialogFocus } from './features/settings/useDialogFocus';
@@ -120,7 +121,7 @@ export default function ShortcutSettings({
     return () => window.removeEventListener('keydown', key, true);
   }, [onClose, recording, pending, confirmReset]);
   return (
-    <div className="modal-backdrop shortcut-backdrop">
+    <div ref={overlayMotion} className="modal-backdrop shortcut-backdrop">
       <section
         ref={dialog}
         tabIndex={-1}

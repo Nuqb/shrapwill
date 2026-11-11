@@ -1,4 +1,5 @@
 //! Shared render planning, title rasterization, color, and original-media export.
+mod animation;
 use crate::{
     media::{self, Cancel, ExportSettings},
     model::id,
@@ -8,7 +9,9 @@ use serde::Serialize;
 use std::{fs, path::Path, sync::atomic::Ordering};
 
 mod analysis;
+mod audio;
 mod color;
+mod grading;
 pub use analysis::{analyze_frame, AnalysisFrame};
 mod creative_effects;
 mod demo;

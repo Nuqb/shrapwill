@@ -3,7 +3,8 @@ use crate::{media, transition_sources};
 use std::{fs, path::PathBuf};
 pub(super) fn applied(clip: &crate::Clip) -> bool {
     (!clip.props.original_effect.is_empty() && clip.props.effect_strength > 0.)
-        || (!clip.props.original_filter.is_empty() && clip.props.filter_strength > 0.)
+        || (!clip.props.original_filter.is_empty()
+            && clip.props.filter_strength * clip.props.grade.lut_strength > 0.)
 }
 
 pub(super) fn input_args(args: &mut Vec<String>, sources: &[(usize, PathBuf)]) {
@@ -55,7 +56,7 @@ fn process(
     let rc = request.active[index];
     let entry = transition_sources::source(kind).ok_or("Unknown original effect")?;
     let strength = if entry.family == "filter" {
-        rc.clip.props.filter_strength
+        rc.clip.props.filter_strength * rc.clip.props.grade.lut_strength
     } else {
         rc.clip.props.effect_strength
     };
@@ -93,7 +94,7 @@ pub(super) fn prepare(request: &Request<'_>) -> Result<Vec<(usize, PathBuf)>, St
             ),
             (
                 &rc.clip.props.original_filter,
-                rc.clip.props.filter_strength,
+                rc.clip.props.filter_strength * rc.clip.props.grade.lut_strength,
             ),
         ];
         if rc.kind != "video"

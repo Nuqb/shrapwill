@@ -28,6 +28,20 @@ for publishing, key handling, recovery and validation limits.
 
 ## Interface
 
+The main desktop window uses an integrated header instead of native title-bar
+decorations. `app/layout/WindowControls` presents minimize, maximize/restore and
+close through `services/desktop/window`. Empty header regions use Tauri's native
+drag regions, including double-click maximize/restore. Close requests still pass
+through the existing native close guard and unsaved-project prompt. The home
+overlay leaves this header exposed so window controls remain available.
+
+Custom dialogs, menus, tooltips and floating notices share `features/overlays/motion.ts`.
+The React ref animates entrance and releases live controls immediately on close;
+an inert, accessibility-hidden snapshot preserves the brief exit visual without
+delaying focus restoration or retaining event handlers. Snapshot IDs are removed,
+scroll positions are preserved, and reduced-motion preferences skip both animations.
+Native Windows file dialogs retain their operating-system transitions.
+
 The partial Filmora title import is described in `filmora-titles.md`.
 Preset cards and empty-project sample playback share fourteen bundled, generated
 photographic sources under `src/features/library/art/assets`. Cards wait for
@@ -128,6 +142,18 @@ A decoder error requests `prepare_compatible_preview` explicitly, as does rebuil
 
 ## Editing and playback data flow
 
+Timeline mode switches are independent: magnetic editing keeps the main video
+sequence gapless, Auto Ripple shifts following unlocked content during insertion,
+trim and deletion, and timeline snapping attracts clip edges and the playhead
+within eight screen pixels. Auto Ripple is a default-off project setting and is
+included in compact state updates. `model/timeline_rules` coordinates ripple edits
+with magnetic normalization and rejects new same-track placement overlaps before
+history commits. Existing project overlaps and explicit transitions remain readable.
+`features/timeline/geometry` bounds zoom and scroll extents to project duration plus
+a small tail. Filter source previews use a draggable, keyboard-accessible comparison
+divider; the compositor draws filtered and bypassed color treatments from the same
+media frame using scissoring, with shared media players and separate cached LUTs.
+
 Workspace panels use `layout/panelSizing.ts` to fit saved widths/heights to the available content area, preserving a usable preview instead of imposing a fixed library-width cap. `PanelDivider` provides pointer capture, keyboard resizing, cancellation and unmount cleanup through `panelDrag.ts`; `usePanelBounds` tracks window/container changes. Preferences retain the requested sizes so temporarily smaller windows can recover their previous layout. The inspector and its divider appear only for a selected clip. Project information is a read-only, focus-contained dialog under View → Project info, with editing shortcuts suspended while it is open. Titles, Transitions, Filters and Effects use the same independently scrollable vertical category sidebar beside their results. Repeated click/double-click instruction banners and the Titles toolbar's Add title button are removed; title preview, double-click/drag insertion and the add-title shortcut retain their behavior. All preset cards omit implementation badges.
 
 A user action sends a typed local command to Rust. Rust returns/emits a snapshot, and the session hook updates the interface. During pointer motion or slider dragging, local draft state provides immediate feedback. Release commits one undoable operation. A gesture session owns its pointer/key listeners and removes them on release, cancel, project change, or unmount.
@@ -207,3 +233,106 @@ The formerly unfinished transition follow-up adds original alpha-mask kernels, v
 Library tuning defaults to two-second transitions and 60% filter/effect strength. Preview controls retime the two-scene sample or adjust the isolated clip locally, including changes made while a native sample request is pending. Apply and double-click use the current tuning; transitions shortened by clip limits report the actual duration. `filterStrength` and `effectStrength` default to 1 when absent in saved projects, preserving old appearance. Original programs mix their final output with their input; HDR graph intermediates remain unattenuated. Browser color LUTs and picture effects and native LUT/FFmpeg processing use the same independent strength values. The inspector can revise applied strength; undo and serialization retain it.
 
 The incremental Filmora filter-library importer supplements the original resource inventory with bundled cinematic cube tables, deduplicating by normalized name and source hash. Filter presentation retains meaningful package categories and falls back to functional groups for uncategorized bundled resources.
+
+### Clip speed and color grading
+
+Speed editing runs in a blocking media worker through the desktop speed service.
+It reads only the selected source range and creates a persistent master and browser
+preview under the application's `retimed` data directory. Original assets remain
+in the project. The Rust Retime edit replaces selected linked source ranges and
+updates downstream timing atomically; undo restores the prior source and timing.
+Processing checks project revision and session identity before committing. Reverse
+processing uses bounded two-second source chunks. Ramps linearly interpolate the
+imported source-position/speed points and sample at quarter-second source intervals.
+Defaulted Properties.speed records the baseline asset/range, rendered duration and
+options. Repeated adjustments re-render that baseline instead of compounding.
+The baseline is used only while sourceIn is zero and duration matches the recorded
+rendered duration; trimming establishes a new baseline. The Retime edit stores
+metadata with linked source changes in one history entry. The inspector commits
+at gesture boundaries and serializes work without an Apply button.
+Generated masters are application data rather than evictable preview-cache entries.
+
+Color grading is serialized in Properties with neutral defaults for older projects.
+The browser and Rust LUT implementations share HSL range weights, exposure/light
+adjustments, RGB wheels and piecewise-linear master/channel curves. Existing LUT
+rendering carries these grades into preview and export. Delivery remains SDR.
+The source-packaging rules include the grading modules, imported preset definitions,
+import script, desktop speed service, and tests through their existing directories.
+
+## Local audio adjustments
+
+Clip properties contain a defaulted AudioSettings group, validated and committed by
+Rust through the existing undoable properties edit. Version-one projects retain
+neutral audio behavior. The focused audio inspector presents channels, balance,
+pitch, ten-band EQ, loudness normalization, foreground ducking, denoise, and local
+voice effects. Basic, Denoise, Voice Filters, and Voice Characters are independent, keyboard-navigable inspector tabs. AudioBasic, AudioDenoise, and AudioVoices own their respective presentation, with shared compact rows in AudioFields/AudioSlider and feature styles in styles/audio-inspector.css. Switching areas is local UI state and never commits an edit; fade controls display seconds while retaining frame-based project values. Settings live in features/audio; components do not call desktop IPC.
+
+media/audio prepares a full trimmed clip into a lossless, 48 kHz stereo FLAC cache
+entry, using bundled FFmpeg and cancellable per-entry locks. The cache identity
+includes source modification time, clip trim/duration and the validated DSP chain.
+prepare_audio runs through the bounded media-job queue, outside the session lock;
+it grants access only to derived files for an existing project clip. Preview uses
+ProcessedAudio with a serialized, debounced request queue, ignores stale results,
+and releases inactive players. Preparing audio is shown as a status over the picture.
+Export uses the same full-clip DSP before interval rendering so pitch, normalization,
+and echo history do not restart at segment boundaries. Gain and fades remain
+separate timeline envelopes. Foreground ducking lowers other audible, unlinked
+clips with adjustable fade duration and start-time offset, shared by browser and export formulas. Defaults retain the previous 80 ms / 250 ms envelope. A defaulted internal attack/release split preserves legacy timing. Duck amount stays in dB in project files and displays as percentage reduction.
+
+Normalization offers a validated -36 to -5 LUFS target (default -16), with -1.5 dBTP before manual gain and mixing. Defaulted noise-tool enable flags bypass DSP while preserving intensity. Wind
+removal reduces low-frequency rumble; spectral noise/hiss reduction, harmonic
+50/60 Hz hum notches, soft-gated quiet reverb tails, and de-essing are local DSP. The voice catalog in features/audio/presets.json is exercised by the real-media integration test for every filter/character combination. Voice characters use pitch and
+modulation, and room/echo filters use delays. These are local effects rather than
+voice conversion models. No AI enhancement, stem separation, cloned voices,
+accounts, or network audio processing is introduced. Existing src/crates/scripts/docs
+packaging includes the new modules and generated-fixture tests automatically.
+
+## Inspector presentation
+
+InspectorFields, InspectorSlider and InspectorTabs provide the shared compact
+controls for Video, Speed and Color. VideoBasic groups transform, compositing
+and crop; defaulted VideoSettings retains independent vertical scale, flips and bypass switches. Transition controls are in Animation and retain their editing command.
+useSpeedControls coordinates materialized timing through the desktop speed
+service; preset cards draw the actual ramp points. ColorBasic groups presets,
+LUT, color, light, adjustments and vignette. ColorCurve edits existing fixed
+control points; ColorWheel maps pointer positions to the existing RGB grading
+triplets. Graph drags draft locally and commit once on release; cancellation
+restores the initial values. Defaulted ColorGrade fields hold section bypass flags,
+independent LUT strength, sharpening, vignette shape, six secondary curves and seven
+SDR tone wheels. Effective settings are resolved without mutating stored properties
+in the render plan and browser draft path. Color LUT generation resolves bypass once
+per cube, rather than cloning settings for each of its 4,913 samples. HDR delivery
+and masks remain unsupported.
+
+VoicePresetIcon renders a distinct authored SVG path for every local filter and
+character, defined in voiceIconPaths. All inspector selection, toggle, graph and
+waveform accents follow the selected application theme. Hue swatches and color
+wheels retain their semantic spectrum colors. The isolated inspector-ui fixture
+and desktop inspector-style suite cover narrow/wide layouts, theme changes,
+SVG uniqueness, editing gestures, Undo and locked controls. All new source,
+styles and test fixtures are included by existing source-packaging directories.
+
+### Clip-local animation
+
+Properties.animation stores catalog identifiers for keyframe, entrance and exit
+presets plus an entrance/exit frame duration. The model validates identifiers
+against a compiled, fixed catalog, never project-supplied expressions or paths.
+The browser evaluates its normalized piecewise-linear transform curves; native
+export builds corresponding FFmpeg expressions from the same catalog. Animation
+uses a fixed output-size canvas and inverse sampling, so zero scale and offscreen
+motion do not allocate oversized frames. Static vertical scale and flips share
+preview/export geometry. Animation does not change timeline placement or audio.
+
+Animation inspector cards use `AnimationArt` to sample the same curves on hover
+or keyboard focus. Only the active card schedules animation frames; reduced
+motion keeps a static sample. `KeyframeArt` supplies SVG direction guides.
+Selecting a preset drafts the properties into the timeline player immediately
+at its existing playhead, then commits through the normal undoable edit path.
+The inspector switches out of library source preview without seeking. Clip
+transitions remain in the dedicated transition workflow, outside inspector tabs.
+
+scripts/animation-catalog.mjs produces the portable catalog from the imported
+animation-source.json. Compiled host animations and looping effects are omitted;
+local left/down variants mirror right/up, and outgoing variants reverse entrance
+curves relative to a neutral starting transform. Technical reference details and
+remaining gaps are recorded in inspector-reference-audit.md.

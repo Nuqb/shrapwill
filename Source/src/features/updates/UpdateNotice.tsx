@@ -1,3 +1,4 @@
+import { overlayMotion } from '../overlays/motion';
 import { useState } from 'react';
 import { Download, X } from 'lucide-react';
 import { useEditor } from '../../app/EditorContext';
@@ -13,7 +14,7 @@ export function UpdateNotice() {
   )
     return null;
   return (
-    <aside className="update-notice" aria-label="Application update">
+    <aside ref={overlayMotion} className="update-notice" aria-label="Application update">
       <Download size={17} />
       <span>
         {appUpdate.phase === 'installed'

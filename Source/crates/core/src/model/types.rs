@@ -47,6 +47,11 @@ pub struct MediaAsset {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(rename_all = "camelCase", default)]
 pub struct Properties {
+    pub video: Box<VideoSettings>,
+    pub animation: Option<Box<super::AnimationSettings>>,
+    pub speed: Option<Box<SpeedSettings>>,
+    pub audio: Box<super::AudioSettings>,
+    pub grade: Box<super::ColorGrade>,
     pub x: f64,
     pub y: f64,
     pub scale: f64,
@@ -84,6 +89,11 @@ pub struct Properties {
 impl Default for Properties {
     fn default() -> Self {
         Self {
+            video: Box::default(),
+            animation: None,
+            speed: None,
+            audio: Box::default(),
+            grade: Box::default(),
             x: 0.,
             y: 0.,
             scale: 1.,
@@ -167,6 +177,8 @@ pub struct Project {
     pub version: u32,
     #[serde(default)]
     pub magnetic_timeline: bool,
+    #[serde(default)]
+    pub auto_ripple: bool,
     pub id: String,
     pub name: String,
     pub width: u32,
@@ -180,6 +192,7 @@ impl Default for Project {
         Self {
             version: 1,
             magnetic_timeline: false,
+            auto_ripple: false,
             id: id(),
             name: "Untitled project".into(),
             width: 1920,
@@ -225,5 +238,39 @@ impl Project {
     }
     pub fn validate(&self) -> Result<(), String> {
         super::validation::validate(self)
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub struct SpeedSettings {
+    pub media_id: String,
+    pub source_in: f64,
+    pub duration: i64,
+    pub rendered_duration: i64,
+    pub rate: f64,
+    pub reverse: bool,
+    pub maintain_pitch: bool,
+    pub points: Vec<[f64; 2]>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "camelCase", default)]
+pub struct VideoSettings {
+    pub transform_enabled: bool,
+    pub compositing_enabled: bool,
+    pub flip_horizontal: bool,
+    pub flip_vertical: bool,
+    pub height_scale: f64,
+}
+impl Default for VideoSettings {
+    fn default() -> Self {
+        Self {
+            transform_enabled: true,
+            compositing_enabled: true,
+            flip_horizontal: false,
+            flip_vertical: false,
+            height_scale: 1.,
+        }
     }
 }

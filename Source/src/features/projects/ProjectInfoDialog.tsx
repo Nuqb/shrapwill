@@ -1,3 +1,4 @@
+import { overlayMotion } from '../overlays/motion';
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
 import { useEditor } from '../../app/EditorContext';
@@ -11,6 +12,7 @@ export function ProjectInfoDialog() {
   const close = () => setProjectInfoOpen(false);
   return (
     <div
+      ref={overlayMotion}
       className="modal-backdrop"
       onPointerDown={(event) => {
         if (event.target === event.currentTarget) close();

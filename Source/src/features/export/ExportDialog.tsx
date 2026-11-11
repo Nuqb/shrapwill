@@ -1,3 +1,4 @@
+import { overlayMotion } from '../overlays/motion';
 import { Film, X } from 'lucide-react';
 import { durationOf, timecode } from '../../types';
 import { useEditor } from '../../app/EditorContext';
@@ -51,7 +52,7 @@ export function ExportForm() {
 }
 export function ExportDialog() {
   return (
-    <div className="modal-backdrop">
+    <div ref={overlayMotion} className="modal-backdrop">
       <ExportForm />
     </div>
   );

@@ -22,6 +22,7 @@ export function TimelineView() {
     ppf,
     frame,
     context,
+    seek,
   } = useTimeline();
 
   return (
@@ -55,7 +56,12 @@ export function TimelineView() {
               <Scissors size={13} />
             </div>
           )}
-          <div className="playhead" style={{ left: head + frame * ppf, height: totalHeight }}></div>
+          <div
+            className="playhead"
+            tabIndex={-1}
+            onPointerDown={seek}
+            style={{ left: head + frame * ppf, height: totalHeight }}
+          ></div>
         </div>
       </div>
       <TimelineFooter />

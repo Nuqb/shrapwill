@@ -1,10 +1,11 @@
+import { overlayMotion } from '../../features/overlays/motion';
 import { X, LoaderCircle, MonitorPlay, AlertCircle } from 'lucide-react';
 import { type Job } from '../../types';
 import { useEditor } from '../EditorContext';
 export function MissingMediaNotice() {
   const { missing, relink } = useEditor();
   return (
-    <div className="missing-notice">
+    <div ref={overlayMotion} className="missing-notice">
       <AlertCircle size={15} />
       <span>
         {missing.length} missing media file{missing.length > 1 ? 's' : ''}
@@ -34,7 +35,7 @@ export function BackgroundJob({ j }: { j: Job }) {
 export function BackgroundJobs() {
   const { activeJobs } = useEditor();
   return (
-    <div className="jobs-panel">
+    <div ref={overlayMotion} className="jobs-panel">
       {activeJobs.map((j) => (
         <BackgroundJob key={j.id} j={j} />
       ))}
@@ -44,7 +45,7 @@ export function BackgroundJobs() {
 export function ToastMessage() {
   const { toast, setToast } = useEditor();
   return (
-    <div className="toast">
+    <div ref={overlayMotion} className="toast">
       <span>{toast}</span>
       <button aria-label="Dismiss notification" onClick={() => setToast('')}>
         <X size={15} />

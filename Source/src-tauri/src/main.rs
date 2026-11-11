@@ -5,6 +5,7 @@ mod imports;
 mod jobs;
 mod preview_jobs;
 mod project_store;
+mod retiming;
 mod runtime;
 mod session;
 mod state;
@@ -19,9 +20,11 @@ fn main() {
             updates::cancel_app_update,
             updates::install_app_update,
             updates::restart_for_update,
+            commands::audio::prepare_audio,
             commands::editing::startup,
             commands::editing::editor_snapshot,
             commands::editing::edit,
+            commands::editing::retime_clip,
             commands::editing::history,
             commands::editing::clipboard,
             commands::projects::new_project,

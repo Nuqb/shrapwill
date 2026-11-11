@@ -53,6 +53,10 @@ await page
   .first()
   .click();
 await page.getByRole('button', { name: 'Color', exact: true }).click();
+await page
+  .locator('.color-inspector summary')
+  .filter({ hasText: /^Light$/ })
+  .click();
 const brightness = page.getByLabel('Brightness', { exact: true });
 await brightness.focus();
 await page.keyboard.press('ArrowRight');

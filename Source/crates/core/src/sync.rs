@@ -100,7 +100,7 @@ pub enum Update {
 }
 
 fn project_header(p: &Project) -> Value {
-    json!({"id":p.id,"version":p.version,"magneticTimeline":p.magnetic_timeline,
+    json!({"id":p.id,"version":p.version,"magneticTimeline":p.magnetic_timeline,"autoRipple":p.auto_ripple,
         "name":p.name,"width":p.width,"height":p.height,"fps":p.fps})
 }
 fn render_delta(old: &Option<RenderPlan>, new: &Option<RenderPlan>) -> Value {

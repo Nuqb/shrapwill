@@ -1,11 +1,14 @@
 use super::*;
 use fixtures::*;
+mod audio;
 mod clipboard_1;
 mod creative;
 mod editing_1;
 mod fixtures;
 mod history_memory;
 mod magnetic_1;
+mod retime;
+mod timeline_rules;
 mod titles_1;
 mod tracks_1;
 mod video_effects;
