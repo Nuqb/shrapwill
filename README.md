@@ -4,10 +4,9 @@
 
 # Shrapwill
 
-### A straightforward video editor. Make something worth watching.
+### A straightforward video editor.
 
-For simple cuts, everyday projects, and edits that need a little more polish.
-The familiar workspace keeps your media, preview, controls, and timeline within reach.
+For simple everyday projects.
 
 **No account · No subscriptions · No in-app purchases · No ads · No AI upsells**
 
